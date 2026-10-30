@@ -1,0 +1,13 @@
+# Un solo repositorio con la web (mupa-intranet-app) y la API (mupa-intranet-api).
+# Cada proyecto tiene además su propio .gitignore (node_modules, dist, …).
+
+# Secretos
+.env
+.env.*
+!.env.example
+!.env.dev.example
+# Configuración de las pruebas de punta a punta de la API (sin secretos).
+!mupa-intranet-api/.env.e2e
+
+# Respaldos de la base (scripts/respaldo.sh): traen cédulas, nunca a git
+respaldos/

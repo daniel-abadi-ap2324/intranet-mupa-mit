@@ -1,0 +1,185 @@
+# Intranet MUPA — todo junto: PostgreSQL + migraciones + la imagen de la API (que trae y sirve la web) + MCP.
+#
+#   docker compose up --build   # → http://localhost:8080  (no hace falta .env)
+#
+# Sin .env arranca en modo local de demostración: edición completa, cuentas ficticias (contraseña "password"),
+# sin HTTPS y sin integraciones externas. Para un servidor real: cp .env.example .env y completa lo marcado.
+#
+# Una sola imagen propia para la intranet: mupa-intranet-api. Su Dockerfile compila la web (mupa-intranet-app) y la
+# deja en /app/public; la API la sirve en la raíz del sitio y responde /api/… (mismo origen). Ya no hay nginx.
+#
+# Orden de arranque (cada paso espera al anterior):
+#   db (sano: pg_isready) → migrate (aplica las migraciones de Drizzle y los datos
+#   iniciales, y termina) → api (sana: /api/health) → mcp
+#
+# Migraciones nuevas: en mupa-intranet-api, `npm run db:generate` escribe el SQL en
+# src/database/migrations; el próximo `docker compose up --build` las aplica.
+
+name: mupa-intranet
+
+x-api-imagen: &api-imagen
+  # Desde la raíz: la imagen lleva la API y la web compilada (ver mupa-intranet-api/Dockerfile y su Dockerfile.dockerignore).
+  build:
+    context: .
+    dockerfile: mupa-intranet-api/Dockerfile
+    args:
+      VITE_EDICION: ${EDICION:-completa}
+  image: mupa-intranet-api
+
+# Edición: publicacion (lo que se publica hoy) o completa (todo). La web y la API usan la misma.
+x-edicion: &edicion ${EDICION:-completa}
+
+x-base-de-datos: &base-de-datos
+  DATABASE_URL: postgres://${POSTGRES_USER:-intranet}:${POSTGRES_PASSWORD:-solo-local-demo}@db:5432/${POSTGRES_DB:-intranet}
+  # development por defecto (demostración local). En un servidor real: NODE_ENV=production en el .env; ahí la API
+  # no arranca con las cuentas de prueba ni con Identity Central por http.
+  NODE_ENV: ${NODE_ENV:-development}
+  EDICION: *edicion
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-intranet}
+      POSTGRES_USER: ${POSTGRES_USER:-intranet}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-solo-local-demo}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    # Para verla desde tu equipo (pgAdmin, DBeaver…), descomenta:
+    # ports:
+    #   - '5432:5432'
+
+  # Corre una vez en cada `up`: aplica las migraciones pendientes y carga los datos
+  # iniciales que falten (no pisa lo editado). Si falla, la API no arranca.
+  migrate:
+    <<: *api-imagen
+    command: ['sh', '-c', 'node dist/database/migrate.js && node dist/database/seed.js']
+    environment:
+      <<: *base-de-datos
+      # true solo en pruebas: crea las cuentas FICTICIAS (contraseña "password").
+      SEED_DEMO_USERS: ${SEED_DEMO_USERS:-true}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: 'no'
+    # Es una tarea que termina, no un servidor: sin chequeo de salud.
+    healthcheck:
+      disable: true
+
+  api:
+    <<: *api-imagen
+    restart: unless-stopped
+    environment:
+      <<: *base-de-datos
+      PORT: 3000
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-8}
+      # La cookie de sesión exige HTTPS. En http://localhost:8080 ponlo en false.
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      # Proxies delante de la API (1 si el nginx del servidor la publica con su dominio). 0 = la gente llega directo:
+      # no se confía en X-Forwarded-For (si no, cualquiera cambiaría su IP y se saltaría el límite de intentos del login).
+      TRUST_PROXY: ${TRUST_PROXY:-0}
+      # Login: Identity Central (valores en .env; ver mupa-intranet-api/README.md)
+      # y/o las cuentas locales FICTICIAS (solo pruebas).
+      LOCAL_LOGIN_ENABLED: ${LOCAL_LOGIN_ENABLED:-true}
+      IDENTITY_URL: ${IDENTITY_URL:-}
+      IDENTITY_CLIENT_ID: ${IDENTITY_CLIENT_ID:-}
+      IDENTITY_CLIENT_SECRET: ${IDENTITY_CLIENT_SECRET:-}
+      IDENTITY_SCOPES: ${IDENTITY_SCOPES:-}
+      IDENTITY_TIMEOUT_MS: ${IDENTITY_TIMEOUT_MS:-}
+      IDENTITY_ADMIN_USER: ${IDENTITY_ADMIN_USER:-}
+      IDENTITY_ADMIN_PASSWORD: ${IDENTITY_ADMIN_PASSWORD:-}
+      JWT_ISSUER: ${JWT_ISSUER:-}
+      JWT_JWKS_URI: ${JWT_JWKS_URI:-}
+      ALLOWED_CLIENT_IDS: ${ALLOWED_CLIENT_IDS:-}
+      # Asistente de búsqueda (servidor de inferencia). Vacío = apagado.
+      LLM_URL: ${LLM_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-}
+      # Catálogo público del sistema de citas de la Clínica (por defecto https://clinica.mupa.gob.pa).
+      CLINIC_URL: ${CLINIC_URL:-}
+      CLINIC_TIMEOUT_MS: ${CLINIC_TIMEOUT_MS:-}
+      # API de la Clínica para consultar las citas de cada persona por su cédula («Mis citas»). Vacías = apagado.
+      CLINIC_API_URL: ${CLINIC_API_URL:-}
+      CLINIC_API_KEY: ${CLINIC_API_KEY:-}
+      # API de códigos de llamada para consultar las solicitudes de cada persona por su cédula. Vacías = apagado.
+      CALLCODE_API_URL: ${CALLCODE_API_URL:-}
+      CALLCODE_API_KEY: ${CALLCODE_API_KEY:-}
+      CALLCODE_TIMEOUT_MS: ${CALLCODE_TIMEOUT_MS:-}
+      # Mesa de Ayuda (GLPI): los tickets de cada persona por su cédula en «Teléfono». La cuenta de consulta entra con
+      # GLPI_USER_TOKEN (recomendado) o con GLPI_USER_ID (usuario) y GLPI_USER_PASS. Vacías = apagado.
+      GLPI_API_URL: ${GLPI_API_URL:-}
+      GLPI_APP_TOKEN: ${GLPI_APP_TOKEN:-}
+      GLPI_USER_TOKEN: ${GLPI_USER_TOKEN:-}
+      GLPI_USER_ID: ${GLPI_USER_ID:-}
+      GLPI_USER_PASS: ${GLPI_USER_PASS:-}
+      GLPI_TIMEOUT_MS: ${GLPI_TIMEOUT_MS:-}
+      # RH Link (RRHH Express de cada persona en Recursos Humanos). Vacío = apagado.
+      RRHH_API_URL: ${RRHH_API_URL:-}
+      RRHH_TIMEOUT_MS: ${RRHH_TIMEOUT_MS:-}
+      RRHH_MANTENIMIENTO: ${RRHH_MANTENIMIENTO:-}
+      # Cuenta de AD con la que la API verifica en RH Link que quien entra es un funcionario ACTIVO. Vacías = no se verifica.
+      RRHH_API_USER: ${RRHH_API_USER:-}
+      RRHH_API_PASSWORD: ${RRHH_API_PASSWORD:-}
+      # Cómo viene el nombre en RH Link: nombres-primero (por defecto) o apellidos-primero.
+      RRHH_NOMBRE_ORDEN: ${RRHH_NOMBRE_ORDEN:-}
+      CORREO_DOMINIOS: ${CORREO_DOMINIOS:-}
+      UCM_URL: ${UCM_URL:-}
+      UCM_USER: ${UCM_USER:-}
+      UCM_PASSWORD: ${UCM_PASSWORD:-}
+      UCM_SYNC_MINUTOS: ${UCM_SYNC_MINUTOS:-}
+      UCM_TLS_VERIFICAR: ${UCM_TLS_VERIFICAR:-}
+      # Intentos de login por IP cada 10 min (100 por defecto; solo se sube para las pruebas e2e).
+      LOGIN_RATE_LIMIT: ${LOGIN_RATE_LIMIT:-}
+      # Sincronización de noticias y boletines con mupa.gob.pa (solo lectura). Vacío = apagada.
+      WP_SYNC_URL: ${WP_SYNC_URL:-}
+      WP_SYNC_INTERVAL_MINUTES: ${WP_SYNC_INTERVAL_MINUTES:-}
+      WP_SYNC_WINDOW_DAYS: ${WP_SYNC_WINDOW_DAYS:-}
+      WP_SYNC_CATEGORIES: ${WP_SYNC_CATEGORIES:-}
+      WP_SYNC_TIMEOUT_MS: ${WP_SYNC_TIMEOUT_MS:-}
+      # Servidor MCP (servicio `mcp`): describe los endpoints y las páginas para el asistente.
+      # MCP_INTERNAL_KEY es la llave compartida entre la API y el MCP (el mismo valor en los dos); sin ella, la API no entrega su
+      # catálogo y el MCP trabaja con su copia de respaldo. MCP_URL vacío = el asistente no le pide pistas.
+      MCP_INTERNAL_KEY: ${MCP_INTERNAL_KEY:-}
+      MCP_URL: ${MCP_URL-http://mcp:8000/mcp}
+      MCP_TIMEOUT_MS: ${MCP_TIMEOUT_MS:-}
+    # La intranet (web + /api) se abre en este puerto del servidor: http://<servidor>:WEB_PORT
+    ports:
+      - '${WEB_PORT:-8080}:3000'
+    # PDF e imágenes que sube Comunicación (boletines, noticias): hay que respaldarlos junto con la base.
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1:3000/api/health']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  # Servidor MCP (Python + FastAPI): lee de la API el catálogo de sus endpoints y de las páginas de la intranet y se lo
+  # ofrece al asistente (herramientas MCP en http://mcp:8000/mcp, más rutas REST para verlo: /docs). Solo dentro de la red de
+  # Docker: no se publica ningún puerto. Si cae, el asistente sigue respondiendo sin sus pistas.
+  mcp:
+    build: ./mupa-intranet-mcp
+    image: mupa-intranet-mcp
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://api:3000
+      MCP_INTERNAL_KEY: ${MCP_INTERNAL_KEY:-}
+      CATALOG_REFRESH_SECONDS: ${MCP_CATALOG_REFRESH_SECONDS:-300}
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  uploads:

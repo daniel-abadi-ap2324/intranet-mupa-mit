@@ -1,0 +1,4458 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-30T20:43:41.028Z",
+  "edition": "completa",
+  "endpoints": [
+    {
+      "id": "GET /api/health",
+      "method": "GET",
+      "path": "/api/health",
+      "area": "Salud",
+      "summary": "Dice si la API y la base de datos responden (lo usa Docker para saber si está viva).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "estado",
+        "salud",
+        "funciona"
+      ],
+      "request": {}
+    },
+    {
+      "id": "POST /api/auth/register",
+      "method": "POST",
+      "path": "/api/auth/register",
+      "area": "Sesión",
+      "summary": "Crea una cuenta nueva con la cédula (la cuenta vive en Identity Central; la cédula no se guarda en la intranet).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/registro",
+      "keywords": [
+        "registrarme",
+        "crear cuenta",
+        "registro"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "identityNumber": {
+              "type": "string",
+              "pattern": "^(PE|E|N|[1-9]|1[0-3])(AV|PI)?-\\d{1,4}-\\d{1,6}$"
+            },
+            "firstName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "lastName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "password": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 200
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 254,
+              "format": "email",
+              "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "phone": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "mobile": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "jobTitle": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "departmentId": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "identityNumber",
+            "password"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/auth/login",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "area": "Sesión",
+      "summary": "Inicia sesión con usuario y contraseña y deja la cookie de sesión.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/entrar",
+      "keywords": [
+        "entrar",
+        "iniciar sesión",
+        "login",
+        "contraseña"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254
+            },
+            "password": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "username",
+            "password"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/auth/refresh",
+      "method": "POST",
+      "path": "/api/auth/refresh",
+      "area": "Sesión",
+      "summary": "Renueva la sesión antes de que venza.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "renovar sesión"
+      ],
+      "request": {}
+    },
+    {
+      "id": "POST /api/auth/logout",
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "area": "Sesión",
+      "summary": "Cierra la sesión.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "salir",
+        "cerrar sesión"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/auth/session",
+      "method": "GET",
+      "path": "/api/auth/session",
+      "area": "Sesión",
+      "summary": "Devuelve quién es la persona con sesión (nombre, roles, departamento) o null si no ha entrado.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "quién soy",
+        "mi sesión"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/applications",
+      "method": "GET",
+      "path": "/api/applications",
+      "area": "Aplicaciones",
+      "summary": "Lista el catálogo de aplicaciones y servicios de la Alcaldía que esa persona puede ver, con búsqueda y filtros por área y etiqueta.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera; lo que ve depende de su sesión y departamento",
+      "page": "/aplicaciones",
+      "keywords": [
+        "sistemas",
+        "aplicaciones",
+        "catálogo",
+        "servicios",
+        "correo"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "includeDrafts": {
+              "type": "string"
+            },
+            "department": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "GET /api/applications/:id",
+      "method": "GET",
+      "path": "/api/applications/:id",
+      "area": "Aplicaciones",
+      "summary": "Una aplicación del catálogo con su descripción, enlace, área y etiquetas.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera; lo que ve depende de su sesión y departamento",
+      "page": "/aplicaciones",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "POST /api/applications",
+      "method": "POST",
+      "path": "/api/applications",
+      "area": "Aplicaciones",
+      "summary": "Agrega una aplicación al catálogo.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/aplicaciones",
+      "keywords": [
+        "nueva aplicación"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "url": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "area": {
+              "type": "string",
+              "enum": [
+                "Trámites",
+                "Soporte",
+                "Personal",
+                "Atención",
+                "Finanzas",
+                "Operaciones"
+              ]
+            },
+            "icon": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4
+            },
+            "tagIds": {
+              "maxItems": 30,
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "departmentIds": {
+              "maxItems": 60,
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "access": {
+              "type": "string",
+              "enum": [
+                "todos",
+                "sesion",
+                "red-interna"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "publicado",
+                "pendiente",
+                "solo-red-interna"
+              ]
+            },
+            "external": {
+              "type": "boolean"
+            },
+            "pdf": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "confirmed": {
+              "type": "boolean"
+            },
+            "keywords": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "name",
+            "description",
+            "area"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PUT /api/applications/departments",
+      "method": "PUT",
+      "path": "/api/applications/departments",
+      "area": "Aplicaciones",
+      "summary": "Cambia de una vez qué departamentos ven cada aplicación del catálogo (lista vacía = todas las personas). Todo o nada.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Solo administración",
+      "page": "/gestion/aplicaciones",
+      "keywords": [
+        "visibilidad",
+        "direcciones",
+        "clasificar"
+      ],
+      "request": {
+        "body": {
+          "minItems": 1,
+          "maxItems": 500,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "applicationId": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "departmentIds": {
+                "maxItems": 500,
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                }
+              }
+            },
+            "required": [
+              "applicationId",
+              "departmentIds"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/applications/:id",
+      "method": "PATCH",
+      "path": "/api/applications/:id",
+      "area": "Aplicaciones",
+      "summary": "Cambia los datos de una aplicación del catálogo (nombre, enlace, estado, quién la ve).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/aplicaciones",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "url": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "area": {
+              "type": "string",
+              "enum": [
+                "Trámites",
+                "Soporte",
+                "Personal",
+                "Atención",
+                "Finanzas",
+                "Operaciones"
+              ]
+            },
+            "icon": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4
+            },
+            "tagIds": {
+              "maxItems": 30,
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "departmentIds": {
+              "maxItems": 60,
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "access": {
+              "type": "string",
+              "enum": [
+                "todos",
+                "sesion",
+                "red-interna"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "publicado",
+                "pendiente",
+                "solo-red-interna"
+              ]
+            },
+            "external": {
+              "type": "boolean"
+            },
+            "pdf": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "confirmed": {
+              "type": "boolean"
+            },
+            "keywords": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/applications/:id",
+      "method": "DELETE",
+      "path": "/api/applications/:id",
+      "area": "Aplicaciones",
+      "summary": "Quita una aplicación del catálogo.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/aplicaciones",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/tags",
+      "method": "GET",
+      "path": "/api/tags",
+      "area": "Aplicaciones",
+      "summary": "Lista las etiquetas con las que se agrupan las aplicaciones.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/aplicaciones",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/home/content",
+      "method": "GET",
+      "path": "/api/home/content",
+      "area": "Inicio",
+      "summary": "El contenido editable del Inicio: bienvenida, enlaces, trámites frecuentes, campañas y enlaces institucionales.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/",
+      "keywords": [
+        "inicio",
+        "trámites frecuentes",
+        "enlaces institucionales"
+      ],
+      "request": {}
+    },
+    {
+      "id": "PUT /api/home/content/intro",
+      "method": "PUT",
+      "path": "/api/home/content/intro",
+      "area": "Inicio",
+      "summary": "Cambia el texto de bienvenida del Inicio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/inicio",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PUT /api/home/content/frecuentes",
+      "method": "PUT",
+      "path": "/api/home/content/frecuentes",
+      "area": "Inicio",
+      "summary": "Cambia la lista de trámites frecuentes del Inicio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/inicio",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "object",
+              "properties": {
+                "nota": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "items": {
+                  "maxItems": 12,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "t": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "meta": {
+                        "type": "string",
+                        "maxLength": 160
+                      },
+                      "g": {
+                        "type": "string",
+                        "maxLength": 4
+                      },
+                      "color": {
+                        "type": "string",
+                        "maxLength": 20
+                      },
+                      "h": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 500
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sla": {
+                        "type": "string",
+                        "maxLength": 40
+                      }
+                    },
+                    "required": [
+                      "t"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "items"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PUT /api/home/content/campanas",
+      "method": "PUT",
+      "path": "/api/home/content/campanas",
+      "area": "Inicio",
+      "summary": "Cambia las campañas y avisos (carrusel) del Inicio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/inicio",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "object",
+              "properties": {
+                "nota": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "items": {
+                  "maxItems": 12,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "src": {
+                        "type": "string",
+                        "maxLength": 500
+                      },
+                      "alt": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "h": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 500
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "src",
+                      "alt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "items"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PUT /api/home/content/enlaces",
+      "method": "PUT",
+      "path": "/api/home/content/enlaces",
+      "area": "Inicio",
+      "summary": "Cambia los enlaces institucionales del Inicio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/inicio",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "maxItems": 20,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "g": {
+                    "type": "string",
+                    "maxLength": 4
+                  },
+                  "h": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 500
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/home/layout",
+      "method": "GET",
+      "path": "/api/home/layout",
+      "area": "Inicio",
+      "summary": "El orden y el tamaño de los bloques del Inicio de esa persona (o el de todos si no ha personalizado el suyo).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/",
+      "keywords": [
+        "personalizar inicio",
+        "bloques"
+      ],
+      "request": {}
+    },
+    {
+      "id": "PUT /api/home/layout",
+      "method": "PUT",
+      "path": "/api/home/layout",
+      "area": "Inicio",
+      "summary": "Guarda el diseño del Inicio de esa persona (qué bloques ve y en qué orden).",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/",
+      "keywords": [
+        "personalizar inicio"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "layout": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "v": {
+                      "type": "number",
+                      "const": 1
+                    },
+                    "items": {
+                      "maxItems": 30,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]{2,40}$"
+                          },
+                          "uid": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]{2,48}$"
+                          },
+                          "ancho": {
+                            "type": "string",
+                            "enum": [
+                              "tercio",
+                              "media",
+                              "dos-tercios",
+                              "completa"
+                            ]
+                          },
+                          "cfg": {
+                            "type": "object",
+                            "properties": {
+                              "tipo": {
+                                "type": "string",
+                                "enum": [
+                                  "etiqueta",
+                                  "area"
+                                ]
+                              },
+                              "valor": {
+                                "type": "string",
+                                "maxLength": 60,
+                                "pattern": "^[^<>]*$"
+                              },
+                              "cantidad": {
+                                "anyOf": [
+                                  {
+                                    "type": "number",
+                                    "const": 4
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 6
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 8
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 12
+                                  }
+                                ]
+                              },
+                              "titulo": {
+                                "type": "string",
+                                "maxLength": 60,
+                                "pattern": "^[^<>]*$"
+                              },
+                              "links": {
+                                "maxItems": 8,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "t": {
+                                      "type": "string",
+                                      "maxLength": 60,
+                                      "pattern": "^[^<>]*$"
+                                    },
+                                    "h": {
+                                      "type": "string",
+                                      "maxLength": 500,
+                                      "format": "uri"
+                                    }
+                                  },
+                                  "required": [
+                                    "t",
+                                    "h"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "ocultos": {
+                                "maxItems": 40,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500,
+                                  "pattern": "^[^<>]*$"
+                                }
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "uid",
+                          "ancho"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "buscador": {
+                      "type": "string",
+                      "enum": [
+                        "tercio",
+                        "media",
+                        "dos-tercios",
+                        "completa"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "v",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "layout"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PUT /api/home/default-layout",
+      "method": "PUT",
+      "path": "/api/home/default-layout",
+      "area": "Inicio",
+      "summary": "Guarda el diseño del Inicio que ve todo el que no personalizó el suyo.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "layout": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "v": {
+                      "type": "number",
+                      "const": 1
+                    },
+                    "items": {
+                      "maxItems": 30,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]{2,40}$"
+                          },
+                          "uid": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]{2,48}$"
+                          },
+                          "ancho": {
+                            "type": "string",
+                            "enum": [
+                              "tercio",
+                              "media",
+                              "dos-tercios",
+                              "completa"
+                            ]
+                          },
+                          "cfg": {
+                            "type": "object",
+                            "properties": {
+                              "tipo": {
+                                "type": "string",
+                                "enum": [
+                                  "etiqueta",
+                                  "area"
+                                ]
+                              },
+                              "valor": {
+                                "type": "string",
+                                "maxLength": 60,
+                                "pattern": "^[^<>]*$"
+                              },
+                              "cantidad": {
+                                "anyOf": [
+                                  {
+                                    "type": "number",
+                                    "const": 4
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 6
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 8
+                                  },
+                                  {
+                                    "type": "number",
+                                    "const": 12
+                                  }
+                                ]
+                              },
+                              "titulo": {
+                                "type": "string",
+                                "maxLength": 60,
+                                "pattern": "^[^<>]*$"
+                              },
+                              "links": {
+                                "maxItems": 8,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "t": {
+                                      "type": "string",
+                                      "maxLength": 60,
+                                      "pattern": "^[^<>]*$"
+                                    },
+                                    "h": {
+                                      "type": "string",
+                                      "maxLength": 500,
+                                      "format": "uri"
+                                    }
+                                  },
+                                  "required": [
+                                    "t",
+                                    "h"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "ocultos": {
+                                "maxItems": 40,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500,
+                                  "pattern": "^[^<>]*$"
+                                }
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "uid",
+                          "ancho"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "buscador": {
+                      "type": "string",
+                      "enum": [
+                        "tercio",
+                        "media",
+                        "dos-tercios",
+                        "completa"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "v",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "layout"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/assistant/status",
+      "method": "GET",
+      "path": "/api/assistant/status",
+      "area": "Asistente",
+      "summary": "Dice si el asistente (chatbot) está disponible. No consulta al modelo.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "chatbot",
+        "asistente"
+      ],
+      "request": {}
+    },
+    {
+      "id": "POST /api/assistant/ask",
+      "method": "POST",
+      "path": "/api/assistant/ask",
+      "area": "Asistente",
+      "summary": "Hace una pregunta al asistente: responde en texto y propone páginas de la intranet y aplicaciones del catálogo a las que ir.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera (máx. 15 preguntas cada 10 minutos)",
+      "page": null,
+      "keywords": [
+        "preguntar",
+        "ayuda",
+        "chatbot",
+        "dónde encuentro"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/departments/options",
+      "method": "GET",
+      "path": "/api/departments/options",
+      "area": "Departamentos",
+      "summary": "La lista corta de departamentos (para elegirlos en un formulario).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/departments",
+      "method": "GET",
+      "path": "/api/departments",
+      "area": "Departamentos",
+      "summary": "Lista completa de departamentos con cuántas personas y aplicaciones tiene cada uno.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/departamentos",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/departments",
+      "method": "POST",
+      "path": "/api/departments",
+      "area": "Departamentos",
+      "summary": "Crea un departamento.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/departamentos",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/departments/:id",
+      "method": "PATCH",
+      "path": "/api/departments/:id",
+      "area": "Departamentos",
+      "summary": "Cambia el nombre de un departamento.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/departamentos",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/departments/:id",
+      "method": "DELETE",
+      "path": "/api/departments/:id",
+      "area": "Departamentos",
+      "summary": "Borra un departamento.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/departamentos",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/directory",
+      "method": "GET",
+      "path": "/api/directory",
+      "area": "Directorio",
+      "summary": "El directorio telefónico (nombre, dirección, extensión y ubicación) con la fecha de la última copia de la central telefónica; sin copia, los datos fijos. Nunca llama a la central.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/directorio",
+      "keywords": [
+        "extensiones",
+        "teléfonos",
+        "central",
+        "actualizado"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/directory/comparison",
+      "method": "GET",
+      "path": "/api/directory/comparison",
+      "area": "Directorio",
+      "summary": "Compara la central telefónica con el Directorio: extensiones nuevas en la central, las que ya no existen y los nombres distintos, más el estado de la sincronización. Nada se publica solo.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Solo administración",
+      "page": null,
+      "keywords": [
+        "central",
+        "comparación",
+        "extensiones nuevas"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/users",
+      "method": "GET",
+      "path": "/api/users",
+      "area": "Usuarios",
+      "summary": "Lista las personas con cuenta, con búsqueda por nombre, correo o cédula; administración les asigna su departamento.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [
+        "usuarios",
+        "asignar departamento"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "department": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            "withoutDepartment": {
+              "type": "string"
+            },
+            "q": {
+              "type": "string",
+              "maxLength": 80
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "GET /api/users/:id",
+      "method": "GET",
+      "path": "/api/users/:id",
+      "area": "Usuarios",
+      "summary": "La ficha completa de una persona (administración): sus datos menos la contraseña, con su cédula, sesiones, solicitudes y su estado en RH Link.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [
+        "ficha",
+        "cédula"
+      ],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/users/:id",
+      "method": "PATCH",
+      "path": "/api/users/:id",
+      "area": "Usuarios",
+      "summary": "Cambia el departamento de una persona (y con eso, qué aplicaciones del catálogo ve).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "departmentId": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "departmentId"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/users/:id/suspend",
+      "method": "POST",
+      "path": "/api/users/:id/suspend",
+      "area": "Usuarios",
+      "summary": "Suspende una cuenta: no puede entrar y se cierran sus sesiones (administración).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "POST /api/users/:id/reactivate",
+      "method": "POST",
+      "path": "/api/users/:id/reactivate",
+      "area": "Usuarios",
+      "summary": "Reactiva una cuenta suspendida (administración).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "POST /api/users/:id/reset",
+      "method": "POST",
+      "path": "/api/users/:id/reset",
+      "area": "Usuarios",
+      "summary": "Reinicia el perfil local de Identity Central y elimina sesiones, preferencias y solicitudes; permite recrearlo al ingresar, sin corregir datos ni revocar acceso en el central (administración).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [
+        "reiniciar perfil"
+      ],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/users/:id",
+      "method": "DELETE",
+      "path": "/api/users/:id",
+      "area": "Usuarios",
+      "summary": "Borra una cuenta y sus solicitudes (administración).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion/usuarios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/me/summary",
+      "method": "GET",
+      "path": "/api/me/summary",
+      "area": "Mi cuenta",
+      "summary": "Las cifras de la franja «Gestión» del Inicio: solicitudes sin leer y, según el rol, solicitudes nuevas, usuarios sin departamento y anuncios vigentes o en borrador.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/",
+      "keywords": [
+        "mi resumen"
+      ],
+      "request": {}
+    },
+    {
+      "id": "PUT /api/me/tour",
+      "method": "PUT",
+      "path": "/api/me/tour",
+      "area": "Mi cuenta",
+      "summary": "Marca que ya vio el recorrido para usuarios nuevos.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "PUT /api/me/department",
+      "method": "PUT",
+      "path": "/api/me/department",
+      "area": "Mi cuenta",
+      "summary": "La persona sin departamento elige el suyo (es obligatorio al entrar; después solo administración lo cambia).",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/entrar",
+      "keywords": [
+        "departamento"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "departmentId": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "departmentId"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/me/email/code",
+      "method": "POST",
+      "path": "/api/me/email/code",
+      "area": "Mi cuenta",
+      "summary": "Pide que Identity Central mande un código de confirmación al correo de la cuenta.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/configuracion",
+      "keywords": [
+        "confirmar correo",
+        "código"
+      ],
+      "request": {}
+    },
+    {
+      "id": "POST /api/me/email/verify",
+      "method": "POST",
+      "path": "/api/me/email/verify",
+      "area": "Mi cuenta",
+      "summary": "Confirma el correo con el código recibido.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/configuracion",
+      "keywords": [
+        "confirmar correo",
+        "código"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "minLength": 4,
+              "maxLength": 12
+            }
+          },
+          "required": [
+            "code"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/clinic",
+      "method": "GET",
+      "path": "/api/clinic",
+      "area": "Clínica",
+      "summary": "Servicios, especialidades y días de atención de la Clínica Municipal (del sistema de citas; si no responde, la copia de respaldo).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/clinica",
+      "keywords": [
+        "clínica",
+        "cita médica",
+        "especialidades",
+        "médico"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/clinic/appointments",
+      "method": "GET",
+      "path": "/api/clinic/appointments",
+      "area": "Clínica",
+      "summary": "Las citas médicas de la persona con sesión (historial de la Clínica por la cédula con la que entró): fecha, hora, especialidad, médico y estado.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Con sesión",
+      "page": "/clinica",
+      "keywords": [
+        "mis citas",
+        "cita médica",
+        "historial"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "to": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/call-codes/requests",
+      "method": "GET",
+      "path": "/api/call-codes/requests",
+      "area": "Solicitudes",
+      "summary": "Las solicitudes de código de llamada de la persona con sesión (sistema de códigos de llamada, por la cédula con la que entró): número, estado, tipo de línea, extensión, motivo de rechazo e historial. Nunca trae el código (PIN).",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Con sesión",
+      "page": "/mis-solicitudes",
+      "keywords": [
+        "código de llamada",
+        "pin",
+        "línea",
+        "extensión",
+        "mis solicitudes"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/glpi/tickets",
+      "method": "GET",
+      "path": "/api/glpi/tickets",
+      "area": "Solicitudes",
+      "summary": "Los tickets de la Mesa de Ayuda (GLPI) donde la persona con sesión es solicitante, buscada por la cédula con la que entró en el campo «Teléfono» de su usuario de GLPI: número, título, estado y fechas. Nunca la descripción. Si su cédula no está en «Teléfono», no salen (userFound: false).",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Con sesión",
+      "page": "/mis-solicitudes",
+      "keywords": [
+        "glpi",
+        "mesa de ayuda",
+        "ticket",
+        "soporte",
+        "mis solicitudes"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/files",
+      "method": "POST",
+      "path": "/api/files",
+      "area": "Archivos",
+      "summary": "Sube un PDF o una imagen (hasta 10 MB) y devuelve su dirección para usarla en un boletín o una noticia.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [
+        "subir pdf",
+        "subir archivo"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/files/:id{/:name}",
+      "method": "GET",
+      "path": "/api/files/:id{/:name}",
+      "area": "Archivos",
+      "summary": "Descarga o muestra un archivo subido (PDF o imagen).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": null,
+      "keywords": [
+        "descargar pdf"
+      ],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/bulletins",
+      "method": "GET",
+      "path": "/api/bulletins",
+      "area": "Boletines",
+      "summary": "Los boletines «Alcaldía al día» publicados, del más nuevo al más viejo, con su descripción corta y palabras clave. Con ?q busca por tema, palabra o fecha.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/boletines",
+      "keywords": [
+        "boletín",
+        "alcaldía al día",
+        "buscar boletín",
+        "boletines"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "GET /api/bulletins/manage",
+      "method": "GET",
+      "path": "/api/bulletins/manage",
+      "area": "Boletines",
+      "summary": "Todos los boletines, también los ocultos, con quién los editó.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/bulletins",
+      "method": "POST",
+      "path": "/api/bulletins",
+      "area": "Boletines",
+      "summary": "Publica un boletín (fecha y PDF); su descripción y palabras clave salen solas del PDF.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "pdfUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "flipbookUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "date"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/bulletins/:id",
+      "method": "PATCH",
+      "path": "/api/bulletins/:id",
+      "area": "Boletines",
+      "summary": "Cambia un boletín (fecha, PDF, nota) o lo oculta o publica.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "pdfUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "flipbookUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/bulletins/:id",
+      "method": "DELETE",
+      "path": "/api/bulletins/:id",
+      "area": "Boletines",
+      "summary": "Borra un boletín.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/audit/events",
+      "method": "GET",
+      "path": "/api/audit/events",
+      "area": "Auditoría",
+      "summary": "El registro de eventos del sistema (p. ej. solicitudes creadas), los más nuevos primero, con filtro por tipo y por sobre qué fue.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin"
+      ],
+      "access": "Roles: admin",
+      "page": "/gestion",
+      "keywords": [],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "subject": {
+              "type": "string",
+              "pattern": "^[a-z]+:\\d+$"
+            },
+            "limit": {
+              "default": 100,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "GET /api/gestion/panel",
+      "method": "GET",
+      "path": "/api/gestion/panel",
+      "area": "Centro de Gestión",
+      "summary": "Las cifras del Centro de Gestión: solicitudes por estado y atrasadas, contenido publicado y actividad reciente.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [
+        "centro de gestión",
+        "cifras",
+        "panel"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/rrhh/conexion",
+      "method": "GET",
+      "path": "/api/rrhh/conexion",
+      "area": "Recursos Humanos",
+      "summary": "Dice si este servidor tiene RRHH Express, si la persona ya conectó su cuenta (con sesión o como invitado) y si su sesión ya conoce su cédula (knownCedula: entonces solo se pide el número de cargo).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/recursos-humanos",
+      "keywords": [
+        "rrhh express",
+        "conectar cuenta"
+      ],
+      "request": {}
+    },
+    {
+      "id": "POST /api/rrhh/conexion",
+      "method": "POST",
+      "path": "/api/rrhh/conexion",
+      "area": "Recursos Humanos",
+      "summary": "Conecta la cuenta de RRHH Express con el número de cargo. Con sesión que conoce la cédula solo se escribe el número de cargo; sin sesión (conexión de invitado, dura unos minutos) o sin cédula conocida, también la cédula. Nada se guarda: solo el token de RH Link, cifrado. Pocos intentos fallidos por cédula y por IP (429).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera (con o sin sesión)",
+      "page": "/recursos-humanos",
+      "keywords": [
+        "conectar rrhh express",
+        "número de cargo",
+        "cédula"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "cedula": {
+              "type": "string",
+              "pattern": "^(PE|E|N|[1-9]|1[0-3])(AV|PI)?-\\d{1,4}-\\d{1,6}$"
+            },
+            "password": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "password"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/rrhh/conexion",
+      "method": "DELETE",
+      "path": "/api/rrhh/conexion",
+      "area": "Recursos Humanos",
+      "summary": "Desconecta la cuenta de RRHH Express (la de la sesión o la de invitado).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/rrhh/marcaciones",
+      "method": "GET",
+      "path": "/api/rrhh/marcaciones",
+      "area": "Recursos Humanos",
+      "summary": "Las marcaciones de un mes: entrada y salida de cada día, tardanzas, ausencias y feriados.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=marcaciones",
+      "keywords": [
+        "marcaciones",
+        "asistencia",
+        "tardanza",
+        "ausencia",
+        "entrada",
+        "salida",
+        "horario"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "minimum": 2000,
+              "maximum": 2100
+            },
+            "month": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            }
+          },
+          "required": [
+            "year",
+            "month"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/rrhh/comprobantes",
+      "method": "GET",
+      "path": "/api/rrhh/comprobantes",
+      "area": "Recursos Humanos",
+      "summary": "Los comprobantes de pago (talonario), por páginas.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=comprobantes",
+      "keywords": [
+        "comprobante de pago",
+        "talonario",
+        "salario",
+        "sueldo",
+        "pago"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "default": 1,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "GET /api/rrhh/comprobantes/resumen/:year",
+      "method": "GET",
+      "path": "/api/rrhh/comprobantes/resumen/:year",
+      "area": "Recursos Humanos",
+      "summary": "El resumen de un año de pagos: bruto, descuentos y neto.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=comprobantes",
+      "keywords": [
+        "resumen anual",
+        "salario del año"
+      ],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "minimum": 2000,
+              "maximum": 2100
+            }
+          },
+          "required": [
+            "year"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/rrhh/comprobantes/detalle",
+      "method": "GET",
+      "path": "/api/rrhh/comprobantes/detalle",
+      "area": "Recursos Humanos",
+      "summary": "El detalle de un comprobante: los descuentos directos línea por línea.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=comprobantes",
+      "keywords": [
+        "descuentos",
+        "detalle de pago"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "payroll": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "payroll"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/rrhh/expediente",
+      "method": "GET",
+      "path": "/api/rrhh/expediente",
+      "area": "Recursos Humanos",
+      "summary": "El expediente: datos del puesto, personales, formación, evaluaciones, sanciones y dependientes (con datos sensibles enmascarados).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=expediente",
+      "keywords": [
+        "expediente",
+        "datos personales",
+        "dependientes",
+        "cargo",
+        "puesto"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/rrhh/compensatorio",
+      "method": "GET",
+      "path": "/api/rrhh/compensatorio",
+      "area": "Recursos Humanos",
+      "summary": "El saldo de tiempo compensatorio, lo que vence pronto y las solicitudes hechas.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=compensatorio",
+      "keywords": [
+        "tiempo compensatorio",
+        "compensatorio",
+        "saldo",
+        "horas extra"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/rrhh/compensatorio/candidatos",
+      "method": "GET",
+      "path": "/api/rrhh/compensatorio/candidatos",
+      "area": "Recursos Humanos",
+      "summary": "Los días trabajados de más que se pueden reclamar como tiempo compensatorio en un rango de fechas.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=compensatorio",
+      "keywords": [],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "to": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "POST /api/rrhh/compensatorio/acreditacion",
+      "method": "POST",
+      "path": "/api/rrhh/compensatorio/acreditacion",
+      "area": "Recursos Humanos",
+      "summary": "Pide acreditar tiempo compensatorio por un día trabajado de más.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=compensatorio",
+      "keywords": [
+        "acreditar tiempo"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "ANTES",
+                "DESPUES"
+              ]
+            },
+            "workedDate": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "type",
+            "workedDate"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/rrhh/compensatorio/uso",
+      "method": "POST",
+      "path": "/api/rrhh/compensatorio/uso",
+      "area": "Recursos Humanos",
+      "summary": "Pide usar tiempo compensatorio acumulado.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=compensatorio",
+      "keywords": [
+        "usar tiempo compensatorio",
+        "tomar día libre"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "ANTES",
+                "DESPUES"
+              ]
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "HORAS",
+                "DIAS"
+              ]
+            },
+            "amount": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 366
+            },
+            "from": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "to": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "type",
+            "unit",
+            "amount",
+            "from"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/rrhh/compensatorio/solicitudes/:id/cancelar",
+      "method": "PATCH",
+      "path": "/api/rrhh/compensatorio/solicitudes/:id/cancelar",
+      "area": "Recursos Humanos",
+      "summary": "Cancela una solicitud de tiempo compensatorio.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cuenta de RRHH Express conectada",
+      "page": "/recursos-humanos?seccion=compensatorio",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/news",
+      "method": "GET",
+      "path": "/api/news",
+      "area": "Noticias",
+      "summary": "Las noticias publicadas, de la más nueva a la más vieja (título, resumen, foto, enlace y si se puede leer completa dentro de la intranet).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/noticias",
+      "keywords": [
+        "noticias",
+        "comunicados",
+        "novedades"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/news/manage",
+      "method": "GET",
+      "path": "/api/news/manage",
+      "area": "Noticias",
+      "summary": "Todas las noticias, también los borradores.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/noticias",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/news/:id",
+      "method": "GET",
+      "path": "/api/news/:id",
+      "area": "Noticias",
+      "summary": "Una noticia publicada con su texto completo, para leerla dentro de la intranet.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/noticias",
+      "keywords": [
+        "leer noticia"
+      ],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "POST /api/news",
+      "method": "POST",
+      "path": "/api/news",
+      "area": "Noticias",
+      "summary": "Publica una noticia.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/noticias",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "summary": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "noticia",
+                "tip"
+              ]
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "link": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "imageUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "borrador",
+                "publicado"
+              ]
+            }
+          },
+          "required": [
+            "title",
+            "date"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/news/:id",
+      "method": "PATCH",
+      "path": "/api/news/:id",
+      "area": "Noticias",
+      "summary": "Cambia una noticia o la oculta o publica.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/noticias",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "summary": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "noticia",
+                "tip"
+              ]
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "link": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "imageUrl": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "borrador",
+                "publicado"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/news/:id",
+      "method": "DELETE",
+      "path": "/api/news/:id",
+      "area": "Noticias",
+      "summary": "Borra una noticia.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/noticias",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/wordpress-sync/status",
+      "method": "GET",
+      "path": "/api/wordpress-sync/status",
+      "area": "Sincronización",
+      "summary": "Si la sincronización con mupa.gob.pa está encendida y cómo le fue la última vez.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/wordpress-sync/run",
+      "method": "POST",
+      "path": "/api/wordpress-sync/run",
+      "area": "Sincronización",
+      "summary": "Trae ahora las noticias y boletines nuevos de mupa.gob.pa (sigue en segundo plano; se pregunta el estado).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/boletines",
+      "keywords": [
+        "sincronizar",
+        "mupa.gob.pa"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/meta/catalog",
+      "method": "GET",
+      "path": "/api/meta/catalog",
+      "area": "Catálogo",
+      "summary": "Este catálogo: los endpoints de la API con su descripción, y las páginas de la intranet. Solo con la llave interna del servidor MCP.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Servicio interno (cabecera X-Internal-Key)",
+      "page": null,
+      "keywords": [
+        "endpoints",
+        "catálogo",
+        "mcp"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/meta/content",
+      "method": "GET",
+      "path": "/api/meta/content",
+      "area": "Catálogo",
+      "summary": "Boletines, noticias y formularios publicados que coinciden con una pregunta, con su ruta en la intranet. Solo con la llave interna del servidor MCP.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Servicio interno (cabecera X-Internal-Key)",
+      "page": null,
+      "keywords": [
+        "buscar contenido",
+        "mcp"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 300
+            },
+            "limit": {
+              "default": 5,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "q"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/meta/site-search",
+      "method": "GET",
+      "path": "/api/meta/site-search",
+      "area": "Catálogo",
+      "summary": "Personas del directorio telefónico y textos públicos de mupa.gob.pa (alcalde, vicealcalde, directores con su correo, noticias) que coinciden con una pregunta. Solo con la llave interna del servidor MCP.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Servicio interno (cabecera X-Internal-Key)",
+      "page": null,
+      "keywords": [
+        "directorio",
+        "mupa.gob.pa",
+        "alcalde",
+        "directores",
+        "mcp"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 300
+            },
+            "limit": {
+              "default": 5,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "q"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/forms/manage",
+      "method": "GET",
+      "path": "/api/forms/manage",
+      "area": "Formularios",
+      "summary": "Todos los formularios, también los ocultos, para el constructor.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, gestorSolicitudes",
+      "page": "/gestion/formularios",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/forms",
+      "method": "POST",
+      "path": "/api/forms",
+      "area": "Formularios",
+      "summary": "Crea un formulario de solicitud.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, gestorSolicitudes",
+      "page": "/gestion/formularios",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "number": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9999
+            },
+            "area": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60
+            },
+            "destination": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "deadline": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "intro": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "notes": {
+              "maxItems": 10,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              }
+            },
+            "changes": {
+              "maxItems": 10,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              }
+            },
+            "sections": {
+              "minItems": 1,
+              "maxItems": 12,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "desc": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "show": {
+                    "type": "object",
+                    "properties": {
+                      "k": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40
+                      },
+                      "v": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      }
+                    },
+                    "required": [
+                      "k",
+                      "v"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "fields": {
+                    "minItems": 1,
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/__schema0"
+                    }
+                  }
+                },
+                "required": [
+                  "title",
+                  "fields"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "accepting": {
+              "type": "boolean"
+            },
+            "pendingDefinition": {
+              "type": "boolean"
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title",
+            "area",
+            "sections"
+          ],
+          "additionalProperties": false,
+          "$defs": {
+            "__schema0": {
+              "type": "object",
+              "properties": {
+                "k": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,40}$"
+                },
+                "l": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "t": {
+                  "type": "string",
+                  "enum": [
+                    "text",
+                    "email",
+                    "tel",
+                    "cedula",
+                    "number",
+                    "textarea",
+                    "select",
+                    "radio",
+                    "checks",
+                    "repeat"
+                  ]
+                },
+                "r": {
+                  "type": "boolean"
+                },
+                "auto": {
+                  "type": "string",
+                  "enum": [
+                    "nombreCompleto",
+                    "correo",
+                    "cargo",
+                    "direccion",
+                    "extension"
+                  ]
+                },
+                "hint": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "opts": {
+                  "maxItems": 50,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  }
+                },
+                "items": {
+                  "maxItems": 30,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "l": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "sub": {
+                        "maxItems": 20,
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      }
+                    },
+                    "required": [
+                      "l"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9999
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9999
+                },
+                "item": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "add": {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                "fields": {
+                  "maxItems": 20,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/__schema0"
+                  }
+                }
+              },
+              "required": [
+                "l",
+                "t"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/forms/:id",
+      "method": "PATCH",
+      "path": "/api/forms/:id",
+      "area": "Formularios",
+      "summary": "Cambia un formulario (campos, área, si recibe solicitudes).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, gestorSolicitudes",
+      "page": "/gestion/formularios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "number": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9999
+            },
+            "area": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60
+            },
+            "destination": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "deadline": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "intro": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "notes": {
+              "maxItems": 10,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              }
+            },
+            "changes": {
+              "maxItems": 10,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              }
+            },
+            "sections": {
+              "minItems": 1,
+              "maxItems": 12,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "desc": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "show": {
+                    "type": "object",
+                    "properties": {
+                      "k": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40
+                      },
+                      "v": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      }
+                    },
+                    "required": [
+                      "k",
+                      "v"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "fields": {
+                    "minItems": 1,
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/__schema0"
+                    }
+                  }
+                },
+                "required": [
+                  "title",
+                  "fields"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "accepting": {
+              "type": "boolean"
+            },
+            "pendingDefinition": {
+              "type": "boolean"
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "$defs": {
+            "__schema0": {
+              "type": "object",
+              "properties": {
+                "k": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,40}$"
+                },
+                "l": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "t": {
+                  "type": "string",
+                  "enum": [
+                    "text",
+                    "email",
+                    "tel",
+                    "cedula",
+                    "number",
+                    "textarea",
+                    "select",
+                    "radio",
+                    "checks",
+                    "repeat"
+                  ]
+                },
+                "r": {
+                  "type": "boolean"
+                },
+                "auto": {
+                  "type": "string",
+                  "enum": [
+                    "nombreCompleto",
+                    "correo",
+                    "cargo",
+                    "direccion",
+                    "extension"
+                  ]
+                },
+                "hint": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "opts": {
+                  "maxItems": 50,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  }
+                },
+                "items": {
+                  "maxItems": 30,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "l": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "sub": {
+                        "maxItems": 20,
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      }
+                    },
+                    "required": [
+                      "l"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9999
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9999
+                },
+                "item": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "add": {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                "fields": {
+                  "maxItems": 20,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/__schema0"
+                  }
+                }
+              },
+              "required": [
+                "l",
+                "t"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/forms/:id",
+      "method": "DELETE",
+      "path": "/api/forms/:id",
+      "area": "Formularios",
+      "summary": "Borra un formulario.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, gestorSolicitudes",
+      "page": "/gestion/formularios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/forms",
+      "method": "GET",
+      "path": "/api/forms",
+      "area": "Formularios",
+      "summary": "Los formularios de solicitud publicados (accesos, trámites de Tecnología y Recursos Humanos).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/formularios",
+      "keywords": [
+        "formularios",
+        "solicitar",
+        "trámite"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/forms/:slug",
+      "method": "GET",
+      "path": "/api/forms/:slug",
+      "area": "Formularios",
+      "summary": "Un formulario con sus campos y si ya recibe solicitudes reales.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/formularios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]{1,80}$"
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        }
+      }
+    },
+    {
+      "id": "POST /api/requests",
+      "method": "POST",
+      "path": "/api/requests",
+      "area": "Solicitudes",
+      "summary": "Envía una solicitud con un formulario; queda guardada y la atienden los gestores.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/formularios",
+      "keywords": [
+        "enviar solicitud",
+        "pedir",
+        "solicitud"
+      ],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]{1,80}$"
+            },
+            "respuestas": {
+              "type": "object",
+              "properties": {
+                "v": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^s\\d{1,2}(_[a-z0-9-]+)+$"
+                  },
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 5000
+                  }
+                },
+                "c": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^s\\d{1,2}(_[a-z0-9-]+)+$"
+                  },
+                  "additionalProperties": {
+                    "maxItems": 30,
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 99
+                    }
+                  }
+                },
+                "i": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^s\\d{1,2}(_[a-z0-9-]+)+$"
+                  },
+                  "additionalProperties": {
+                    "maxItems": 20,
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100000
+                    }
+                  }
+                }
+              },
+              "required": [
+                "v",
+                "c",
+                "i"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "form",
+            "respuestas"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/requests/mine",
+      "method": "GET",
+      "path": "/api/requests/mine",
+      "area": "Solicitudes",
+      "summary": "Las solicitudes que hizo la persona, con su estado.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/mis-solicitudes",
+      "keywords": [
+        "mis solicitudes",
+        "estado de mi solicitud",
+        "seguimiento"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/requests/manage",
+      "method": "GET",
+      "path": "/api/requests/manage",
+      "area": "Solicitudes",
+      "summary": "La bandeja de los gestores: todas las solicitudes, con filtros (estado, área, atrasadas).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [
+        "bandeja",
+        "atender solicitudes"
+      ],
+      "request": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]{1,80}$"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "recibida",
+                "en_revision",
+                "resuelta",
+                "rechazada"
+              ]
+            },
+            "area": {
+              "type": "string",
+              "enum": [
+                "rrhh"
+              ]
+            },
+            "q": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "overdue": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/requests/:id",
+      "method": "PATCH",
+      "path": "/api/requests/:id",
+      "area": "Solicitudes",
+      "summary": "Cambia el estado de una solicitud (en atención, cerrada…).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "recibida",
+                "en_revision",
+                "resuelta",
+                "rechazada"
+              ]
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "POST /api/requests/:id/messages",
+      "method": "POST",
+      "path": "/api/requests/:id/messages",
+      "area": "Solicitudes",
+      "summary": "Responde una solicitud: el mensaje lo ve la persona que la hizo.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "body"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "GET /api/requests/:id",
+      "method": "GET",
+      "path": "/api/requests/:id",
+      "area": "Solicitudes",
+      "summary": "Una solicitud de la persona con su historial y las respuestas.",
+      "accessLevel": "session",
+      "roles": [],
+      "access": "Cualquier persona con sesión",
+      "page": "/mis-solicitudes",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/notifications",
+      "method": "GET",
+      "path": "/api/notifications",
+      "area": "Notificaciones",
+      "summary": "Las solicitudes por atender (la campana de los gestores).",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/notifications/stream",
+      "method": "GET",
+      "path": "/api/notifications/stream",
+      "area": "Notificaciones",
+      "summary": "Aviso en vivo (SSE) cuando llega una solicitud nueva, para los gestores.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion",
+        "gestorSolicitudes"
+      ],
+      "access": "Roles: admin, comunicacion, gestorSolicitudes",
+      "page": "/gestion",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "GET /api/announcements",
+      "method": "GET",
+      "path": "/api/announcements",
+      "area": "Anuncios",
+      "summary": "Los anuncios vigentes de la Alcaldía, marcados por urgencia.",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/",
+      "keywords": [
+        "anuncios",
+        "avisos"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/announcements/manage",
+      "method": "GET",
+      "path": "/api/announcements/manage",
+      "area": "Anuncios",
+      "summary": "Todos los anuncios, también los vencidos y los borradores.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/anuncios",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/announcements",
+      "method": "POST",
+      "path": "/api/announcements",
+      "area": "Anuncios",
+      "summary": "Publica un anuncio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/anuncios",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "body": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "level": {
+              "type": "string",
+              "enum": [
+                "urgente",
+                "importante",
+                "normal"
+              ]
+            },
+            "link": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "borrador",
+                "publicado",
+                "retirado"
+              ]
+            },
+            "publishFrom": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "publishUntil": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/announcements/:id",
+      "method": "PATCH",
+      "path": "/api/announcements/:id",
+      "area": "Anuncios",
+      "summary": "Cambia un anuncio o lo oculta o publica.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/anuncios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "body": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "level": {
+              "type": "string",
+              "enum": [
+                "urgente",
+                "importante",
+                "normal"
+              ]
+            },
+            "link": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "borrador",
+                "publicado",
+                "retirado"
+              ]
+            },
+            "publishFrom": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            "publishUntil": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/announcements/:id",
+      "method": "DELETE",
+      "path": "/api/announcements/:id",
+      "area": "Anuncios",
+      "summary": "Borra un anuncio.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/anuncios",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GET /api/videos",
+      "method": "GET",
+      "path": "/api/videos",
+      "area": "Videos",
+      "summary": "Los videos publicados (instructivos de la Mesa de Servicios, canal y otros).",
+      "accessLevel": "open",
+      "roles": [],
+      "access": "Cualquiera",
+      "page": "/videos",
+      "keywords": [
+        "videos",
+        "instructivos",
+        "tutoriales"
+      ],
+      "request": {}
+    },
+    {
+      "id": "GET /api/videos/manage",
+      "method": "GET",
+      "path": "/api/videos/manage",
+      "area": "Videos",
+      "summary": "Todos los videos, también los ocultos.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/videos",
+      "keywords": [],
+      "request": {}
+    },
+    {
+      "id": "POST /api/videos",
+      "method": "POST",
+      "path": "/api/videos",
+      "area": "Videos",
+      "summary": "Agrega un video.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/videos",
+      "keywords": [],
+      "request": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "instructivo",
+                "canal",
+                "otro"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "date": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "PATCH /api/videos/:id",
+      "method": "PATCH",
+      "path": "/api/videos/:id",
+      "area": "Videos",
+      "summary": "Cambia un video o lo oculta o publica.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/videos",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "instructivo",
+                "canal",
+                "otro"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "date": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "published": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "id": "DELETE /api/videos/:id",
+      "method": "DELETE",
+      "path": "/api/videos/:id",
+      "area": "Videos",
+      "summary": "Borra un video.",
+      "accessLevel": "roles",
+      "roles": [
+        "admin",
+        "comunicacion"
+      ],
+      "access": "Roles: admin, comunicacion",
+      "page": "/gestion/videos",
+      "keywords": [],
+      "request": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    }
+  ],
+  "pages": [
+    {
+      "path": "/aplicaciones",
+      "title": "Aplicaciones",
+      "about": "Todos los sistemas y servicios de la Alcaldía (correo, Mesa de Servicios, trámites…), con buscador."
+    },
+    {
+      "path": "/directorio",
+      "title": "Directorio",
+      "about": "Extensiones telefónicas y personas por dirección; la central y las extensiones clave. Sale de la central telefónica, se actualiza cada hora y dice cuándo."
+    },
+    {
+      "path": "/documentos",
+      "title": "Documentos",
+      "about": "Reglamentos, manuales, procedimientos y permisos en PDF, boletines y videos."
+    },
+    {
+      "path": "/manuales",
+      "title": "Manuales",
+      "about": "Manuales e instructivos en PDF."
+    },
+    {
+      "path": "/boletines",
+      "title": "Boletines · Alcaldía al día",
+      "about": "Los boletines informativos «Alcaldía al día» en PDF."
+    },
+    {
+      "path": "/videos",
+      "title": "Videos",
+      "about": "Videos instructivos (por ejemplo, restablecer el usuario de máquina)."
+    },
+    {
+      "path": "/noticias",
+      "title": "Noticias",
+      "about": "Noticias y comunicados institucionales (llegan solas de mupa.gob.pa)."
+    },
+    {
+      "path": "/formularios",
+      "title": "Formularios de solicitud",
+      "about": "Formularios en línea de accesos y otros trámites. Los trámites de Recursos Humanos (carta de trabajo, certificación, vacaciones, permisos) no van aquí: se piden en Recursos Humanos."
+    },
+    {
+      "path": "/mis-solicitudes",
+      "title": "Mis solicitudes",
+      "about": "Seguimiento de las solicitudes que hizo la persona: las de los formularios, sus citas de la Clínica, sus solicitudes de código de llamada y sus tickets de la Mesa de Ayuda (GLPI)."
+    },
+    {
+      "path": "/recursos-humanos",
+      "title": "Recursos Humanos",
+      "about": "Documentos (Reglamento Interno, Código de Ética, Bienestar, Equiparación de Oportunidades), Cómo solicitar cada trámite (en línea en RRHH Express: talonario de pago y tiempo compensatorio; en persona en RRHH: carta de trabajo, certificación laboral, vacaciones, permiso personal y corrección de marcación), el formato del ACH y contacto de RRHH."
+    },
+    {
+      "path": "/recursos-humanos?seccion=marcaciones",
+      "title": "Mis marcaciones",
+      "about": "Calendario del mes con la entrada y salida de cada día, tardanzas, ausencias y feriados. Se ve al conectar la cuenta de RRHH Express."
+    },
+    {
+      "path": "/recursos-humanos?seccion=compensatorio",
+      "title": "Tiempo compensatorio",
+      "about": "Saldo de tiempo compensatorio y sus solicitudes; desde ahí se pide acreditar un día trabajado de más o usar tiempo. Requiere la cuenta de RRHH Express."
+    },
+    {
+      "path": "/recursos-humanos?seccion=comprobantes",
+      "title": "Comprobantes de pago",
+      "about": "Talonario: comprobantes de pago, salario, descuentos y resumen del año. Requiere la cuenta de RRHH Express."
+    },
+    {
+      "path": "/recursos-humanos?seccion=expediente",
+      "title": "Mi expediente",
+      "about": "Datos laborales y personales, formación y dependientes de la persona. Requiere la cuenta de RRHH Express."
+    },
+    {
+      "path": "/asistente",
+      "title": "Asistente",
+      "about": "La página del asistente: se le pregunta con las propias palabras y lleva a la página, la aplicación, el boletín, la noticia o el formulario que se necesita."
+    },
+    {
+      "path": "/clinica",
+      "title": "Clínica Municipal",
+      "about": "Servicios, especialidades y días de atención de la Clínica; cómo pedir cita."
+    },
+    {
+      "path": "/clinica-recetas",
+      "title": "Recetas de la Clínica",
+      "about": "Cómo solicitar recetas de medicamentos crónicos."
+    },
+    {
+      "path": "/clinica-medicamentos",
+      "title": "Medicamentos de la Clínica",
+      "about": "Listado de medicamentos de la farmacia de la Clínica."
+    },
+    {
+      "path": "/comunicacion",
+      "title": "Identidad visual y comunicación",
+      "about": "Logos oficiales (SVG, PNG y PDF), paleta de colores con HEX, RGB y CMYK, tipografías, texturas, manual de marca, plantillas (firma digital, fondos de videollamada y wallpapers), redes sociales oficiales y a quién contactar en Comunicación."
+    },
+    {
+      "path": "/comunicacion/guia-del-logo",
+      "title": "Guía rápida de uso del logo",
+      "about": "Qué logo usar, el fondo, tamaños y proporciones, y los errores frecuentes al usar el logo de la Alcaldía."
+    },
+    {
+      "path": "/mesa-servicios",
+      "title": "Mesa de Servicios",
+      "about": "Soporte técnico (ext. 1400): solicitudes en línea (código de llamadas, red WIFI), video en 3 partes para restablecer el usuario de máquina, otras extensiones de Tecnología y pedidos de accesos, correo o impresión."
+    },
+    {
+      "path": "/configuracion",
+      "title": "Configuración",
+      "about": "La cuenta de la persona, su pantalla de inicio y las cuentas conectadas (RRHH Express). También tiene el botón Cerrar sesión."
+    },
+    {
+      "path": "/sitio/2020/06/Reglamento-Interno-de-Personal-Decreto-024-2019.pdf",
+      "title": "Reglamento Interno de Personal",
+      "about": "El Reglamento Interno de Personal (Decreto Alcaldicio N.º 024-2019), en PDF. Su vigencia está confirmada."
+    },
+    {
+      "path": "/sitio/2023/01/CODIGO-DE-ETICA01.pdf",
+      "title": "Código de Ética",
+      "about": "El Código de Ética de la Alcaldía, en PDF."
+    }
+  ],
+  "facts": [
+    "Administración ve la ficha completa de cada persona en Gestión > Usuarios («Ver ficha»): sus datos, su cédula, sus sesiones y solicitudes y su estado en RH Link; nunca la contraseña, que no la tiene la intranet (se cambia en Identity Central). La lista se puede buscar por nombre, correo o cédula.",
+    "Administración puede reiniciar un perfil de Identity Central en Gestión > Usuarios: elimina perfil local, sesiones, preferencias y solicitudes, y permite recrearlo al entrar. No cambia la cédula en Identity Central ni revoca el acceso central. Borrar conserva el bloqueo permanente local.",
+    "Recursos Humanos: teléfono 506-9692, extensiones 9171 y 9172 (consultas de trámites).",
+    "Carta de trabajo, certificación laboral, vacaciones, permiso personal y corrección de marcación no se piden en la intranet: se solicitan directamente en Recursos Humanos (506-9692, extensiones 9171 y 9172). La afiliación a pagos por ACH tiene su formato en PDF en la pestaña Recursos Humanos. No hay formularios en línea para esos trámites ni plazos publicados en la intranet.",
+    "Bienestar y los formularios de Equiparación de Oportunidades todavía no están publicados en la intranet.",
+    "Mesa de Servicios (soporte técnico de Tecnología): extensión 1400.",
+    "Central telefónica de la Alcaldía: 524-8900.",
+    "Dirección de Comunicaciones (Torre B, piso 4): Recepción ext. 4300, Redes Sociales ext. 4310, Producción Audio Visual ext. 4314. Su correo todavía no está publicado.",
+    "Identidad visual: los logos oficiales, la paleta, el manual de marca, la guía del logo, las plantillas y las redes oficiales se descargan en Identidad visual y comunicación. Las tipografías de la marca (Noka, Prometo y Montserrat) también se descargan ahí. La medida mínima del logo todavía no está definida por Comunicación.",
+    "Inicio: a la derecha (o, en pantallas angostas, debajo del buscador) está «Tu día»: tus solicitudes abiertas (citas, códigos de llamada y tickets de la Mesa de Ayuda), tu próxima cita de la Clínica y el último boletín; solo muestra lo que está conectado con tu cédula. Quien tiene RRHH Express conectado ve además el bloque «Mi resumen»: su tiempo compensatorio, las tardanzas y ausencias del mes y la fecha de su último comprobante de pago, cada cifra con enlace a su pestaña de Recursos Humanos. Si RRHH Express no está conectado, ese bloque no aparece (se conecta en Recursos Humanos).",
+    "Códigos de llamada: quien entró con su cédula ve sus solicitudes de código de llamada en «Mis solicitudes» (y en el bloque del Inicio) con su número, estado (pendiente de aprobación, aprobado, rechazado con su motivo, procesado o anulado), tipo de línea, extensión e historial. Son solo de consulta: la solicitud se hace en el sistema de códigos de llamada y el código (PIN) nunca se muestra en la intranet.",
+    "Tickets de la Mesa de Ayuda (GLPI): quien entró con su cédula ve en «Mis solicitudes» los tickets de GLPI donde figura como solicitante, con su número, título, estado (nuevo, en curso, en espera, resuelto o cerrado) y fechas. Solo de consulta: el ticket se abre y se atiende en la Mesa de Servicios. La persona se encuentra en GLPI por su cédula guardada en el campo «Teléfono» de su usuario: si no la tiene ahí, sus tickets no salen y tiene que pedirle a la Mesa de Servicios (ext. 1400) que la registre.",
+    "Clínica Municipal: Torre C, Edificio Hatillo; consulta médica sin costo. Quien entró con su cédula ve sus propias citas (fecha, hora, especialidad, médico y estado) en «Mis citas», dentro de la página de la Clínica; las citas nuevas se agendan en el sistema de la Clínica (enlace en esa página).",
+    "Marcaciones, tiempo compensatorio, comprobantes de pago y expediente se ven en Recursos Humanos después de conectar RRHH Express. Con tu cuenta de la intranet (si entraste con Identity Central) solo escribes tu número de cargo; sin cuenta, tu cédula y tu número de cargo, y la conexión dura unos minutos. El número de cargo es la posición que dice abajo de tu carnet, debajo del código QR.",
+    "Para entrar a la intranet (y para crear la cuenta) la cédula tiene que aparecer como funcionario activo en Recursos Humanos; si no aparece, no se puede entrar y hay que comunicarse con Recursos Humanos (506-9692, ext. 9171 o 9172).",
+    "Cerrar sesión: con la sesión iniciada, arriba a la derecha está el botón con tu nombre (en el teléfono, el círculo con tus iniciales); al tocarlo se abre un panel con tu nombre, tu correo, el enlace a tu cuenta y «Cerrar sesión». En el Centro de Gestión el botón «Cerrar sesión» está en la barra superior. También se puede cerrar desde Configuración. En las pantallas de contraseña (entrar, crear cuenta y conectar RRHH Express) el ojito dentro del campo muestra u oculta lo que escribes; en RRHH Express el campo es el número de cargo.",
+    "Crear cuenta (en /registro, desde «Crear cuenta» en la pantalla de entrar): se pide la cédula, el correo institucional (@pty.gob.pa) y una contraseña. No se aceptan correos personales (gmail, outlook u otros). Solo pueden crear cuenta los funcionarios activos en Recursos Humanos.",
+    "Para entrar a la intranet hace falta tener un departamento: normalmente sale solo de Recursos Humanos; si no se pudo saber, se elige al iniciar sesión (es obligatorio). Si se eligió mal, lo corrige administración.",
+    "Para encontrar a una persona o una extensión que no esté aquí ni en «Personas del directorio», usar el Directorio. El alcalde, el vicealcalde y los directores (con su correo) están en mupa.gob.pa.",
+    "El Directorio sale de la central telefónica y se actualiza cada hora (arriba dice «Actualizado hace …»): muestra quién tiene hoy cada extensión. La dirección y la ubicación salen del directorio anterior, así que una extensión nueva puede salir sin dirección."
+  ]
+}

@@ -1,0 +1,128 @@
+# Intranet MUPA — SERVIDOR DE DESARROLLO contra una base de datos externa (PostgreSQL en otro servidor).
+# Igual que docker-compose.yml, pero sin el servicio `db`: la base la da IT.
+#
+#   cp .env.dev.example .env.dev      # y completa DATABASE_URL (y lo demás que haga falta)
+#   docker compose -f docker-compose.dev.yml --env-file .env.dev up --build -d
+#
+# Si el servidor tiene su propia base en Docker, usa docker-compose.yml en su lugar.
+# Una sola imagen propia: mupa-intranet-api, que trae la web compilada y la sirve en la raíz (sin nginx).
+# El puerto que se abre en el servidor sale del .env.dev (WEB_PORT): si está ocupado, se cambia ahí y se vuelve a hacer `up`.
+# Orden: migrate (migraciones + datos iniciales en la base externa, y termina) → api → mcp.
+
+name: mupa-intranet-dev
+
+x-api-imagen: &api-imagen
+  # Desde la raíz: la imagen lleva la API y la web compilada (ver mupa-intranet-api/Dockerfile).
+  build:
+    context: .
+    dockerfile: mupa-intranet-api/Dockerfile
+    args:
+      VITE_EDICION: ${EDICION:-publicacion}
+  image: mupa-intranet-api:dev
+
+x-edicion: &edicion ${EDICION:-publicacion}
+
+x-comun: &comun
+  # postgres://usuario:clave@servidor:5432/base (la base que da IT, en otro servidor).
+  DATABASE_URL: ${DATABASE_URL:?Falta DATABASE_URL en .env.dev (copia .env.dev.example)}
+  NODE_ENV: ${NODE_ENV:-development}
+  EDICION: *edicion
+
+services:
+  # Corre una vez en cada `up`: aplica las migraciones pendientes en la base externa y
+  # carga los datos iniciales que falten (no pisa lo editado). Si falla, la API no arranca.
+  migrate:
+    <<: *api-imagen
+    command: ['sh', '-c', 'node dist/database/migrate.js && node dist/database/seed.js']
+    environment:
+      <<: *comun
+      SEED_DEMO_USERS: ${SEED_DEMO_USERS:-false}
+    restart: 'no'
+    healthcheck:
+      disable: true
+
+  # Las variables son las mismas de docker-compose.yml (ver ahí y en .env.dev.example qué hace cada una).
+  api:
+    <<: *api-imagen
+    restart: unless-stopped
+    environment:
+      <<: *comun
+      # Dentro del contenedor la API siempre escucha en 3000; afuera, en WEB_PORT.
+      PORT: 3000
+      # Proxies delante (1 si el nginx del servidor la publica con su dominio); 0 = se llega directo.
+      TRUST_PROXY: ${TRUST_PROXY:-0}
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-8}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      LOCAL_LOGIN_ENABLED: ${LOCAL_LOGIN_ENABLED:-false}
+      IDENTITY_URL: ${IDENTITY_URL:-}
+      IDENTITY_CLIENT_ID: ${IDENTITY_CLIENT_ID:-}
+      IDENTITY_CLIENT_SECRET: ${IDENTITY_CLIENT_SECRET:-}
+      IDENTITY_SCOPES: ${IDENTITY_SCOPES:-}
+      IDENTITY_TIMEOUT_MS: ${IDENTITY_TIMEOUT_MS:-}
+      IDENTITY_ADMIN_USER: ${IDENTITY_ADMIN_USER:-}
+      IDENTITY_ADMIN_PASSWORD: ${IDENTITY_ADMIN_PASSWORD:-}
+      JWT_ISSUER: ${JWT_ISSUER:-}
+      JWT_JWKS_URI: ${JWT_JWKS_URI:-}
+      ALLOWED_CLIENT_IDS: ${ALLOWED_CLIENT_IDS:-}
+      LLM_URL: ${LLM_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-}
+      CLINIC_URL: ${CLINIC_URL:-}
+      CLINIC_TIMEOUT_MS: ${CLINIC_TIMEOUT_MS:-}
+      CLINIC_API_URL: ${CLINIC_API_URL:-}
+      CLINIC_API_KEY: ${CLINIC_API_KEY:-}
+      CALLCODE_API_URL: ${CALLCODE_API_URL:-}
+      CALLCODE_API_KEY: ${CALLCODE_API_KEY:-}
+      CALLCODE_TIMEOUT_MS: ${CALLCODE_TIMEOUT_MS:-}
+      RRHH_API_URL: ${RRHH_API_URL:-}
+      RRHH_TIMEOUT_MS: ${RRHH_TIMEOUT_MS:-}
+      RRHH_MANTENIMIENTO: ${RRHH_MANTENIMIENTO:-}
+      RRHH_API_USER: ${RRHH_API_USER:-}
+      RRHH_API_PASSWORD: ${RRHH_API_PASSWORD:-}
+      RRHH_NOMBRE_ORDEN: ${RRHH_NOMBRE_ORDEN:-}
+      CORREO_DOMINIOS: ${CORREO_DOMINIOS:-}
+      UCM_URL: ${UCM_URL:-}
+      UCM_USER: ${UCM_USER:-}
+      UCM_PASSWORD: ${UCM_PASSWORD:-}
+      UCM_SYNC_MINUTOS: ${UCM_SYNC_MINUTOS:-}
+      UCM_TLS_VERIFICAR: ${UCM_TLS_VERIFICAR:-}
+      LOGIN_RATE_LIMIT: ${LOGIN_RATE_LIMIT:-}
+      WP_SYNC_URL: ${WP_SYNC_URL:-}
+      WP_SYNC_INTERVAL_MINUTES: ${WP_SYNC_INTERVAL_MINUTES:-}
+      WP_SYNC_WINDOW_DAYS: ${WP_SYNC_WINDOW_DAYS:-}
+      WP_SYNC_CATEGORIES: ${WP_SYNC_CATEGORIES:-}
+      WP_SYNC_TIMEOUT_MS: ${WP_SYNC_TIMEOUT_MS:-}
+      MCP_INTERNAL_KEY: ${MCP_INTERNAL_KEY:-}
+      MCP_URL: ${MCP_URL-http://mcp:8000/mcp}
+      MCP_TIMEOUT_MS: ${MCP_TIMEOUT_MS:-}
+    # La intranet (web + /api): http://<servidor>:WEB_PORT
+    ports:
+      - '${WEB_PORT:-8080}:3000'
+    # PDF e imágenes que sube Comunicación: hay que respaldarlos junto con la base.
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1:3000/api/health']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  # Servidor MCP del asistente: solo dentro de la red de Docker (sin puertos publicados).
+  mcp:
+    build: ./mupa-intranet-mcp
+    image: mupa-intranet-mcp:dev
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://api:3000
+      MCP_INTERNAL_KEY: ${MCP_INTERNAL_KEY:-}
+      CATALOG_REFRESH_SECONDS: ${MCP_CATALOG_REFRESH_SECONDS:-300}
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  uploads:

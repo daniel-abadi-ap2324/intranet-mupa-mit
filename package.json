@@ -1,0 +1,11 @@
+{
+  "name": "intranet-mupa",
+  "private": true,
+  "description": "Intranet MUPA: la API (mupa-intranet-api) y la web (mupa-intranet-app) en un solo repositorio.",
+  "scripts": {
+    "demo": "node scripts/demo.mjs"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}
