@@ -1,0 +1,69 @@
+/* Iniciar sesión (/entrar): página propia, sin menú ni barra. Solo tokens. */
+.login{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg-base)}
+.login__main{flex:1;display:flex;align-items:center;justify-content:center;gap:28px;padding:40px 24px;flex-wrap:wrap}
+
+.login__card{width:100%;max-width:440px;box-sizing:border-box;padding:32px;background:var(--bg-surface);border:1px solid var(--border-subtle);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-md)}
+.login__marca{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:0 0 24px}
+.login__marca img{display:block;width:200px;max-width:70%;height:auto}
+.login__marca b{display:block;font:var(--text-card-title);color:var(--fg-strong)}
+.login__marca span{display:block;font:var(--text-caption);color:var(--fg-muted)}
+.login__card h1{margin:0 0 8px;font:var(--text-page-title);color:var(--fg-strong)}
+.login__intro{margin:0 0 20px;font:var(--text-body);color:var(--fg-secondary)}
+
+.login__error{display:flex;gap:10px;align-items:flex-start;margin:0 0 18px;padding:12px 14px;border-radius:var(--radius-md);
+  border:1px solid var(--color-error-300);border-left:4px solid var(--color-error-500);background:var(--color-error-100)}
+.login__error .ic{flex:0 0 20px;height:20px;border-radius:999px;background:var(--color-error-500);color:var(--fg-on-brand);font:700 13px/20px var(--font-body);text-align:center}
+.login__error p{margin:0;font:var(--text-body-sm);color:var(--color-error-700)}
+
+.login__form{display:flex;flex-direction:column;gap:16px}
+.login__form .ds-input{box-sizing:border-box;width:100%;min-height:48px;font-size:16px}
+.login__clave{position:relative;display:block}
+.login__clave .ds-input{width:100%;box-sizing:border-box;min-width:0;padding-right:52px}
+/* El «ojito»: dentro del mismo recuadro, a la derecha; 44 px de toque. */
+.login__mostrar{position:absolute;right:2px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:10px;background:transparent;color:var(--fg-muted);cursor:pointer}
+.login__mostrar:hover{background:var(--action-subtle);color:var(--action)}
+.login__mostrar[aria-pressed="true"]{color:var(--action)}
+.login__mostrar:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.login__mayus{margin:0;font:600 13px/1.35 var(--font-body);color:var(--color-warning-700)}
+.login__entrar{width:100%;min-height:48px;justify-content:center;font-size:16px}
+.login__acciones{display:flex;flex-wrap:wrap;gap:10px}
+
+.login__otras{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 0;padding:24px 0 0;border-top:1px solid var(--border-divider)}
+.login__sec{box-sizing:border-box;padding:0 8px;min-height:48px;justify-content:center;text-align:center;font-size:16px;background:var(--bg-surface);color:var(--action);border:1.5px solid var(--action)}
+.login__sec:hover{background:var(--action-subtle);color:var(--action);text-decoration:none}
+.login__olvido{margin:18px 0 0;font:var(--text-body-sm);color:var(--fg-muted)}
+
+.login__pie{padding:16px 24px;text-align:center;font:var(--text-caption);color:var(--fg-muted);border-top:1px solid var(--border-subtle)}
+.login__pie a,.login__registro a,.login__error a{color:var(--link)}
+.login__registro{margin:16px 0 0;font:var(--text-body-sm);color:var(--fg-default)}
+
+/* Crear cuenta (/registro): misma página que /entrar, con más campos. */
+.registro__card{max-width:560px}
+.registro__fila{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.registro__opcional{font:var(--text-caption);color:var(--fg-muted)}
+.registro__nota{margin:0 0 14px;font:var(--text-caption);color:var(--fg-muted)}
+.registro__seguir{margin-top:18px}
+.login__form select.ds-input{box-sizing:border-box;width:100%;min-height:48px;font-size:16px}
+
+/* Confirmar el correo con código (registro y Configuración). */
+.correo-codigo{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 16px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--bg-base)}
+.correo-codigo p{margin:0}
+.correo-codigo form{display:flex;flex-direction:column;gap:10px;width:100%}
+.correo-codigo__fila{display:flex;gap:8px}
+.correo-codigo__fila .ds-input{flex:1;min-width:0;max-width:200px;letter-spacing:.12em}
+.correo-codigo__reenviar{align-self:flex-start}
+.correo-codigo__listo{margin:0;font:var(--text-body-sm);color:var(--color-success-700)}
+
+@media (max-width:520px){
+  .registro__fila{grid-template-columns:1fr}
+}
+
+@media (max-width:480px){
+  .login__otras{grid-template-columns:1fr}
+}
+
+@media (max-width:767px){
+  .login__main{align-items:stretch;padding:20px 16px;gap:16px}
+  .login__card{padding:22px 18px;box-shadow:none}
+}

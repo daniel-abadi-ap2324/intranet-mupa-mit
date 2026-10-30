@@ -1,0 +1,42 @@
+/* Recorrido para usuarios nuevos (components/recorrido/Recorrido.tsx). Por encima de todo (toasts 1100). */
+.tour{position:fixed;inset:0;z-index:1200}
+.tour__fondo{position:absolute;inset:0;background:rgba(14,34,93,.55)}
+/* El recuadro deja ver la parte resaltada; su sombra enorme oscurece el resto de la pantalla. */
+.tour__foco{position:fixed;border-radius:var(--radius-lg);box-shadow:0 0 0 9999px rgba(14,34,93,.55),0 0 0 3px var(--color-white);
+  pointer-events:none;transition:top .2s ease-out,left .2s ease-out,width .2s ease-out,height .2s ease-out}
+.tour__card{position:fixed;width:min(360px,calc(100vw - 24px));box-sizing:border-box;padding:18px 18px 14px;background:var(--bg-surface);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-lg);color:var(--fg-default)}
+.tour__card--centro{top:50%;left:50%;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 32px));padding:24px}
+.tour__paso{margin:0 0 6px;font:var(--text-overline);color:var(--action)}
+.tour__card h2{margin:0 0 6px;font:var(--text-title);color:var(--fg-strong)}
+.tour__card h2:focus{outline:none}
+.tour__texto{margin:0;font:var(--text-body-sm);color:var(--fg-default)}
+.tour__acciones{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tour__acciones .ds-btn{padding:8px 14px}
+.tour__omitir{margin-right:auto;padding:6px 4px;border:0;background:none;color:var(--fg-muted);font:var(--text-label);text-decoration:underline;cursor:pointer;border-radius:var(--radius-xs)}
+.tour__omitir:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+@media (prefers-reduced-motion:reduce){.tour__foco{transition:none}}
+
+/* Menú de Ayuda de la barra superior (ver el recorrido, Mesa de Servicios). */
+.app-ayuda{position:relative}
+.app-ayuda__menu{position:absolute;top:calc(100% + 8px);right:0;z-index:50;width:280px;padding:6px;background:var(--bg-surface);
+  border:1px solid var(--border-subtle);border-radius:var(--radius-md);box-shadow:var(--shadow-lg)}
+.app-ayuda__menu[hidden]{display:none}
+.app-ayuda__menu a{display:block;padding:10px 12px;border-radius:var(--radius-sm);color:var(--fg-strong);font:var(--text-label);text-decoration:none}
+.app-ayuda__menu a span{display:block;margin-top:2px;font:var(--text-caption);color:var(--fg-muted)}
+.app-ayuda__menu a:hover{background:var(--bg-base)}
+.app-ayuda__menu a:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+/* Tramo del asistente: la tarjeta deja usar la página (la caja del asistente) o va abajo sin oscurecer la respuesta. */
+.tour--libre{pointer-events:none}
+.tour--libre .tour__card{pointer-events:auto}
+.tour__card--abajo{top:auto;bottom:16px;left:50%;transform:translateX(-50%);width:min(520px,calc(100vw - 24px))}
+/* Con el aire del resto de la intranet: texto de 16 px y objetivos táctiles de 44 px en el teléfono. */
+.tour__texto{font:var(--text-body)}
+.tour__acciones .ds-btn,.tour__omitir{min-height:44px}
+.tour__omitir{display:inline-flex;align-items:center;padding:6px 8px}
+@media (max-width:767px){
+  .tour__card{width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto}
+  .tour__acciones{gap:8px}
+}
+@media (min-width:768px){.tour__card:not(.tour__card--abajo):not(.tour__card--centro){width:400px}}

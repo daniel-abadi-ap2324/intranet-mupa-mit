@@ -1,0 +1,13 @@
+/* ============================================================
+   Fuentes de marca — Intranet MUPA (servidas desde nuestro propio servidor: la CSP no permite CDN)
+   - Montserrat: SIL OFL 1.1 (libre, ver OFL.txt). Textos y párrafos.
+   - Noka y Prometo (titulares y logo) tienen licencia y no se incluyen en esta copia: se usa Montserrat.
+   Archivos woff2 recortados a latín (español incluido).
+   ============================================================ */
+
+@font-face { font-family: "Montserrat"; src: url("/fonts/Montserrat-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("/fonts/Montserrat-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("/fonts/Montserrat-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("/fonts/Montserrat-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("/fonts/Montserrat-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+

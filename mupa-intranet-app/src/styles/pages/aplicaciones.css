@@ -1,0 +1,27 @@
+/* ============================================================
+   Aplicaciones — vista isApps de la propuesta de diseño
+   Una sola caja (buscar + preguntar al asistente), la respuesta
+   del asistente, áreas y la grilla. Solo tokens.
+   ============================================================ */
+.app-busca{display:flex;flex-direction:column;gap:8px;max-width:900px;margin:0 0 16px}
+.app-busca__fila{position:relative;display:flex;gap:8px;padding:6px;background:var(--bg-surface);border:1px solid var(--border-subtle);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}
+.app-busca__fila:focus-within{border-color:var(--action);box-shadow:var(--shadow-focus)}
+.app-busca__ic{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--fg-muted);pointer-events:none}
+.app-busca__input{flex:1;min-width:0;min-height:44px;box-sizing:border-box;padding:10px 12px 10px 44px;border:0;border-radius:var(--radius-md);
+  background:transparent;font:var(--text-body);color:var(--fg-strong)}
+.app-busca__input:focus{outline:none}
+.app-busca__input::placeholder{color:var(--fg-muted)}
+.app-busca__preguntar{display:inline-flex;align-items:center;gap:8px;min-height:44px;white-space:nowrap}
+.app-busca__preguntar svg{width:18px;height:18px}
+.app-busca__aviso{margin:0;font:600 13px/1.4 var(--font-body);color:var(--fg-secondary)}
+.app-busca__respuesta{max-width:900px;margin:0 0 18px}
+.app-busca__cuenta{display:flex;justify-content:flex-end;margin:0 0 8px}
+.app-busca__salidas{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
+
+@media (max-width:767px){
+  .app-busca__fila{flex-direction:column}
+  .app-busca__input{font-size:16px;padding-left:40px}
+  .app-busca__ic{left:16px;top:28px}
+  .app-busca__preguntar{justify-content:center}
+}

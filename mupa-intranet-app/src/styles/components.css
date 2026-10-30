@@ -1,0 +1,99 @@
+/* ============================================================
+   LEGO DESIGN SYSTEM — Componentes base sobre tokens.css
+   Clases reutilizables que reproducen las piezas del rediseño
+   (tarjetas, botones pill, sidebar, chips) como CSS real, para
+   usarlas dentro de plantillas del tema y widgets de Elementor.
+   ============================================================ */
+
+/* ---------- Helpers tipográficos ---------- */
+.ds-display  { font: var(--text-display); color: var(--fg-strong); letter-spacing: -0.01em; }
+.ds-h1       { font: var(--text-h1);  color: var(--fg-strong); letter-spacing: -0.01em; }
+.ds-h2       { font: var(--text-h2);  color: var(--fg-strong); }
+.ds-h3       { font: var(--text-h3);  color: var(--fg-strong); }
+.ds-title    { font: var(--text-title); color: var(--fg-strong); }
+.ds-body     { font: var(--text-body); color: var(--fg-default); }
+.ds-body-lg  { font: var(--text-body-lg); color: var(--fg-default); }
+.ds-body-sm  { font: var(--text-body-sm); color: var(--fg-muted); }
+.ds-label    { font: var(--text-label); color: var(--fg-strong); }
+.ds-caption  { font: var(--text-caption); color: var(--fg-muted); }
+.ds-overline { font: var(--text-overline); color: var(--fg-muted);   }
+
+/* ---------- Botones (pill) ---------- */
+.ds-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font: var(--text-button); border: 0; border-radius: var(--radius-pill);
+  padding: 12px 20px; cursor: pointer; text-decoration: none;
+  transition: background-color .15s ease, box-shadow .15s ease, transform .05s ease;
+}
+.ds-btn:active { transform: translateY(1px); }
+.ds-btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+.ds-btn--primary { background: var(--action); color: var(--fg-on-brand); }
+.ds-btn--primary:hover { background: var(--action-hover); color: var(--fg-on-brand); text-decoration: none; }
+.ds-btn--primary:active { background: var(--action-press); }
+
+.ds-btn--ghost { background: transparent; color: var(--action); }
+.ds-btn--ghost:hover { background: var(--action-subtle); text-decoration: none; }
+
+.ds-btn--subtle { background: var(--action-subtle); color: var(--action); }
+.ds-btn--subtle:hover { background: var(--color-primary-100); text-decoration: none; }
+
+/* ---------- Tarjeta ---------- */
+.ds-card {
+  background: var(--bg-surface); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+}
+.ds-card--flat { box-shadow: none; }
+.ds-card--interactive { transition: box-shadow .15s ease, transform .12s ease; }
+.ds-card--interactive:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+/* ---------- Chip / tag ---------- */
+.ds-chip {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font: var(--text-caption); color: var(--fg-default);
+  background: var(--bg-base); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 4px 10px;
+}
+.ds-badge {
+  font: var(--text-overline); background: var(--action); color: var(--fg-on-brand);
+  border-radius: var(--radius-pill); padding: 4px 7px; line-height: 1;
+}
+
+/* ---------- Input ---------- */
+.ds-input {
+  width: 100%; font: var(--text-body); color: var(--fg-strong);
+  background: var(--bg-surface); border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+}
+.ds-input::placeholder { color: var(--fg-muted); }
+.ds-input:focus { outline: none; border-color: var(--action); box-shadow: var(--shadow-focus); }
+
+/* ---------- Sidebar de trabajo (256px) ---------- */
+.ds-sidebar {
+  width: 256px; flex: 0 0 256px; align-self: flex-start;
+  position: sticky; top: 0; height: 100vh;
+  background: var(--bg-surface); border-right: 1px solid var(--border-default);
+  display: flex; flex-direction: column; padding: 20px 16px; gap: var(--space-6);
+}
+.ds-nav-item {
+  display: flex; align-items: center; gap: 11px; width: 100%;
+  padding: 10px 12px; border: 0; border-radius: var(--radius-md);
+  cursor: pointer; font: 600 14px/1 var(--font-body); color: var(--fg-default);
+  background: transparent; text-decoration: none; transition: background-color .12s ease, color .12s ease;
+}
+.ds-nav-item:hover { background: var(--bg-base); color: var(--fg-strong); text-decoration: none; }
+.ds-nav-item[aria-current="page"],
+.ds-nav-item.is-active { background: var(--action-subtle); color: var(--action); }
+
+/* ---------- Layout app shell ---------- */
+.ds-shell { display: flex; min-height: 100vh; background: var(--bg-base); color: var(--fg-default); font-family: var(--font-body); }
+.ds-main  { flex: 1 1 auto; min-width: 0; padding: var(--space-8); }
+
+/* ---------- Accesibilidad: respeta reduce-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn, .ds-card--interactive, .ds-nav-item { transition: none; }
+}
+
+/* Nombre y correo de la persona: se parten en varias líneas en vez de salirse de la tarjeta. */
+.cuenta-datos{overflow-wrap:anywhere}

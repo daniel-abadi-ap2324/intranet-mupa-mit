@@ -1,0 +1,25 @@
+# Lo que NO entra al contexto de docker build.
+node_modules
+dist
+.git
+.gitignore
+.vscode
+.env
+.env.*
+!.env.example
+*.db*
+*.log
+coverage
+test-results
+# Las pruebas no van en la imagen (algunas leen datos de la API, fuera de este contexto).
+tests
+playwright-report
+blob-report
+tests/capturas
+
+
+# Documentos y configuración de Docker no hacen falta dentro de la imagen.
+Dockerfile
+docker-compose.yml
+README.md
+docs

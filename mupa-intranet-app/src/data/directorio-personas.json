@@ -1,0 +1,1565 @@
+[
+  {
+    "nombre": "Corregiduria de Descarga",
+    "apellido": "",
+    "direccion": "",
+    "ext": "9000",
+    "ubicacion": ""
+  },
+  {
+    "nombre": "Ana",
+    "apellido": "Ejemplo Ejemplar",
+    "direccion": "",
+    "ext": "9001",
+    "ubicacion": "Torre B · Piso 2"
+  },
+  {
+    "nombre": "Luis",
+    "apellido": "Prueba Ejemplar",
+    "direccion": "Auditoría Interna",
+    "ext": "9002",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "María",
+    "apellido": "Modelo Ejemplar",
+    "direccion": "Auditoría Interna",
+    "ext": "9003",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "Ficticio Ejemplar",
+    "direccion": "Auditoría Interna",
+    "ext": "9004",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Elena",
+    "apellido": "Muestra Ejemplar",
+    "direccion": "Centro Turístico Mi Pueblito",
+    "ext": "9005",
+    "ubicacion": "Mi Pueblito"
+  },
+  {
+    "nombre": "Jorge",
+    "apellido": "Demo Ejemplar",
+    "direccion": "Centro Turístico Mi Pueblito",
+    "ext": "9006",
+    "ubicacion": "Mi Pueblito"
+  },
+  {
+    "nombre": "Sofía",
+    "apellido": "Ensayo Ejemplar",
+    "direccion": "Centro Turístico Mi Pueblito",
+    "ext": "9007",
+    "ubicacion": "Mi Pueblito"
+  },
+  {
+    "nombre": "Pedro",
+    "apellido": "Simulado Ejemplar",
+    "direccion": "Comunicaciones",
+    "ext": "9008",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Lucía",
+    "apellido": "Boceto Ejemplar",
+    "direccion": "Comunicaciones",
+    "ext": "9009",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Andrés",
+    "apellido": "Plantilla Ejemplar",
+    "direccion": "Comunicaciones",
+    "ext": "9010",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Comunicaciones",
+    "unidad": "Recepción",
+    "ext": "9011",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Prensa",
+    "apellido": "",
+    "direccion": "Concejo Municipal",
+    "ext": "9012",
+    "ubicacion": "Palacio Municipal Catedral"
+  },
+  {
+    "nombre": "Presidencia",
+    "apellido": "",
+    "direccion": "Concejo Municipal",
+    "ext": "9013",
+    "ubicacion": "Palacio Municipal Catedral"
+  },
+  {
+    "nombre": "Valeria",
+    "apellido": "Maqueta Ejemplar",
+    "direccion": "Concejo Municipal",
+    "ext": "9014",
+    "ubicacion": "Palacio Municipal Catedral"
+  },
+  {
+    "nombre": "Diego",
+    "apellido": "Borrador Ejemplar",
+    "direccion": "Concejo Municipal",
+    "ext": "9015",
+    "ubicacion": "Palacio Municipal Catedral"
+  },
+  {
+    "nombre": "Camila",
+    "apellido": "Ejemplo Probeta",
+    "direccion": "Concejo Municipal",
+    "ext": "9016",
+    "ubicacion": "Palacio Municipal Catedral"
+  },
+  {
+    "nombre": "Ricardo",
+    "apellido": "Prueba Probeta",
+    "direccion": "Contraloría",
+    "ext": "9017",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Isabel",
+    "apellido": "Modelo Probeta",
+    "direccion": "Contraloría",
+    "ext": "9018",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Tomás",
+    "apellido": "Ficticio Probeta",
+    "direccion": "Contraloría",
+    "ext": "9019",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Ingenieria",
+    "apellido": "",
+    "direccion": "Contraloría",
+    "ext": "9020",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Paula",
+    "apellido": "Muestra Probeta",
+    "direccion": "Cultura",
+    "ext": "9021",
+    "ubicacion": "Torre A · Piso 5"
+  },
+  {
+    "nombre": "Gabriel",
+    "apellido": "Demo Probeta",
+    "direccion": "Cultura",
+    "ext": "9022",
+    "ubicacion": "Torre A · Piso 5"
+  },
+  {
+    "nombre": "Laura",
+    "apellido": "Ensayo Probeta",
+    "direccion": "Cultura",
+    "ext": "9023",
+    "ubicacion": "Torre A · Piso 5"
+  },
+  {
+    "nombre": "Cultura",
+    "apellido": "",
+    "direccion": "Cultura",
+    "ext": "9024",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Mateo",
+    "apellido": "Simulado Probeta",
+    "direccion": "Deportes",
+    "ext": "9025",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Daniela",
+    "apellido": "Boceto Probeta",
+    "direccion": "Deportes",
+    "ext": "9026",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Héctor",
+    "apellido": "Plantilla Probeta",
+    "direccion": "Deportes",
+    "ext": "9027",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Mariana",
+    "apellido": "Maqueta Probeta",
+    "direccion": "Descentralización",
+    "ext": "9028",
+    "ubicacion": "Torre B · Piso 7"
+  },
+  {
+    "nombre": "Óscar",
+    "apellido": "Borrador Probeta",
+    "direccion": "Descentralización",
+    "ext": "9029",
+    "ubicacion": "Torre A · Piso 7"
+  },
+  {
+    "nombre": "Natalia",
+    "apellido": "Ejemplo Patrón",
+    "direccion": "Descentralización",
+    "ext": "9030",
+    "ubicacion": "Torre B · Piso 7"
+  },
+  {
+    "nombre": "Descentralización",
+    "apellido": "",
+    "direccion": "Descentralización",
+    "ext": "9031",
+    "ubicacion": "Torre B · Piso 7"
+  },
+  {
+    "nombre": "Rubén",
+    "apellido": "Prueba Patrón",
+    "direccion": "Despacho",
+    "ext": "9032",
+    "ubicacion": "Torre A · Piso 7"
+  },
+  {
+    "nombre": "Carmen",
+    "apellido": "Modelo Patrón",
+    "direccion": "Despacho",
+    "ext": "9033",
+    "ubicacion": "Torre B · Piso 7"
+  },
+  {
+    "nombre": "Iván",
+    "apellido": "Ficticio Patrón",
+    "direccion": "Despacho",
+    "ext": "9034",
+    "ubicacion": "Torre A · Piso 7"
+  },
+  {
+    "nombre": "Administrativa",
+    "apellido": "",
+    "direccion": "Dirección Administrativa",
+    "ext": "9035",
+    "ubicacion": "Torre C · Piso 2"
+  },
+  {
+    "nombre": "Contrataciones",
+    "apellido": "",
+    "direccion": "Dirección Administrativa",
+    "unidad": "Contrataciones Públicas",
+    "ext": "9036",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Deposito de Servicios Generales",
+    "apellido": "",
+    "direccion": "Dirección Administrativa",
+    "unidad": "Servicios Generales",
+    "ext": "9037",
+    "ubicacion": "Torre C · Piso 2"
+  },
+  {
+    "nombre": "Patricia",
+    "apellido": "Muestra Patrón",
+    "direccion": "Dirección Administrativa",
+    "ext": "9038",
+    "ubicacion": "Torre C · Piso 2"
+  },
+  {
+    "nombre": "Simón",
+    "apellido": "Demo Patrón",
+    "direccion": "Dirección Administrativa",
+    "ext": "9039",
+    "ubicacion": "Torre C · Piso 2"
+  },
+  {
+    "nombre": "Ana",
+    "apellido": "Ensayo Patrón",
+    "direccion": "Dirección Administrativa",
+    "ext": "9040",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Abogados San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9041",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Abogados San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9042",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Luis",
+    "apellido": "Simulado Patrón",
+    "direccion": "Dirección de Mercados",
+    "ext": "9043",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Administración San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9044",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Administración San Feliper Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9045",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Ferias Mercados",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9046",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Mercados Ferias",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9047",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Operaciones San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9048",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9049",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Recepción 2 San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9050",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "RRHH",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9051",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "RRHH",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9052",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9053",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9054",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9055",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9056",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9057",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9058",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9059",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9060",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9061",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9062",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9063",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9064",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9065",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9066",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9067",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9068",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9069",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9070",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9071",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9072",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "Video Vigilancia San Felipe Neri",
+    "apellido": "",
+    "direccion": "Dirección de Mercados",
+    "ext": "9073",
+    "ubicacion": "San Felipe Neri"
+  },
+  {
+    "nombre": "María",
+    "apellido": "Boceto Patrón",
+    "direccion": "Dirección de Presupuesto",
+    "ext": "9074",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "Plantilla Patrón",
+    "direccion": "Dirección de Presupuesto",
+    "ext": "9075",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Elena",
+    "apellido": "Maqueta Patrón",
+    "direccion": "Dirección de Presupuesto",
+    "ext": "9076",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Jorge",
+    "apellido": "Borrador Patrón",
+    "direccion": "Etnias",
+    "ext": "9077",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Sofía",
+    "apellido": "Ejemplo Molde",
+    "direccion": "Etnias",
+    "ext": "9078",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Pedro",
+    "apellido": "Prueba Molde",
+    "direccion": "Etnias",
+    "ext": "9079",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Lucía",
+    "apellido": "Modelo Molde",
+    "direccion": "Gestión Ambiental",
+    "ext": "9080",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Andrés",
+    "apellido": "Ficticio Molde",
+    "direccion": "Gestión Ambiental",
+    "ext": "9081",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Valeria",
+    "apellido": "Muestra Molde",
+    "direccion": "Gestión Ambiental",
+    "ext": "9082",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Edu. Ambiental",
+    "apellido": "",
+    "direccion": "Gestión Ambiental",
+    "ext": "9083",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Resiliencia",
+    "apellido": "",
+    "direccion": "Gestión Ambiental",
+    "ext": "9084",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Subdir. Áreas Verdes",
+    "apellido": "",
+    "direccion": "Gestión Ambiental",
+    "unidad": "Parque Norte",
+    "ext": "9085",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Diego",
+    "apellido": "Demo Molde",
+    "direccion": "Gestión Social",
+    "ext": "9086",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Camila",
+    "apellido": "Ensayo Molde",
+    "direccion": "Gestión Social",
+    "ext": "9087",
+    "ubicacion": "Torre B · Piso 2"
+  },
+  {
+    "nombre": "Ricardo",
+    "apellido": "Simulado Molde",
+    "direccion": "Gestión Social",
+    "ext": "9088",
+    "ubicacion": "Pacora"
+  },
+  {
+    "nombre": "Grupo TX",
+    "apellido": "",
+    "direccion": "Grupo TX",
+    "ext": "9089",
+    "ubicacion": "Torre B · PB"
+  },
+  {
+    "nombre": "Grupo TX",
+    "apellido": "",
+    "direccion": "Grupo TX",
+    "ext": "9090",
+    "ubicacion": "Torre B · PB"
+  },
+  {
+    "nombre": "Isabel",
+    "apellido": "Boceto Molde",
+    "direccion": "Innovación",
+    "ext": "9091",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9092",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9093",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9094",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9095",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9096",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Innovación",
+    "apellido": "",
+    "direccion": "Innovación",
+    "ext": "9097",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Tomás",
+    "apellido": "Plantilla Molde",
+    "direccion": "Legal y Justicia",
+    "ext": "9098",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Paula",
+    "apellido": "Maqueta Molde",
+    "direccion": "Legal y Justicia",
+    "ext": "9099",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Gabriel",
+    "apellido": "Borrador Molde",
+    "direccion": "Legal y Justicia",
+    "ext": "9100",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Departamento de Inspección",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Cumplimiento e Inspección",
+    "ext": "9101",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Inspectores de Publicidad Exterior",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Publicidad",
+    "ext": "9102",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Oficiales de Cumplimiento",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Cumplimiento e Inspección",
+    "ext": "9103",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Publicidad Exterior",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Recepción",
+    "ext": "9104",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Trámites y Permisos",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Apelaciones",
+    "ext": "9105",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Ventanilla de Publicidad Exterior",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Publicidad",
+    "ext": "9106",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Ventanilla Trámites y Permisos",
+    "apellido": "",
+    "direccion": "Legal y Justicia",
+    "unidad": "Publicidad",
+    "ext": "9107",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Almacén de Obras Comunitarias",
+    "apellido": "",
+    "direccion": "Obras Comunitarias",
+    "ext": "9108",
+    "ubicacion": "Curundú/Polvorín"
+  },
+  {
+    "nombre": "Almacén de Obras Comunitarias",
+    "apellido": "",
+    "direccion": "Obras Comunitarias",
+    "ext": "9109",
+    "ubicacion": "Curundú/Polvorín"
+  },
+  {
+    "nombre": "Almacén de Obras Comunitarias",
+    "apellido": "",
+    "direccion": "Obras Comunitarias",
+    "ext": "9110",
+    "ubicacion": "Curundú/Polvorín"
+  },
+  {
+    "nombre": "Laura",
+    "apellido": "Ejemplo Esbozo",
+    "direccion": "Obras Comunitarias",
+    "ext": "9111",
+    "ubicacion": "Plaza las Americas"
+  },
+  {
+    "nombre": "Mateo",
+    "apellido": "Prueba Esbozo",
+    "direccion": "Obras Comunitarias",
+    "ext": "9112",
+    "ubicacion": "Plaza las Americas"
+  },
+  {
+    "nombre": "Daniela",
+    "apellido": "Modelo Esbozo",
+    "direccion": "Obras Comunitarias",
+    "ext": "9113",
+    "ubicacion": "Plaza las Americas"
+  },
+  {
+    "nombre": "Héctor",
+    "apellido": "Ficticio Esbozo",
+    "direccion": "Obras y Construcciones",
+    "ext": "9114",
+    "ubicacion": "Torre A · Piso 3"
+  },
+  {
+    "nombre": "Mariana",
+    "apellido": "Muestra Esbozo",
+    "direccion": "Obras y Construcciones",
+    "ext": "9115",
+    "ubicacion": "Torre A · PB"
+  },
+  {
+    "nombre": "Óscar",
+    "apellido": "Demo Esbozo",
+    "direccion": "Obras y Construcciones",
+    "ext": "9116",
+    "ubicacion": "Torre A · Piso 3"
+  },
+  {
+    "nombre": "Sub Director",
+    "apellido": "",
+    "direccion": "Obras y Construcciones",
+    "unidad": "Despacho",
+    "ext": "9117",
+    "ubicacion": "Torre A · Piso 3"
+  },
+  {
+    "nombre": "Natalia",
+    "apellido": "Ensayo Esbozo",
+    "direccion": "Oficina de Cooperación Internacional",
+    "ext": "9118",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Rubén",
+    "apellido": "Simulado Esbozo",
+    "direccion": "Oficina de Cooperación Internacional",
+    "ext": "9119",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Carmen",
+    "apellido": "Boceto Esbozo",
+    "direccion": "Oficina de Cooperación Internacional",
+    "ext": "9120",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Reuniones",
+    "apellido": "",
+    "direccion": "Oficina de Cooperación Internacional",
+    "ext": "9121",
+    "ubicacion": "Torre A · Piso 6"
+  },
+  {
+    "nombre": "Iván",
+    "apellido": "Plantilla Esbozo",
+    "direccion": "Parque Summit",
+    "ext": "9122",
+    "ubicacion": "Parque Summit"
+  },
+  {
+    "nombre": "Administración Summit",
+    "apellido": "",
+    "direccion": "Parque Summit",
+    "ext": "9123",
+    "ubicacion": "Parque Summit"
+  },
+  {
+    "nombre": "Patricia",
+    "apellido": "Maqueta Esbozo",
+    "direccion": "Parque Summit",
+    "ext": "9124",
+    "ubicacion": "Parque Summit"
+  },
+  {
+    "nombre": "Simón",
+    "apellido": "Borrador Esbozo",
+    "direccion": "Parque Summit",
+    "ext": "9125",
+    "ubicacion": "Parque Summit"
+  },
+  {
+    "nombre": "Parque Summit",
+    "apellido": "",
+    "direccion": "Parque Summit",
+    "ext": "9126",
+    "ubicacion": "Parque Summit"
+  },
+  {
+    "nombre": "Abogado",
+    "apellido": "",
+    "direccion": "Participación Ciudadana",
+    "ext": "9127",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Ana",
+    "apellido": "Ejemplo Bosquejo",
+    "direccion": "Participación Ciudadana",
+    "ext": "9128",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Asistente RRHH",
+    "apellido": "",
+    "direccion": "Participación Ciudadana",
+    "ext": "9129",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Luis",
+    "apellido": "Prueba Bosquejo",
+    "direccion": "Participación Ciudadana",
+    "ext": "9130",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "María",
+    "apellido": "Modelo Bosquejo",
+    "direccion": "Participación Ciudadana",
+    "ext": "9131",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Correspondencia",
+    "apellido": "",
+    "direccion": "Participación Ciudadana",
+    "unidad": "Atención Ciudadana",
+    "ext": "9132",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Cubículo Atención C",
+    "apellido": "",
+    "direccion": "Participación Ciudadana",
+    "unidad": "Cubículo",
+    "ext": "9133",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "Ficticio Bosquejo",
+    "direccion": "Planificación Urbana",
+    "ext": "9134",
+    "ubicacion": "Torre A · Piso 2"
+  },
+  {
+    "nombre": "Elena",
+    "apellido": "Muestra Bosquejo",
+    "direccion": "Planificación Urbana",
+    "ext": "9135",
+    "ubicacion": "Torre A · Piso 2"
+  },
+  {
+    "nombre": "Jorge",
+    "apellido": "Demo Bosquejo",
+    "direccion": "Planificación Urbana",
+    "ext": "9136",
+    "ubicacion": "Torre A · Piso 2"
+  },
+  {
+    "nombre": "Sofía",
+    "apellido": "Ensayo Bosquejo",
+    "direccion": "Proyectos Especiales",
+    "ext": "9137",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Pedro",
+    "apellido": "Simulado Bosquejo",
+    "direccion": "Proyectos Especiales",
+    "ext": "9138",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Lucía",
+    "apellido": "Boceto Bosquejo",
+    "direccion": "Proyectos Especiales",
+    "ext": "9139",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Andrés",
+    "apellido": "Plantilla Bosquejo",
+    "direccion": "Recursos Humanos",
+    "ext": "9140",
+    "ubicacion": "Torre C · Piso 1"
+  },
+  {
+    "nombre": "Valeria",
+    "apellido": "Maqueta Bosquejo",
+    "direccion": "Recursos Humanos",
+    "ext": "9141",
+    "ubicacion": "Torre C · Piso 2"
+  },
+  {
+    "nombre": "Diego",
+    "apellido": "Borrador Bosquejo",
+    "direccion": "Recursos Humanos",
+    "ext": "9143",
+    "ubicacion": "Torre B · Piso 2"
+  },
+  {
+    "nombre": "Camila",
+    "apellido": "Ejemplo Prototipo",
+    "direccion": "Secretaría de la Mujer",
+    "ext": "9144",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Ricardo",
+    "apellido": "Prueba Prototipo",
+    "direccion": "Secretaría de la Mujer",
+    "ext": "9145",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Isabel",
+    "apellido": "Modelo Prototipo",
+    "direccion": "Secretaría de la Mujer",
+    "ext": "9146",
+    "ubicacion": "Torre B · Piso 3"
+  },
+  {
+    "nombre": "Tomás",
+    "apellido": "Ficticio Prototipo",
+    "direccion": "Secretaría General",
+    "ext": "9147",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Paula",
+    "apellido": "Muestra Prototipo",
+    "direccion": "Secretaría General",
+    "ext": "9148",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Gabriel",
+    "apellido": "Demo Prototipo",
+    "direccion": "Secretaría General",
+    "ext": "9149",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Salon de Reuniones",
+    "apellido": "",
+    "direccion": "Secretaría General",
+    "ext": "9150",
+    "ubicacion": "Torre B · Nivel F"
+  },
+  {
+    "nombre": "Abogada",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9151",
+    "ubicacion": "Torre B · Piso 8"
+  },
+  {
+    "nombre": "Laura",
+    "apellido": "Ensayo Prototipo",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9152",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Mateo",
+    "apellido": "Simulado Prototipo",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9153",
+    "ubicacion": "Plaza las Americas"
+  },
+  {
+    "nombre": "Daniela",
+    "apellido": "Boceto Prototipo",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9154",
+    "ubicacion": "Plaza las Americas"
+  },
+  {
+    "nombre": "Por Asignar",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9155",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Por Asignar",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9156",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Por Asignar",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9157",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Por Asignar",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9158",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Servicios a la Comunidad",
+    "ext": "9159",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Agente de la Policia Municipal",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9160",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Agente de la Policia Nacional",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9161",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Héctor",
+    "apellido": "Plantilla Prototipo",
+    "direccion": "SIVIMUPA",
+    "ext": "9162",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Autoridad del Aseo",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9163",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Mariana",
+    "apellido": "Maqueta Prototipo",
+    "direccion": "SIVIMUPA",
+    "ext": "9164",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Coordinadores",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9165",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Óscar",
+    "apellido": "Borrador Prototipo",
+    "direccion": "SIVIMUPA",
+    "ext": "9166",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Salas de Crisis",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9167",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Salas de Crisis",
+    "apellido": "",
+    "direccion": "SIVIMUPA",
+    "ext": "9168",
+    "ubicacion": "Torre B · Piso 5"
+  },
+  {
+    "nombre": "Natalia",
+    "apellido": "Ejemplo Piloto",
+    "direccion": "Subdirección de Empresas Municipales",
+    "ext": "9169",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Rubén",
+    "apellido": "Prueba Piloto",
+    "direccion": "Subdirección de Empresas Municipales",
+    "ext": "9170",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Carmen",
+    "apellido": "Modelo Piloto",
+    "direccion": "Subdirección de Empresas Municipales",
+    "ext": "9171",
+    "ubicacion": "Torre C · PB"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Subdirección de Eventos",
+    "ext": "9172",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Iván",
+    "apellido": "Ficticio Piloto",
+    "direccion": "Subdirección de Eventos",
+    "ext": "9173",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Patricia",
+    "apellido": "Muestra Piloto",
+    "direccion": "Subdirección de Eventos",
+    "ext": "9174",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Simón",
+    "apellido": "Demo Piloto",
+    "direccion": "Subdirección de Eventos",
+    "ext": "9175",
+    "ubicacion": "Torre B · Piso 6"
+  },
+  {
+    "nombre": "Ana",
+    "apellido": "Ensayo Piloto",
+    "direccion": "Tecnología",
+    "ext": "9176",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Luis",
+    "apellido": "Simulado Piloto",
+    "direccion": "Tecnología",
+    "ext": "9177",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "María",
+    "apellido": "Boceto Piloto",
+    "direccion": "Tecnología",
+    "ext": "9178",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Tecnología",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "9179",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Tecnología",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "9180",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Vigilancia Fiscal",
+    "ext": "9181",
+    "ubicacion": "Torre A · Piso B"
+  },
+  {
+    "nombre": "Vehículo Backoffice",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Vehículo",
+    "ext": "9182",
+    "ubicacion": "Torre A · PB"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "Plantilla Piloto",
+    "direccion": "Tesorería",
+    "ext": "9184",
+    "ubicacion": "Torre A · Piso 1"
+  },
+  {
+    "nombre": "Análisis",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "ext": "9185",
+    "ubicacion": "Torre A · Piso 1"
+  },
+  {
+    "nombre": "Elena",
+    "apellido": "Maqueta Piloto",
+    "direccion": "Tesorería",
+    "ext": "9186",
+    "ubicacion": "Torre B · PB"
+  },
+  {
+    "nombre": "Jorge",
+    "apellido": "Borrador Piloto",
+    "direccion": "Tesorería",
+    "ext": "9187",
+    "ubicacion": "Torre A · Piso 4"
+  },
+  {
+    "nombre": "Juzgado Ejecutor 1",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Juzgado Ejecutor 1",
+    "ext": "9188",
+    "ubicacion": "Torre B · Piso M"
+  },
+  {
+    "nombre": "Juzgado Ejecutor 1",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Juzgado Ejecutor 1",
+    "ext": "9189",
+    "ubicacion": "Torre B · Piso M"
+  },
+  {
+    "nombre": "Juzgado Ejecutor 1",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Juzgado Ejecutor 1",
+    "ext": "9190",
+    "ubicacion": "Torre B · Piso M"
+  },
+  {
+    "nombre": "Juzgado Ejecutor 1",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Juzgado Ejecutor 1",
+    "ext": "9191",
+    "ubicacion": "Torre B · Piso M"
+  },
+  {
+    "nombre": "Juzgado Ejecutor 2",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Juzgado Ejecutor 2",
+    "ext": "9192",
+    "ubicacion": "Torre B · Piso M"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "ext": "9193",
+    "ubicacion": "Torre A · Piso 1"
+  },
+  {
+    "nombre": "RRHH",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "RRHH",
+    "ext": "9194",
+    "ubicacion": "Torre A · Piso 1"
+  },
+  {
+    "nombre": "Salon de Reuniones",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "ext": "9195",
+    "ubicacion": "Torre A · Piso 1"
+  },
+  {
+    "nombre": "Secretaría",
+    "apellido": "",
+    "direccion": "Tesorería",
+    "unidad": "Estacionometro",
+    "ext": "9196",
+    "ubicacion": "Torre A · Piso B"
+  },
+  {
+    "nombre": "Sofía",
+    "apellido": "Ejemplo Testigo",
+    "direccion": "Trabajo Social",
+    "ext": "9197",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Pedro",
+    "apellido": "Prueba Testigo",
+    "direccion": "Trabajo Social",
+    "ext": "9198",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Lucía",
+    "apellido": "Modelo Testigo",
+    "direccion": "Trabajo Social",
+    "ext": "9199",
+    "ubicacion": "Torre B · Piso 1"
+  },
+  {
+    "nombre": "Acceso Rampa",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9200",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Andrés",
+    "apellido": "Ficticio Testigo",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9201",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Valeria",
+    "apellido": "Muestra Testigo",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9202",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Diego",
+    "apellido": "Demo Testigo",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9203",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Armeria",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9204",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Asis. Comunicaciones (24 Hrs)",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9205",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Asistente de Armeria",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9206",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Asistente de Operaciones",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9207",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Jefe de Operaciones",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9208",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Jefe de Plaza",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9209",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Parque Norte",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9210",
+    "ubicacion": "Parque Norte"
+  },
+  {
+    "nombre": "Supervisor de Grupo",
+    "apellido": "",
+    "direccion": "Vigilancia Municipal",
+    "ext": "9211",
+    "ubicacion": "Torre A · Piso D"
+  },
+  {
+    "nombre": "Mesa de Ayuda",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1400",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Participación Ciudadana",
+    "ext": "1200",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Recepción Tecnología",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1600",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Telefonía",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1614",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Cuarto de Servidores",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1621",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Administración DTI",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1657",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Desarrollo",
+    "apellido": "",
+    "direccion": "Tecnología",
+    "ext": "1670",
+    "ubicacion": "Torre A · Nivel F"
+  },
+  {
+    "nombre": "Recepción",
+    "apellido": "",
+    "direccion": "Comunicaciones",
+    "ext": "4300",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Redes Sociales",
+    "apellido": "",
+    "direccion": "Comunicaciones",
+    "ext": "4310",
+    "ubicacion": "Torre B · Piso 4"
+  },
+  {
+    "nombre": "Producción Audiovisual",
+    "apellido": "",
+    "direccion": "Comunicaciones",
+    "ext": "4314",
+    "ubicacion": "Torre B · Piso 4"
+  }
+]

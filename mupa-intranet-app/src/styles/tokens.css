@@ -1,0 +1,171 @@
+/* ============================================================
+   LEGO DESIGN SYSTEM — Alcaldía de Panamá (Intranet MUPA)
+   tokens.css — variables oficiales extraídas del design system
+   Fuente: propuesta de UI/UX del departamento.
+   No editar valores sueltos aquí: esta es la única fuente de verdad
+   de color, tipografía, radios, espaciado y sombras.
+   ============================================================ */
+
+:root {
+  /* ---------- PRIMARY BLUE — Marca / Acción ---------- */
+  --color-primary-50:  #EDF7FF;
+  --color-primary-100: #D6EAFF;
+  --color-primary-200: #B5DCFF;
+  --color-primary-300: #83C8FF;
+  --color-primary-400: #48A9FF;
+  --color-primary-500: #0660FF;  /* ★ Azul institucional — acción principal */
+  --color-primary-600: #0046EF;
+  --color-primary-700: #083AC5;
+  --color-primary-800: #0D369B;
+  --color-primary-900: #0E225D;
+
+  /* ---------- SECONDARY BLUE — Soporte visual ---------- */
+  --color-secondary-100: #D6EAFF;
+  --color-secondary-200: #B5DCFF;
+  --color-secondary-300: #83C8FF;
+  --color-secondary-400: #48A9FF;
+
+  /* ---------- NEUTRALS — texto y fondo ---------- */
+  --color-neutral-0:   #FCFDFD;
+  --color-neutral-50:  #F4F6F7;
+  --color-neutral-60:  #F1F4F6;  /* divisor entre filas (propuesta) */
+  --color-neutral-70:  #EDF0F3;  /* borde de tarjeta/tile (propuesta) */
+  --color-neutral-80:  #E9EEF2;  /* punto medio del shimmer (propuesta) */
+  --color-neutral-90:  #E2E8EC;  /* borde del shell: sidebar, header, popovers (propuesta) */
+  --color-neutral-100: #D9D9D9;
+  --color-neutral-200: #CAD2D7;
+  --color-neutral-300: #A4B1BC;
+  --color-neutral-400: #627485;
+  --color-neutral-500: #4F5B6B;
+  --color-neutral-600: #363B43;
+  --color-neutral-900: #21252B;
+
+  /* ---------- COMPLEMENTARY (categorías) ---------- */
+  --color-purple-100: #EFEAFE; --color-purple-200: #CFC5FB; --color-purple-300: #7C6AE6; --color-purple-400: #5B4BC4;
+  --color-cyan-100:   #E6FAFE; --color-cyan-200:   #B9F2FB; --color-cyan-300:   #22D3EE; --color-cyan-400:   #0EA5C6;
+  --color-brown-100:  #F5ECE6; --color-brown-200:  #E2C9B8; --color-brown-300:  #B45309; --color-brown-400:  #8A3F06;
+  --color-lime-100:   #F2FBE7; --color-lime-200:   #D9F2B8; --color-lime-300:   #84CC16; --color-lime-400:   #65A30D;
+  --color-coral-100:  #FFF1F4; --color-coral-200:  #FFD6DD; --color-coral-300:  #FDA4AF; --color-coral-400:  #FB7185;
+
+  /* ---------- SEMANTIC ---------- */
+  --color-success-100: #E6F6EC; --color-success-300: #7DDBA5; --color-success-500: #2ECC71; --color-success-700: #14653A;
+  --color-warning-100: #FFF4E5; --color-warning-300: #FFD28A; --color-warning-500: #F59E0B; --color-warning-700: #B45309;
+  --color-error-100:   #FDECEA; --color-error-300:   #F1998E; --color-error-500:   #E53935; --color-error-700:   #B71C1C;
+  --color-info-100:    #EDF7FF; --color-info-300:    #83C8FF; --color-info-500:    #0660FF; --color-info-700:    #0046EF;
+
+  /* ---------- PRINT ---------- */
+  --color-print-reflex-blue: #001489; /* Pantone Reflex Blue C */
+  --color-white: #FFFFFF;
+
+  /* ============================================================
+     SEMANTIC ALIASES (usar estos en la UI del producto)
+     ============================================================ */
+  --bg-base:        var(--color-neutral-50);
+  --bg-surface:     var(--color-neutral-0);
+  --bg-subtle:      var(--color-primary-50);
+  --bg-inverse:     var(--color-primary-500);
+  --bg-muted:       var(--color-neutral-50);   /* rellenos dentro de superficie: thead, chips, kbd, code */
+  --bg-disabled:    var(--color-neutral-100);
+  --bg-inverse-strong: var(--color-neutral-900); /* toast */
+  --bg-surface-translucent: rgba(252, 253, 253, 0.88); /* header sticky con blur */
+
+  --fg-strong:      var(--color-neutral-900);
+  --fg-default:     var(--color-neutral-600);
+  /* Un poco más oscuro que neutral-400 (#627485 daba 4,44:1 sobre el fondo; WCAG AA pide 4,5:1). */
+  --fg-muted:       #5B6D7E;
+  --fg-disabled:    var(--color-neutral-300);
+  --fg-on-brand:    var(--color-white);
+  --fg-secondary:   var(--color-neutral-500);  /* #4F5B6B · párrafos y bajadas */
+  --fg-subtle:      var(--color-neutral-300);  /* #A4B1BC · texto terciario */
+  --fg-on-brand-muted:  var(--color-primary-100); /* #D6EAFF · párrafo sobre primary-500 */
+  --fg-on-brand-subtle: var(--color-primary-200); /* #B5DCFF · kicker sobre primary-500 */
+  --fg-on-subtle:   var(--color-primary-800);  /* texto sobre --bg-subtle */
+  --fg-brand:       var(--color-primary-900);  /* wordmark ALCALDÍA */
+
+  --border-subtle:  var(--color-neutral-70);   /* #EDF0F3 · tarjetas y tiles (la propuesta nunca usa #D9D9D9 como borde) */
+  --border-divider: var(--color-neutral-60);   /* #F1F4F6 · filas de lista */
+  --border-shell:   var(--color-neutral-90);   /* #E2E8EC · sidebar, header, popovers, botón-icono, thead */
+  --border-default: var(--color-neutral-200);  /* #CAD2D7 · inputs y controles */
+  --border-control: var(--border-default);
+  --border-hover:   var(--color-primary-200);  /* #B5DCFF · borde en hover de filas/botones */
+  --border-focus:   var(--color-primary-500);
+  --border-strong:  var(--color-neutral-300);
+
+  --action:         var(--color-primary-500);
+  --action-hover:   var(--color-primary-600);
+  --action-press:   var(--color-primary-700);
+  --action-subtle:  var(--color-primary-50);
+  --focus-ring:     var(--color-primary-400);
+  --link:           var(--color-primary-600);
+  --link-hover:     var(--color-primary-700);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: "Montserrat", system-ui, sans-serif;  /* titulares (Noka, la oficial, tiene licencia: no va en esta copia) */
+  --font-body:    "Montserrat", system-ui, sans-serif;
+  --font-brand:   "Montserrat", sans-serif;  /* la del logo (Prometo, con licencia: no va en esta copia) */
+
+  /* ---------- TYPE SCALE (oct-2026: legibilidad) ----------
+     Base de 16 px y nada de texto por debajo de 13 px (como GOV.UK / USWDS). Una sola escala: los nombres de la
+     propuesta de diseño (--text-row-*, --text-kicker…) quedan como alias de esta, para no tocar cada regla. */
+  --text-display:  700 40px/1.1  var(--font-display);
+  --text-h1:       700 32px/1.15 var(--font-display);
+  --text-h2:       700 24px/1.25 var(--font-display);
+  --text-h3:       600 20px/1.3  var(--font-display);
+  --text-title:    600 18px/1.35 var(--font-body);
+  --text-body-lg:  400 18px/1.55 var(--font-body);
+  --text-body:     400 16px/1.6  var(--font-body);
+  --text-body-sm:  400 14px/1.5  var(--font-body);
+  --text-label:    600 15px/1.3  var(--font-body);
+  --text-button:   600 15px/1    var(--font-body);
+  --text-caption:  500 13px/1.45 var(--font-body);
+  /* Etiqueta pequeña en seminegrita y en minúscula normal (antes: 11 px en MAYÚSCULAS espaciadas). */
+  --text-overline: 600 13px/1.35 var(--font-body);
+
+  --text-hero:          700 34px/1.12 var(--font-display);
+  --text-page-title:    700 30px/1.15 var(--font-display);
+  --text-section-title: 700 19px/1.3  var(--font-display);
+  --text-card-title:    700 16px/1.3  var(--font-display);
+  --text-kpi:           700 30px/1    var(--font-display);
+  --text-stat:          700 26px/1    var(--font-display);
+  --text-row-title:     600 15px/1.4  var(--font-body);
+  --text-row-meta:      400 13px/1.45 var(--font-body);
+  --text-kicker:        600 13px/1.35 var(--font-body);
+
+  /* Ancho cómodo de lectura para párrafos e introducciones. */
+  --measure: 70ch;
+
+  /* ---------- RADII ---------- */
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-card: 16px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+  --radius-icon: 10px;   /* tiles de icono de 28–40px */
+
+  /* ---------- SPACING (4pt base) ---------- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;
+
+  /* ---------- ELEVATION ---------- */
+  --shadow-xs: 0 1px 2px rgba(14, 34, 93, 0.06);
+  --shadow-sm: 0 2px 8px rgba(14, 34, 93, 0.08);
+  --shadow-md: 0 6px 18px rgba(14, 34, 93, 0.10);
+  --shadow-lg: 0 14px 34px rgba(14, 34, 93, 0.14);
+  --shadow-focus: 0 0 0 3px rgba(72, 169, 255, 0.45);
+  --shadow-focus-on-brand: 0 0 0 3px rgba(255, 255, 255, 0.6);
+  --shadow-card:       var(--shadow-sm);
+  --shadow-card-hover: var(--shadow-md);
+
+  /* ---------- Medidas y movimiento de la propuesta ---------- */
+  --icon-sm: 14px; --icon-md: 15px; --icon-lg: 18px; --icon-xl: 24px; --icon-tile: 30px;
+  --control-h-lg: 44px; --control-h-md: 42px; --control-h-sm: 38px;
+  --sidebar-w: 256px; --rail-w: 72px; --bottomnav-h: 64px; --content-max: 1320px;
+  --motion-fast: 150ms ease-out; --press-scale: .98; --lift: -2px;
+
+  /* ---------- Skeleton ---------- */
+  --skeleton-base: var(--color-neutral-50);
+  --skeleton-highlight: var(--color-neutral-80);
+  --skeleton-duration: 1.3s;
+}

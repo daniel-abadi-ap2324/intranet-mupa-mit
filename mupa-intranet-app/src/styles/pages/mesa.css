@@ -1,0 +1,98 @@
+/* Mesa de Servicios (/mesa-servicios): solicitar en línea, video en 3 partes y contacto al lado.
+   Compacta, como la propuesta de diseño. Solo tokens. */
+.msv{--msv-cab:28px;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--space-6);align-items:start}
+.msv-main{display:flex;flex-direction:column;gap:var(--space-8);min-width:0}
+/* La columna lateral arranca a la altura de las primeras tarjetas, no del título de la sección. */
+.msv-lado{display:flex;flex-direction:column;gap:var(--space-4);min-width:0;margin-top:calc(var(--msv-cab) + var(--space-3))}
+.msv-sec{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
+.msv-sec__cab{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-1) var(--space-3);min-height:var(--msv-cab)}
+.msv-sec__cab h2{margin:0;font:700 20px/1.2 var(--font-display);color:var(--fg-strong)}
+.msv-sec__cab span{font:var(--text-caption);color:var(--fg-muted)}
+.msv-sec--mas .msv-sec__cab h2{font-size:18px}
+
+/* Tarjetas «Solicitar» */
+.msv-sol-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--space-4)}
+/* Con un número impar, la última ocupa todo el ancho en vez de dejar un hueco. */
+.msv-sol-grid>.msv-sol:last-child:nth-child(odd){grid-column:1/-1}
+.msv-sol{box-sizing:border-box;display:grid;grid-template-columns:44px minmax(0,1fr);align-content:start;gap:var(--space-2) var(--space-3);padding:var(--space-4) var(--space-5);min-width:0;text-decoration:none;color:inherit;
+  background:var(--bg-surface);border:1.5px solid transparent;border-radius:var(--radius-card);box-shadow:var(--shadow-card);
+  transition:border-color .18s ease-out,box-shadow .18s ease-out,transform .18s ease-out}
+.msv-sol:hover{border-color:var(--action);box-shadow:var(--shadow-card-hover);transform:translateY(-2px)}
+.msv-sol:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.msv-sol__ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1}
+.msv-sol__tx{display:contents}
+.msv-sol__tx b{grid-column:2;align-self:center}
+.msv-sol__tx span{grid-column:1/-1}
+.msv-sol__tx b{font:700 17px/1.25 var(--font-display);color:var(--fg-strong)}
+.msv-sol__tx span{font:var(--text-body-sm);color:var(--fg-muted)}
+.msv-sol__go{grid-column:1/-1;align-self:end;display:inline-flex;align-items:center;gap:6px;min-height:24px;font:600 15px/1 var(--font-body);color:var(--action)}
+.msv-otra{margin:0;font:var(--text-body-sm);color:var(--fg-muted)}
+.msv-otra b{color:var(--fg-strong)}
+.msv-otra a{color:var(--link)}
+@media (prefers-reduced-motion:reduce){.msv-sol{transition:none}.msv-sol:hover{transform:none}}
+
+/* Video: panel azul marino y lista de partes dentro de una tarjeta blanca */
+.msv-video{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--space-4);align-items:stretch;padding:var(--space-4);
+  background:var(--bg-surface);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.msv-video__panel{box-sizing:border-box;min-height:220px;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:var(--space-4);text-align:center;text-decoration:none;color:var(--color-white);background:var(--color-primary-900);border-radius:12px;transition:background .18s ease-out}
+.msv-video__panel:hover{background:var(--color-primary-800)}
+.msv-video__panel:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.msv-video__play{width:58px;height:58px;border-radius:999px;background:var(--color-white);color:var(--action);display:flex;align-items:center;justify-content:center;font-size:22px;padding-left:3px}
+.msv-video__tit{font:600 15px/1.3 var(--font-body)}
+.msv-video__partes{list-style:none;margin:0;padding:0;display:grid;grid-auto-rows:1fr;gap:var(--space-2);min-width:0}
+.msv-video__partes li{display:flex;min-width:0}
+.msv-parte{box-sizing:border-box;flex:1;width:100%;min-height:48px;display:flex;align-items:center;gap:12px;padding:10px 12px;text-align:left;cursor:pointer;
+  background:var(--bg-surface);border:1.5px solid var(--border-subtle);border-radius:12px;color:var(--fg-default);font:var(--text-body-sm)}
+.msv-parte:hover{background:var(--color-primary-50)}
+.msv-parte:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.msv-parte[aria-current="true"]{border-color:var(--action);background:var(--action-subtle)}
+.msv-parte__n{flex:0 0 32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;font:700 14px/1 var(--font-body);
+  background:var(--bg-base);color:var(--fg-strong)}
+.msv-parte[aria-current="true"] .msv-parte__n{background:var(--action);color:var(--fg-on-brand)}
+.msv-parte__tx{min-width:0;display:flex;flex-direction:column;gap:2px}
+.msv-parte__tx b{font:600 15px/1.3 var(--font-body);color:var(--fg-strong)}
+.msv-parte__tx span{font:var(--text-caption);color:var(--fg-muted)}
+
+/* También en Tecnología */
+.msv-mas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.msv-mas__it{box-sizing:border-box;min-height:56px;display:flex;align-items:center;gap:12px;padding:12px 14px;min-width:0;text-decoration:none;color:inherit;
+  background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:12px;transition:background .15s ease-out,border-color .15s ease-out}
+.msv-mas__it:hover{background:var(--action-subtle);border-color:var(--color-primary-200)}
+.msv-mas__it:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.msv-mas__ic{flex:0 0 36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--action-subtle);color:var(--action);font-size:16px}
+.msv-mas__tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.msv-mas__tx b{font:600 15px/1.3 var(--font-body);color:var(--fg-strong)}
+.msv-mas__tx span{font:var(--text-caption);color:var(--fg-muted)}
+.msv-mas__go{font-size:22px;line-height:1;color:var(--fg-muted)}
+
+/* Lado: contacto en una fila y otras extensiones */
+.msv-contacto{display:flex;align-items:center;flex-wrap:wrap;gap:2px var(--space-3);padding:var(--space-4) var(--space-5);background:var(--bg-surface);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.msv-contacto__tit{margin:0;font:500 15px/1.3 var(--font-body);color:var(--fg-default)}
+.msv-contacto__tit span{color:var(--action);margin-right:4px}
+.msv-contacto__tit b{color:var(--fg-strong)}
+.msv-contacto__correo{display:inline-flex;align-items:center;min-height:44px;font:700 15px/1.3 var(--font-body);color:var(--link);overflow-wrap:anywhere}
+.msv-ext{padding:var(--space-4) var(--space-5);background:var(--bg-surface);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.msv-ext h2{margin:0 0 6px;font:700 17px/1.2 var(--font-display);color:var(--fg-strong)}
+.msv-ext dl{margin:0}
+.msv-ext dl div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--border-divider)}
+.msv-ext dl div:first-child{border-top:0}
+.msv-ext dt{margin:0;font:var(--text-body-sm);color:var(--fg-default)}
+.msv-ext dd{margin:0;font:700 15px/1 var(--font-body);color:var(--fg-strong);font-variant-numeric:tabular-nums}
+
+/* Tablet y teléfono: una columna; el contacto va justo después de «Solicitar en línea». */
+@media (max-width:1000px){
+  .msv{display:flex;flex-direction:column;gap:var(--space-5)}
+  .msv-main,.msv-lado{display:contents}
+  .msv-sec--sol{order:1}
+  .msv-contacto{order:2}
+  .msv-sec--video{order:3}
+  .msv-sec--mas{order:4}
+  .msv-ext{order:5}
+  .msv-lado .notice{order:6}
+}
+@media (max-width:767px){
+  .msv-sol-grid,.msv-mas{grid-template-columns:minmax(0,1fr)}
+  .msv-sol-grid{grid-auto-rows:auto}
+  .msv-video{grid-template-columns:minmax(0,1fr);padding:12px}
+}

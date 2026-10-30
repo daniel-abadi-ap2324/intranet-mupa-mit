@@ -1,0 +1,263 @@
+/* ============================================================
+   Recursos Humanos — vista isRrhh de la propuesta de diseño
+   Tus datos laborales (4 tarjetas), información y trámites
+   frecuentes en dos columnas, y el contacto. Solo tokens.
+   ============================================================ */
+.rh-sub{font:700 16px/1.2 var(--font-display);color:var(--fg-strong);margin:0 0 12px}
+.rh-texto{font:var(--text-body-sm, 14px/1.5 var(--font-body));color:var(--fg-default, inherit);margin:14px 0 0;max-width:var(--measure, 70ch)}
+.rh-nota{font:var(--text-caption);color:var(--fg-muted);margin:12px 0 0}
+
+.rh-datos{margin:0 0 22px}
+.rh-datos__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.rh-dato{display:flex;flex-direction:column;align-items:flex-start;gap:8px;background:var(--bg-surface);border:1px solid var(--border-subtle);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:18px 20px}
+.rh-dato .k{font:600 13px/1.3 var(--font-body);color:var(--fg-muted)}
+.rh-dato .v{font:700 26px/1 var(--font-display);color:var(--fg-muted)}
+
+.rh-pronto{flex:0 0 auto;font:var(--text-overline);letter-spacing:.04em;color:var(--color-warning-700);background:var(--color-warning-100);
+  border:1px solid var(--color-warning-300);border-radius:var(--radius-pill);padding:3px 8px;white-space:nowrap}
+
+.rh-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start;margin:0 0 22px}
+
+/* Lo que todavía no funciona: sin enlace, apagado y con su etiqueta. */
+.rh-sol.is-pronto{cursor:default;background:var(--bg-base)}
+.rh-sol.is-pronto:hover{background:var(--bg-base);border-color:var(--border-subtle)}
+.rh-sol.is-pronto .ic{filter:grayscale(1);opacity:.6}
+.rh-sol.is-pronto .tx b{color:var(--fg-muted)}
+
+/* ============================================================
+   RRHH Express: conectar la cuenta, resumen, pestañas y secciones
+   ============================================================ */
+.rh-dato .v--largo{font-size:17px;line-height:1.25}
+.rh-cuenta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font:var(--text-body-sm);color:var(--fg-muted)}
+.rh-cuenta b{color:var(--fg-strong)}
+.rh-cuenta__nota{color:var(--fg-muted)}
+.rh-vacio{font:var(--text-body-sm);color:var(--fg-muted);margin:0}
+.rh-error{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.rh-btn-sm{padding:6px 12px}
+
+/* Conectar: una tarjeta con dos paneles (formulario y figura del carnet) */
+.rh-conectar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch;background:var(--bg-surface);
+  border:1px solid var(--border-subtle);border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:16px}
+.rh-conectar h2{font:700 18px/1.25 var(--font-display);color:var(--fg-strong);margin:0}
+.rh-conectar__tit p{margin:4px 0 0;font:var(--text-caption);color:var(--fg-muted)}
+.rh-conectar__vencida{margin:0;background:var(--color-warning-100);border:1px solid var(--color-warning-300);color:var(--color-warning-700);border-radius:var(--radius-md);padding:8px 12px}
+.rh-conectar__form{display:flex;flex-direction:column;gap:12px;min-width:0}
+.rh-conectar__form .f-field{gap:6px}
+.rh-conectar__acciones{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px}
+.rh-conectar__form .ds-btn--primary{padding:10px 24px;min-height:44px;border-radius:999px}
+.rh-conectar__entrar{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font:var(--text-label);color:var(--link)}
+/* El «ojito» de la contraseña (login.css) va dentro del mismo recuadro, también aquí. */
+
+/* Figura: dónde está el número de cargo en el carnet (dibujo con datos ficticios) */
+.rh-carnet-fig{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:12px 14px;border-radius:12px;background:var(--bg-base);min-width:0}
+.rh-carnet-fig figcaption{align-self:flex-start;font:600 15px/1.3 var(--font-body);color:var(--fg-strong)}
+.rh-carnet-fig p{margin:0;font:var(--text-caption);color:var(--fg-default);max-width:260px;text-align:center}
+.rh-carnet-wrap{position:relative;width:100%;max-width:264px}
+.rh-carnet-etiqueta{position:absolute;z-index:1;top:-10px;left:10px;background:var(--bg-inverse-strong,#0f2a5c);color:#fff;font:700 13px/1 var(--font-body);padding:4px 10px;border-radius:999px}
+.rh-carnet{background:#fff;border:1px solid var(--border-default);border-radius:12px;box-shadow:0 6px 18px rgb(15 42 92 / .14);overflow:hidden;display:flex;flex-direction:column;color:#1b2b3d}
+.rh-carnet__arriba{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 4px}
+.rh-carnet__logo{display:block;width:92px;height:auto;flex:0 0 auto}
+.rh-carnet__ipty{font:800 13px/1 var(--font-brand,var(--font-body));color:#0938c4;white-space:nowrap}
+.rh-carnet__medio{display:grid;grid-template-columns:54px minmax(0,1fr);gap:8px;padding:2px 12px 10px}
+.rh-carnet__foto{background:#e3e7ec;border-radius:6px;min-height:76px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.rh-carnet__foto svg{width:40px;height:auto;fill:#a9b3bf;display:block}
+.rh-carnet__datos{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rh-carnet__datos p{margin:0;font:600 13px/1.2 var(--font-body);color:#1b2b3d;overflow-wrap:anywhere;max-width:none;text-align:left}
+.rh-carnet__qr{display:grid;grid-template-columns:repeat(11,1fr);width:52px;height:52px;padding:3px;border:1px solid #c9d1da;border-radius:4px;background:#fff;margin-bottom:2px}
+.rh-carnet__qr i{display:block}
+.rh-carnet__qr i.on{background:#1b2b3d}
+.rh-carnet__datos .rh-carnet__pos{margin-top:8px;background:var(--color-primary-100);border:2px solid var(--color-primary-600);border-radius:6px;padding:7px 5px 3px;color:var(--color-primary-800);font-weight:800;position:relative}
+.rh-carnet__pos::after{content:"Aquí";position:absolute;top:-11px;right:4px;background:var(--color-primary-600);color:#fff;font:700 13px/1 var(--font-body);padding:2px 7px;border-radius:999px}
+.rh-carnet__pie{background:#0f2a5c;color:#fff;font:700 13px/1.2 var(--font-body);text-align:center;padding:7px 10px;letter-spacing:.02em}
+
+/* Página: contenido a la izquierda, documentos y contacto a la derecha */
+.rh-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--space-6);align-items:start}
+.rh-main{display:flex;flex-direction:column;gap:var(--space-6);min-width:0}
+.rh-main .rh-datos{margin:0}
+.rh-main .rh-express{margin:0}
+.rh-lado{display:flex;flex-direction:column;gap:16px;min-width:0}
+.rh-pastilla{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--bg-base);color:var(--fg-default);font:600 13px/1 var(--font-body)}
+.rh-pastilla span{width:8px;height:8px;border-radius:999px;background:var(--fg-muted)}
+/* Cómo solicitar: solo texto, en un desplegable chico (sin botones ni enlaces) */
+.rh-como{margin:0;font:var(--text-body-sm);color:var(--fg-default)}
+.rh-como summary{display:inline-block;padding:6px 0;font:600 14px/1.3 var(--font-body);color:var(--fg-muted);cursor:pointer}
+.rh-como summary:focus-visible{outline:none;box-shadow:var(--shadow-focus);border-radius:6px}
+.rh-como summary::after{content:'▾';margin-left:6px;font-size:12px}
+.rh-como[open] summary::after{content:'▴'}
+.rh-como p{margin:2px 0 0;max-width:var(--measure)}
+@media (max-width:767px),(pointer:coarse){.rh-como summary{min-height:44px;display:inline-flex;align-items:center}}
+.rh-docs{padding:16px 18px;background:var(--bg-surface);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.rh-docs h2{margin:0 0 6px;font:700 17px/1.2 var(--font-display);color:var(--fg-strong)}
+.rh-docs ul{list-style:none;margin:0;padding:0}
+.rh-doc{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 0;text-decoration:none;color:inherit}
+.rh-docs li+li .rh-doc{border-top:1px solid var(--border-divider)}
+.rh-doc .ic{flex:0 0 36px;width:36px;height:36px;border-radius:10px;font-size:16px}
+.rh-doc .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rh-doc .tx b{font:600 15px/1.3 var(--font-body);color:var(--fg-strong)}
+.rh-doc .tx span{font:var(--text-caption);color:var(--fg-muted)}
+.rh-doc__go{color:var(--action);font-size:18px;line-height:1}
+.rh-doc:hover .tx b{color:var(--action)}
+.rh-doc:focus-visible{outline:none;box-shadow:var(--shadow-focus);border-radius:var(--radius-md)}
+.rh-contacto{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;padding:6px 14px;background:var(--bg-surface);border-radius:12px;box-shadow:var(--shadow-card);font:500 14px/1.3 var(--font-body);color:var(--fg-default)}
+.rh-contacto h2{margin:0;font:500 14px/1.3 var(--font-body);color:var(--fg-default)}
+.rh-contacto h2 span{color:var(--action);margin-right:4px}
+.rh-contacto a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--link)}
+.rh-contacto b{color:var(--fg-strong)}
+
+/* Pestañas */
+.rh-express{margin:0 0 22px}
+.rh-tabs{display:flex;gap:4px;border-bottom:1px solid var(--border-divider);overflow-x:auto;scrollbar-width:thin;margin:0 0 18px;scroll-margin-top:80px}
+.rh-tab{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font:600 14px/1.2 var(--font-body);color:var(--fg-muted);cursor:pointer;white-space:nowrap}
+.rh-tab:hover{color:var(--fg-strong)}
+.rh-tab.is-activa{color:var(--action);border-bottom-color:var(--action)}
+.rh-tab:focus-visible{outline:none;box-shadow:var(--shadow-focus);border-radius:var(--radius-sm)}
+.rh-panel{display:flex;flex-direction:column;gap:16px}
+.rh-panel .rh-sub{margin:8px 0 0}
+
+/* Datos «etiqueta: valor» */
+.rh-dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 20px;margin:0}
+.rh-dl div{min-width:0}
+.rh-dl dt{font:600 13px/1.3 var(--font-body);color:var(--fg-muted)}
+.rh-dl dd{margin:2px 0 0;font:var(--text-body);color:var(--fg-strong);overflow-wrap:anywhere}
+
+/* Marcaciones */
+.rh-marc{display:flex;flex-direction:column;gap:14px}
+.rh-mes-nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rh-mes-nav h3{font:700 18px/1.2 var(--font-display);color:var(--fg-strong);margin:0;text-align:center}
+.rh-cal-wrap{overflow-x:auto}
+.rh-cal{width:100%;border-collapse:separate;border-spacing:6px;table-layout:fixed;min-width:420px}
+.rh-cal th{font:600 13px/1 var(--font-body);color:var(--fg-muted);padding:4px 0}
+.rh-cal td{padding:0;height:64px}
+.rh-cal__dia{width:100%;height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:2px;padding:6px 8px;
+  border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--bg-surface);cursor:pointer;text-align:left;font:inherit;color:var(--fg-default)}
+.rh-cal__dia .n{font:700 14px/1 var(--font-body)}
+.rh-cal__dia .h{font:500 13px/1.2 var(--font-body);color:var(--fg-muted);font-variant-numeric:tabular-nums}
+.rh-cal__dia:hover:not(:disabled){border-color:var(--border-hover)}
+.rh-cal__dia:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.rh-cal__dia.is-elegido{outline:2px solid var(--action);outline-offset:1px}
+.rh-cal__dia.is-hoy .n{color:var(--action)}
+.rh-cal__dia:disabled{cursor:default;background:var(--bg-base);color:var(--fg-disabled)}
+.rh-cal__dia--presente{background:var(--color-success-100);border-color:var(--color-success-300)}
+.rh-cal__dia--tardanza{background:var(--color-warning-100);border-color:var(--color-warning-300)}
+.rh-cal__dia--incompleta{background:var(--color-warning-100);border-color:var(--color-warning-500);border-style:dashed}
+.rh-cal__dia--ausencia{background:var(--color-error-100);border-color:var(--color-error-300)}
+.rh-cal__dia--justificada,.rh-cal__dia--exceptuado{background:var(--color-purple-100);border-color:var(--color-purple-200)}
+.rh-cal__dia--feriado{background:var(--color-cyan-100);border-color:var(--color-cyan-200)}
+.rh-cal__dia--libre{background:var(--bg-muted);border-color:var(--border-subtle)}
+.rh-leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;list-style:none;margin:0;padding:0;font:var(--text-caption);color:var(--fg-muted)}
+.rh-leyenda li{display:flex;align-items:center;gap:6px}
+.rh-punto{width:12px;height:12px;border-radius:3px;border:1px solid var(--border-subtle)}
+.rh-punto--presente{background:var(--color-success-100);border-color:var(--color-success-300)}
+.rh-punto--tardanza{background:var(--color-warning-100);border-color:var(--color-warning-300)}
+.rh-punto--incompleta{background:var(--color-warning-100);border:1px dashed var(--color-warning-500)}
+.rh-punto--ausencia{background:var(--color-error-100);border-color:var(--color-error-300)}
+.rh-punto--justificada{background:var(--color-purple-100);border-color:var(--color-purple-200)}
+.rh-punto--feriado{background:var(--color-cyan-100);border-color:var(--color-cyan-200)}
+.rh-punto--libre{background:var(--bg-muted)}
+.rh-dia-detalle{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.rh-dia-detalle h3{font:700 16px/1.2 var(--font-display);color:var(--fg-strong);margin:0}
+.rh-dia-detalle p{margin:0}
+.rh-estado{display:inline-block;font:600 13px/1.2 var(--font-body);border-radius:var(--radius-pill);padding:4px 10px;background:var(--bg-muted);color:var(--fg-default)}
+.rh-estado--presente{background:var(--color-success-100);color:var(--color-success-700)}
+.rh-estado--tardanza,.rh-estado--incompleta{background:var(--color-warning-100);color:var(--color-warning-700)}
+.rh-estado--ausencia{background:var(--color-error-100);color:var(--color-error-700)}
+
+/* Tiempo compensatorio */
+.rh-comp{display:flex;flex-direction:column;gap:16px}
+.rh-comp__top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.rh-comp__total{display:flex;flex-direction:column;gap:4px}
+.rh-comp__total .k{font:600 13px/1.3 var(--font-body);color:var(--fg-muted)}
+.rh-comp__total .v{font:700 30px/1 var(--font-display);color:var(--fg-strong)}
+.rh-comp__total .d{font:var(--text-caption);color:var(--fg-muted)}
+.rh-comp__acciones{display:flex;gap:8px;flex-wrap:wrap}
+.rh-comp__bolsas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.rh-venc{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--fg-default)}
+.rh-venc__d{color:var(--fg-muted)}
+.rh-venc__d.is-pronto{color:var(--color-warning-700);font-weight:600}
+.rh-form{gap:12px}
+.rh-form__fila{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rh-form textarea{resize:vertical}
+.rh-opciones{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto}
+.rh-opciones legend{font:600 13px/1.3 var(--font-body);color:var(--fg-strong);margin:0 0 6px}
+.rh-opcion{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);cursor:pointer}
+.rh-opcion:has(input:checked){border-color:var(--action);background:var(--action-subtle)}
+
+/* Tablas */
+.rh-tabla-wrap{overflow-x:auto}
+.rh-tabla{width:100%}
+.rh-tabla .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rh-tabla__sub{display:block;font:var(--text-caption);color:var(--fg-muted)}
+.rh-paginas{display:flex;align-items:center;justify-content:center;gap:14px;font:var(--text-body-sm);color:var(--fg-muted)}
+
+/* Comprobantes */
+.rh-compr{display:flex;flex-direction:column;gap:14px}
+.rh-anio{display:flex;flex-direction:column;gap:12px}
+.rh-anio__head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rh-anio__head .rh-sub{margin:0}
+.rh-anio__sel select{width:auto}
+.rh-barras{margin:0}
+.rh-barras ol{display:flex;align-items:flex-end;gap:6px;height:140px;list-style:none;margin:0;padding:0 0 18px;border-bottom:1px solid var(--border-divider)}
+.rh-barras li{flex:1 1 0;min-width:10px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative}
+.rh-barras__barra{width:100%;max-width:28px;background:var(--color-primary-100);border-radius:4px 4px 0 0;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.rh-barras__neto{display:block;width:100%;background:var(--action)}
+.rh-barras__k{position:absolute;bottom:-18px;font:500 13px/1 var(--font-body);color:var(--fg-muted);text-transform:capitalize}
+.rh-pago__neto{display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:var(--action-subtle);border-radius:var(--radius-md);padding:12px 16px}
+.rh-pago__neto span{font:600 13px/1.2 var(--font-body);color:var(--fg-muted)}
+.rh-pago__neto b{font:700 24px/1 var(--font-display);color:var(--fg-strong)}
+.rh-pago__tabla th{text-align:left;font:500 14px/1.3 var(--font-body);text-transform:none;letter-spacing:0;color:var(--fg-default);background:none}
+.rh-pago__tabla td{text-align:right;font-variant-numeric:tabular-nums}
+.rh-pago__total th,.rh-pago__total td{font-weight:700}
+
+/* Expediente */
+.rh-exp{display:flex;flex-direction:column;gap:18px}
+.rh-exp__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.rh-exp__bloque{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.rh-exp__bloque .rh-sub{margin:0}
+.rh-exp__lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.rh-exp__lista b{display:block;font:600 14px/1.3 var(--font-body);color:var(--fg-strong)}
+.rh-exp__lista span{display:block;font:var(--text-caption);color:var(--fg-muted)}
+
+/* Imprimir un comprobante: solo el contenido del diálogo abierto. */
+@media print{
+  body:has(#rh-pago-imprimir) *{visibility:hidden}
+  body:has(#rh-pago-imprimir) .home-dlg:has(#rh-pago-imprimir),
+  body:has(#rh-pago-imprimir) .home-dlg:has(#rh-pago-imprimir) *{visibility:visible}
+  body:has(#rh-pago-imprimir) .home-dlg:has(#rh-pago-imprimir){position:absolute;inset:0 auto auto 0;width:100%;max-height:none;box-shadow:none;border:0;margin:0}
+  body:has(#rh-pago-imprimir) .home-dlg__foot,body:has(#rh-pago-imprimir) .home-dlg__x{display:none}
+}
+
+@media (max-width:1000px){
+  .rh-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:1180px) and (min-width:1001px){
+  .rh-conectar{grid-template-columns:minmax(0,1fr)}
+}
+
+@media (max-width:767px){
+  .rh-conectar{grid-template-columns:minmax(0,1fr);padding:16px;gap:16px}
+  .rh-cal{border-spacing:3px;min-width:0}
+  .rh-cal td{height:48px}
+  .rh-cal__dia{padding:4px;align-items:center;justify-content:center}
+  .rh-cal__dia .h{display:none}
+  .rh-form__fila{grid-template-columns:1fr}
+  .rh-exp__grid{grid-template-columns:1fr}
+  .rh-cols{grid-template-columns:1fr}
+  .rh-datos__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .rh-dato{padding:14px}
+  .rh-dato .v{font-size:22px}
+}
+
+/* Fila de «Cómo solicitar» sin enlace: solo información. */
+.rh-sol.is-info{cursor:default}
+.rh-sol.is-info:hover{background:inherit;border-color:var(--border-subtle)}
+
+/* RRHH Express en mantenimiento: el aviso y el contacto, a lo ancho de un párrafo. */
+.rh-mantenimiento {
+  max-width: var(--measure);
+  display: grid;
+  gap: 12px;
+}
+.rh-mantenimiento p {
+  margin: 0;
+}

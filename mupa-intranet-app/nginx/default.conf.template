@@ -1,0 +1,112 @@
+# Intranet MUPA — nginx sirve la SPA (dist/) y reenvía /api/ al backend.
+#
+# Es una plantilla: al arrancar, la imagen oficial de nginx reemplaza
+# ${API_UPSTREAM} con la variable de entorno del contenedor y deja el resultado
+# en /etc/nginx/conf.d/default.conf. Solo se reemplazan variables que empiecen
+# con API_ (NGINX_ENVSUBST_FILTER en el Dockerfile); $host, $uri, etc. son de nginx.
+
+server {
+    listen 8080;
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    server_tokens off;
+    charset utf-8;
+
+    gzip on;
+    gzip_comp_level 5;
+    gzip_min_length 1024;
+    gzip_types text/css application/javascript application/json image/svg+xml text/plain;
+
+    include /etc/nginx/snippets/seguridad.conf;
+
+    # El catálogo de endpoints es solo para el servidor MCP, que habla con la API por dentro de la red de Docker:
+    # desde afuera no existe (aunque la API también le pide su llave).
+    location ^~ /api/meta/ {
+        include /etc/nginx/snippets/seguridad.conf;
+        return 404;
+    }
+
+    # ---------- API: todo lo que empieza con /api/ va al backend ----------
+    # API_UPSTREAM sin barra al final (http://api:3000)  → el backend recibe /api/…
+    # API_UPSTREAM con barra al final (http://api:3000/) → el backend recibe /…
+    # Los avisos en vivo (/api/notifications/stream, SSE) pasan por aquí sin bloque
+    # propio: el backend manda `X-Accel-Buffering: no` (nginx no los retiene), un
+    # latido cada 25 s (menos que proxy_read_timeout) y text/event-stream no está en
+    # gzip_types. Si subes el latido o agregas ese tipo a gzip, el aviso se atrasa.
+    location ^~ /api/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+        client_max_body_size 10m;
+        # Los archivos subidos (PDF e imágenes) se pueden mostrar dentro de la intranet (lector de boletines).
+        if ($uri ~ ^/api/files/) {
+            include /etc/nginx/snippets/seguridad-archivos.conf;
+        }
+    }
+
+    # ---------- JS y CSS de Vite (llevan hash en el nombre): caché de un año ----------
+    location ^~ /assets/ {
+        include /etc/nginx/snippets/seguridad.conf;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        try_files $uri =404;
+    }
+
+    # Chequeo de salud del contenedor (no pasa por la SPA ni por la API).
+    location = /salud {
+        access_log off;
+        default_type text/plain;
+        return 200 "ok\n";
+    }
+
+    # index.html siempre se revalida: así cada despliegue se ve de inmediato.
+    location = /index.html {
+        include /etc/nginx/snippets/seguridad.conf;
+        add_header Cache-Control "no-cache";
+    }
+
+    # Nunca servir archivos ocultos (.git, .env…) aunque se colaran en la imagen.
+    location ~ /\. {
+        return 404;
+    }
+
+    # Sonidos (el aviso de solicitudes nuevas): el mime.types de nginx no trae .wav y, con
+    # nosniff, sin su tipo el navegador podría no reproducirlo.
+    location ~* \.wav$ {
+        include /etc/nginx/snippets/seguridad.conf;
+        add_header Cache-Control "public, max-age=86400";
+        types { }
+        default_type audio/wav;
+        try_files $uri =404;
+    }
+
+    # Imágenes, fuentes, PDF…: si no existen, 404 de verdad (no la SPA).
+    # (Entre comillas: nginx lee las llaves de {2,5} como el inicio del bloque.)
+    location ~* "\.[a-z0-9]{2,5}$" {
+        include /etc/nginx/snippets/seguridad.conf;
+        add_header Cache-Control "public, max-age=86400";
+        # Los PDF de /sitio/ (boletines y manuales) también se leen dentro de la intranet.
+        if ($uri ~* \.pdf$) {
+            include /etc/nginx/snippets/seguridad-archivos.conf;
+            add_header Cache-Control "public, max-age=86400";
+        }
+        try_files $uri =404;
+    }
+
+    # ---------- La SPA: cualquier otra ruta devuelve index.html ----------
+    # (el router de React decide qué mostrar, incluida la página "no encontrada").
+    location / {
+        include /etc/nginx/snippets/seguridad.conf;
+        add_header Cache-Control "no-cache";
+        try_files $uri /index.html;
+    }
+}

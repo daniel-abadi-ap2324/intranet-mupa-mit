@@ -1,0 +1,90 @@
+/* ============================================================
+   Vista en bloques o en lista (Noticias, Boletines, Documentos,
+   Manuales), como Google Drive. lib/vista.ts guarda la elección.
+   En bloques, las mismas filas (.doc-row, .bol-row, .doc-card)
+   se vuelven tarjetas con la portada o el PDF arriba.
+   ============================================================ */
+
+/* Selector Bloques | Lista */
+.vista-sel{display:inline-flex;border:1px solid var(--border-default);border-radius:var(--radius-pill);background:var(--bg-surface);padding:2px;margin-left:auto}
+.toolbar .count-note + .vista-sel{margin-left:0}
+.vista-sel button{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border:0;border-radius:var(--radius-pill);background:transparent;
+  color:var(--fg-muted);font:var(--text-label);line-height:1;cursor:pointer}
+.vista-sel button:hover{color:var(--fg-strong)}
+.vista-sel button.is-active{background:var(--action-subtle);color:var(--action)}
+.vista-sel button:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+/* La cuadrícula: tarjetas de unos 240 px, tantas como quepan */
+.vista-bloques{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:0 0 8px;
+  background:none;border:0;border-radius:0;overflow:visible}
+
+/* Tarjeta común */
+.vista-bloques .doc-row,
+.vista-bloques .bol-row,
+.vista-bloques .doc-card{position:relative;flex-direction:column;align-items:stretch;gap:0;padding:0;border:1px solid var(--border-subtle);border-top:1px solid var(--border-subtle);
+  border-radius:var(--radius-md);background:var(--bg-surface);box-shadow:var(--shadow-card);overflow:hidden;transition:box-shadow .15s ease,border-color .15s ease}
+.vista-bloques .doc-row:hover,
+.vista-bloques .bol-row:hover,
+.vista-bloques .doc-card:hover{box-shadow:var(--shadow-card-hover);border-color:var(--border-default);background:var(--bg-surface);text-decoration:none}
+.vista-bloques .doc-row:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.vista-bloques .tx{padding:12px 14px 14px;flex:1}
+.vista-bloques .tx b{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font:var(--text-row-title);font-size:16px;line-height:1.35}
+.vista-bloques .tx > span:not(.tagline){display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;overflow-wrap:anywhere}
+
+/* Noticias y Manuales (.doc-row): foto o PDF arriba, en 16:10 */
+.vista-bloques .doc-row .not-thumb,
+.vista-bloques .doc-row > .ic{width:100%;height:auto;aspect-ratio:16/10;flex:none;border:0;border-bottom:1px solid var(--border-subtle);border-radius:0}
+.vista-bloques .doc-row > .ic{font:800 28px/1 var(--font-display)}
+.vista-bloques .doc-row > .ic:not(.ic--off){background:var(--color-error-100);color:var(--color-error-700)}
+.vista-bloques .doc-row > .ic--off{background:var(--action-subtle);color:var(--action)}
+.vista-bloques .doc-row .tagline{display:none}
+.vista-bloques .doc-row .ext-mark{position:absolute;top:8px;right:8px;background:var(--bg-surface);border-radius:var(--radius-pill);padding:2px 6px}
+
+/* Boletines (.bol-row): la portada del PDF grande */
+.vista-bloques .bol-date{display:none}
+.vista-bloques .bol-portada{display:block}
+.vista-bloques .bol-thumb{display:flex;width:100%;height:auto;aspect-ratio:4/5;flex:none;border:0;border-bottom:1px solid var(--border-subtle);border-radius:0;object-fit:cover;object-position:top}
+.vista-bloques .bol-thumb--vacia{align-items:flex-end;padding:14px;background:var(--action);color:var(--fg-on-brand);font:800 22px/1.1 var(--font-display)}
+.vista-bloques .bol-row .tx .bol-desc{-webkit-line-clamp:3}
+.vista-bloques .bol-row .acts{padding:0 14px 14px}
+.vista-bloques .bol-row .acts .ds-btn{flex:1;justify-content:center}
+
+/* Documentos (.doc-card): un recuadro grande con PDF o el ícono de su categoría */
+.vista-bloques .doc-card:first-child{border-top:1px solid var(--border-subtle)}
+.vista-bloques .doc-card .top{flex-direction:column;align-items:stretch;gap:0}
+.vista-bloques .doc-card .ic{width:100%;height:auto;aspect-ratio:3/4;flex:none;border-radius:0;font:800 28px/1 var(--font-display)}
+.vista-bloques .doc-card .meta{display:block;margin:4px 0 0}
+.vista-bloques .doc-card .tagline{margin-top:8px}
+.vista-bloques .doc-card .acts{padding:0 14px 14px}
+.vista-bloques .doc-card .acts .ds-btn{flex:1;justify-content:center}
+
+@media (max-width:600px){
+  .vista-bloques{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .vista-bloques .tx{padding:10px 10px 12px}
+  .vista-bloques .tx b{font-size:14px}
+  .vista-bloques .bol-row .acts,.vista-bloques .doc-card .acts{padding:0 10px 10px;flex-direction:column}
+  .vista-bloques .doc-card .acts{width:auto}
+  .vista-sel button{padding:0 10px}
+}
+@media (prefers-reduced-motion:reduce){.vista-bloques .doc-row,.vista-bloques .bol-row,.vista-bloques .doc-card{transition:none}}
+
+/* Miniatura de la primera página del PDF (lib/miniaturas.ts) y portadas de boletines: la página entera, sin recortes */
+.vista-bloques .bol-thumb:not(.bol-thumb--vacia){aspect-ratio:auto;height:auto;object-fit:contain;background:#fff}
+/* Documentos: un marco vertical igual para todos (las páginas apaisadas no descuadran la fila); la página entera adentro */
+.vista-bloques .doc-row > .ic.ic--img,
+.vista-bloques .doc-card .ic--img{position:relative;aspect-ratio:3/4;height:auto;padding:0;background:var(--bg-base);border-bottom:1px solid var(--border-subtle)}
+.vista-bloques .ic--img img{position:absolute;inset:10px;display:block;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;filter:drop-shadow(0 1px 2px rgba(15,23,42,.18))}
+.vista-bloques .doc-card .ic--img{border-radius:0}
+
+/* Boletines en teléfono: una columna a todo el ancho (con dos, la portada de reserva cortaba el título y quedaba media pantalla vacía) */
+@media (max-width:600px){
+  .vista-bloques:has(.bol-row){grid-template-columns:minmax(0,1fr)}
+  .vista-bloques .bol-thumb--vacia{aspect-ratio:16/7;align-items:center;font-size:22px;overflow-wrap:anywhere}
+  .vista-bloques .bol-row .acts{flex-direction:row;flex-wrap:wrap}
+  .vista-bloques .bol-row .acts .ds-btn{min-height:44px}
+}
+
+@media (max-width:767px),(pointer:coarse){
+  .vista-sel button{min-height:44px}
+  .marca-chip,.hint,.home-search button{min-height:44px;display:inline-flex;align-items:center}
+}

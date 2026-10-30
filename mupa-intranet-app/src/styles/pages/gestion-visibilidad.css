@@ -1,0 +1,94 @@
+/* /gestion/aplicaciones, vista «Visibilidad»: clasificar qué direcciones ven qué aplicaciones. */
+.vis{display:flex;flex-direction:column;gap:14px;min-width:0}
+.vis *{min-width:0}
+.vis-t{font:var(--text-title);color:var(--fg-strong);margin:0}
+.vis-det{display:block;max-width:none}
+.vis-cuenta{font:var(--text-caption);color:var(--fg-muted);margin-left:6px}
+.vis-resumen{margin:0;font:var(--text-body-sm);color:var(--fg-default)}
+.vis-estado{margin:0;display:flex;align-items:center;gap:10px}
+.vis-estado .gest-det{margin:0}
+
+/* Por aplicación: lista a la izquierda, panel a la derecha (apilados en pantallas chicas). */
+.vis-doble{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}
+.vis-col{display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--bg-surface)}
+.vis-filtros{display:flex;flex-direction:column;gap:10px}
+.vis-filtros--dir{flex-direction:row;flex-wrap:wrap;align-items:center}
+.vis-filtros .gest-select .ds-input{max-width:none;flex:1}
+.vis .gest-select{max-width:100%}
+.vis .gest-select .ds-input{width:100%;max-width:100%;flex:1}
+.vis-filtros--dir .gest-select{flex:1 1 300px}
+.vis-filtros--dir .find{flex:1 1 240px;max-width:100%}
+.vis-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;max-height:560px;overflow:auto}
+.vis-item{display:flex;flex-direction:column;gap:2px;width:100%;min-height:44px;padding:8px 12px;text-align:left;cursor:pointer;
+  border:1px solid transparent;border-radius:var(--radius-sm);background:transparent;color:var(--fg-default);font:var(--text-body-sm)}
+.vis-item:hover{background:var(--bg-base);border-color:var(--border-hover)}
+.vis-item.is-sel{background:var(--action-subtle);border-color:var(--action);color:var(--fg-on-subtle)}
+.vis-item__n{font-weight:600;color:var(--fg-strong);overflow-wrap:anywhere}
+.vis-item__d{font:var(--text-caption);color:var(--fg-muted)}
+.vis-item.is-sel .vis-item__d{color:var(--fg-on-subtle)}
+
+.vis-modo{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.vis-modo legend{font:var(--text-label);color:var(--fg-strong);margin-bottom:6px;padding:0}
+.vis-radio{display:flex;align-items:flex-start;gap:10px;min-height:44px;padding:8px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);cursor:pointer;font:var(--text-body-sm);color:var(--fg-default)}
+.vis-radio input{margin-top:4px;width:18px;height:18px;accent-color:var(--action)}
+.vis-radio:has(input:checked){border-color:var(--action);background:var(--action-subtle)}
+.vis-copiar{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.vis-copiar .gest-select{flex:1 1 260px}
+.vis-copiar .gest-select .ds-input{max-width:none;flex:1}
+
+.vis-grupos{display:flex;flex-direction:column;gap:14px}
+.vis-grupo{border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:10px 14px 14px;margin:0}
+.vis-grupo legend{font:var(--text-label);color:var(--fg-strong);padding:0 6px}
+.vis-grupo__acc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.vis-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 14px}
+.vis-check{display:flex;align-items:center;gap:10px;min-height:44px;font:var(--text-body-sm);color:var(--fg-default);cursor:pointer}
+.vis-check input,.vis-fila__l input{width:20px;height:20px;flex:none;accent-color:var(--action)}
+
+/* Por dirección */
+.vis-masivo{display:flex;flex-wrap:wrap;gap:8px}
+.vis-filas{list-style:none;margin:0;padding:0;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--bg-surface)}
+.vis-fila{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 14px;border-bottom:1px solid var(--border-divider)}
+.vis-fila:last-child{border-bottom:0}
+.vis-fila.is-cambio{background:var(--action-subtle)}
+.vis-fila__l{display:flex;align-items:center;gap:12px;flex:1;min-height:56px;padding:6px 0;cursor:pointer}
+.vis-fila__t{display:flex;flex-direction:column;gap:2px;font:var(--text-body-sm);color:var(--fg-strong);overflow-wrap:anywhere}
+.vis-fila .tagline{flex:none}
+
+/* Resumen */
+.vis-resumen-t{max-height:70vh;overflow:auto}
+.vis-tabla{min-width:640px}
+.vis-tabla thead th{position:sticky;top:0;z-index:2}
+.vis-tabla tbody th{position:sticky;left:0;z-index:1;background:var(--bg-surface);text-align:left;font:var(--text-body-sm);font-weight:600;color:var(--fg-strong);min-width:200px;border-bottom:1px solid var(--border-subtle)}
+.vis-tabla thead th:first-child{left:0;z-index:3}
+
+/* Barra de cambios pendientes */
+.vis-barra{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;border:1px solid var(--action);border-radius:var(--radius-md);background:var(--bg-surface);box-shadow:0 -4px 16px rgba(14,34,93,.12)}
+.vis-barra__txt{flex:1 1 260px;font:var(--text-body-sm);color:var(--fg-strong)}
+.vis-barra__txt summary{cursor:pointer;color:var(--link);min-height:28px}
+.vis-barra__txt ul{margin:6px 0 0;padding-left:20px;max-height:180px;overflow:auto}
+.vis-barra__acc{display:flex;gap:8px}
+
+@media (max-width:900px){
+  .vis-doble{grid-template-columns:1fr}
+  .vis-lista{max-height:260px}
+}
+@media (max-width:720px){
+  .vis .ds-btn,.vis .chip-btn,.vis .ds-input{min-height:44px}
+  .vis-col{padding:12px}
+  .vis-filtros--dir{flex-direction:column;align-items:stretch}
+  .vis-masivo .ds-btn,.vis-barra__acc .ds-btn{flex:1 1 100%}
+  .vis-barra__acc{width:100%}
+  .vis-checks{grid-template-columns:1fr}
+}
+
+/* El campo de búsqueda vive aquí fuera de .toolbar: mismo aspecto. */
+.vis .find{display:flex;align-items:center;gap:10px;min-height:44px;width:100%;max-width:100%;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:var(--radius-pill);padding:6px 16px}
+.vis .find input{border:0;outline:0;background:transparent;flex:1;min-width:0;font:var(--text-body);color:var(--fg-strong)}
+.vis .find:focus-within{outline:2px solid var(--focus-ring);outline-offset:2px}
+.vis .vis-filtros--dir .find{width:auto}
+.vis :focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+
+/* Etiquetas de estado con contraste de al menos 4,5:1 sobre su fondo. */
+.vis .tagline--ok{color:#14653A;background:var(--color-success-100)}
+.vis .tagline--warn{color:#8A3F06;background:var(--color-warning-100)}

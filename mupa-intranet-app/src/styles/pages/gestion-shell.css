@@ -1,0 +1,97 @@
+/* Armazón de la gestión (components/gestion/Shell.tsx): barra azul a la izquierda, barra superior y tarjetas, como el panel de RH Link. */
+.gx{
+  --gx-azul:#083AC5;--gx-azul-fondo:#0B2E9E;
+  /* Colores del panel de RH Link para todo lo de adentro (las pantallas siguen usando los mismos tokens). */
+  --color-primary-50:#EFF6FF;--color-primary-100:#DBEAFE;--color-primary-200:#BFDBFE;--color-primary-300:#93C5FD;--color-primary-400:#60A5FA;
+  --color-primary-500:#2563EB;--color-primary-600:#1D4ED8;--color-primary-700:#1E40AF;--color-primary-800:#1E3A8A;--color-primary-900:#172554;
+  --action:#2563EB;--action-hover:#1D4ED8;--action-press:#1E40AF;--action-subtle:#EFF6FF;--link:#1D4ED8;--link-hover:#1E40AF;--focus-ring:#60A5FA;
+  --bg-base:#F4F6FB;--bg-surface:#fff;--bg-muted:#F8FAFC;
+  --border-subtle:#E6EAF3;--border-divider:#EEF1F7;--border-shell:#E2E8F0;
+  --radius-card:14px;
+  --shadow-xs:0 1px 2px rgba(15,23,42,.04);--shadow-sm:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+  display:flex;min-height:100vh;background:var(--bg-base);color:var(--fg-default);font:var(--text-body)}
+body:has(.gx){margin:0}
+.gx *,.gx *::before,.gx *::after{box-sizing:border-box}
+
+/* Barra azul */
+.gx-lado{position:sticky;top:0;align-self:flex-start;flex:0 0 248px;width:248px;height:100vh;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--gx-azul) 0,var(--gx-azul) 190px,var(--gx-azul-fondo) 100%);color:#fff;z-index:30}
+.gx-marca{display:flex;justify-content:center;padding:22px 0 14px;background:var(--gx-azul)}
+.gx-marca img{display:block;width:104px;height:auto}
+.gx-nav{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 10px 10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
+.gx-fila{position:relative;display:flex;align-items:center}
+.gx-item{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;min-height:44px;padding:0 14px;margin:2px 0;border-radius:12px;
+  color:#fff;font:600 15px/1.2 var(--font-body);text-decoration:none}
+.gx-item span:not(.gx-punto){min-width:0;overflow-wrap:anywhere}
+.gx-item:hover{background:rgba(255,255,255,.12);text-decoration:none;color:#fff}
+.gx-fila.is-activa .gx-item,.gx-item.is-activa{background:rgba(255,255,255,.18)}
+.gx-item:focus-visible,.gx-plegar:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.gx-ic{width:20px;height:20px;flex:0 0 20px}
+.gx-punto{margin-left:auto;width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#fff}
+.gx-plegar{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:10px;background:none;color:#fff;cursor:pointer}
+.gx-plegar:hover{background:rgba(255,255,255,.14)}
+.gx-fila.is-activa .gx-punto{margin-right:30px}
+.gx-chev{transition:transform .15s}
+.gx-chev.is-abierto{transform:rotate(180deg)}
+.gx-fila.tiene .gx-item{padding-right:44px}
+.gx-hijos{display:flex;flex-direction:column;margin:0 0 6px 18px;padding-left:10px;border-left:1px solid rgba(255,255,255,.25)}
+.gx-item--hijo{min-height:40px;font-weight:500;font-size:14px;color:#E8EEFF}
+.gx-pie{padding:8px 10px 14px;border-top:1px solid rgba(255,255,255,.16)}
+.gx-pie p{margin:8px 14px 0;font:500 13px/1.3 var(--font-body);color:#D6E2FF}
+.gx-velo{display:none}
+
+/* Barra superior */
+.gx-cuerpo{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.gx-barra{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;min-height:64px;padding:10px 28px;background:#fff;border-bottom:1px solid var(--border-shell)}
+.gx-atras,.gx-menu{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid var(--border-shell);border-radius:10px;background:#fff;color:var(--fg-default);cursor:pointer;text-decoration:none}
+.gx-atras:hover,.gx-menu:hover{background:var(--bg-muted);color:var(--fg-strong)}
+.gx-atras:focus-visible,.gx-menu:focus-visible{outline:2px solid var(--action);outline-offset:2px}
+.gx-menu{display:none}
+.gx-titulo{display:flex;flex-direction:column;gap:1px;min-width:0}
+.gx-titulo b{font:600 17px/1.2 var(--font-body);color:var(--fg-strong)}
+.gx-titulo span{font:500 13px/1.3 var(--font-body);color:var(--fg-muted)}
+.gx-cuenta{margin-left:auto;display:flex;align-items:center;gap:12px;min-width:0}
+.gx-quien{display:flex;flex-direction:column;align-items:flex-end;gap:1px;text-align:right;min-width:0;max-width:min(320px,34vw);overflow-wrap:anywhere}
+/* Cerrar sesión: siempre visible en la barra, con texto, y de 44 px de alto. */
+.gx-salir{flex:0 0 auto;min-height:44px;padding:0 14px;border:1px solid var(--border-shell);border-radius:10px;background:#fff;color:var(--fg-strong);font:600 14px/1.2 var(--font-body);cursor:pointer;white-space:nowrap}
+.gx-salir:hover{background:var(--bg-muted)}
+.gx-salir:focus-visible{outline:2px solid var(--action);outline-offset:2px}
+.gx-quien b{font:600 14px/1.2 var(--font-body);color:var(--fg-strong)}
+.gx-quien span{font:500 13px/1.3 var(--font-body);color:var(--color-primary-700)}
+.gx-av{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--color-primary-600);color:#fff;font:700 14px/1 var(--font-body)}
+
+/* Contenido */
+.gx-main{flex:1 1 auto;min-width:0;padding:30px 32px 48px}
+.gx-main .crumbs,.gx-main .cg-paneles,.gx-main .cg-tabs{display:none}
+.gx-main .cg-barra{justify-content:flex-end;border-bottom:0}
+.gx-main .page-head{margin:0 0 22px;padding:0;border:0;background:none;box-shadow:none}
+.gx-main .page-head h1{margin:0;font:600 28px/1.2 var(--font-body);color:var(--fg-strong);letter-spacing:-.01em}
+.gx-main .page-head p{margin:6px 0 0;font:400 15px/1.5 var(--font-body);color:var(--fg-muted);max-width:none}
+.gx-main .cg-card,.gx-main .cg-kpi{border-color:var(--border-subtle)}
+.gx-main .cg-kpi{border-left-width:4px;border-radius:12px;padding:16px 14px;gap:10px}
+.gx-main .cg-kpi__val{font-size:26px;white-space:nowrap}
+.gx-main .cg-kpi--azul{--cg-c:#2563EB;--cg-t:#EFF6FF}
+.gx-main .cg-kpi--verde{--cg-c:#16A34A;--cg-t:#F0FDF4}
+.gx-main .cg-kpi--ambar{--cg-c:#F59E0B;--cg-t:#FFFBEB}
+.gx-main .cg-kpi--rojo{--cg-c:#DC2626;--cg-t:#FEF2F2}
+.gx-main .cg-kpi--morado{--cg-c:#7C3AED;--cg-t:#F5F3FF}
+.gx-main .cg-kpi--cian{--cg-c:#0891B2;--cg-t:#ECFEFF}
+.gx-main .cg-kpi--gris{--cg-c:#64748B;--cg-t:#F1F5F9}
+.gx-main .cg-card__head h2{font-size:14px;font-weight:600}
+.gx-main .cg-tabla th{background:#F8FAFC}
+
+@media (max-width:1023px){
+  .gx-lado{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);transition:transform .2s ease-out}
+  .gx-lado.is-abierto{transform:none;box-shadow:0 0 40px rgba(8,58,197,.35)}
+  .gx-velo{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:25}
+  .gx-menu{display:grid}
+  .gx-barra{padding:10px 16px}
+  .gx-main{padding:22px 16px 40px}
+  .gx-quien{display:none}
+}
+@media (max-width:480px){.gx-titulo span{display:none}.gx-av{display:none}.gx-barra{gap:8px}.gx-cuenta{gap:8px}}
+@media (max-width:380px){.gx-atras{display:none}}
+@media (prefers-reduced-motion:reduce){.gx-lado,.gx-chev{transition:none}}
+.gx-main select{max-width:100%;min-width:0}
+/* En la versión de teléfono, la barra con «volver» y la miga sobra: la barra azul ya lleva las secciones. */
+.gx-main .page-appbar{display:none}

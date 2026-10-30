@@ -1,0 +1,21 @@
+/* Estados propios de la SPA (el resto del diseño viene tal cual del design system). */
+.app-cargando {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--fg-muted);
+}
+.app-content > .notice--warn[role='alert'] {
+  margin-bottom: 16px;
+}
+/* El texto de la tarjeta de video es un <span>: sin display:block no toma el padding (igual en el prototipo). */
+.video-card .tx {
+  display: block;
+}
+
+/* Al cambiar de página el foco pasa al título (para lectores de pantalla); no hace falta el anillo de foco en un título. */
+#contenido h1[tabindex="-1"]:focus {
+  outline: none;
+}
