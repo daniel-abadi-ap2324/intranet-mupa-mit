@@ -1,0 +1,13 @@
+node_modules
+dist
+.data
+.git
+.gitignore
+.env
+.env.*
+coverage
+tests
+*.log
+Dockerfile
+README.md
+CONVENTIONS.md

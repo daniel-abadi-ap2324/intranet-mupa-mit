@@ -1,0 +1,253 @@
+{
+  "_nota": "Direcciones de la Alcaldía: cabeceras activas de MUNICIPIO.dbo.ubicaciones (RRHH). codigoRrhh es su código allí. Lo genera scripts/importar-rrhh.mjs.",
+  "departamentos": [
+    {
+      "codigoRrhh": 15600,
+      "nombre": "Concejo Municipal"
+    },
+    {
+      "codigoRrhh": 15760,
+      "nombre": "Control de Ordenamiento Urbano"
+    },
+    {
+      "codigoRrhh": 15646,
+      "nombre": "Departamento de Control de Desarrollo Urbano"
+    },
+    {
+      "codigoRrhh": 15640,
+      "nombre": "Departamento de Mejoras Continuas"
+    },
+    {
+      "codigoRrhh": 15661,
+      "nombre": "Departamento de Planeación y Logística"
+    },
+    {
+      "codigoRrhh": 15647,
+      "nombre": "Departamento de Planes de Ordenamiento Territorial"
+    },
+    {
+      "codigoRrhh": 15627,
+      "nombre": "Despacho del Alcalde"
+    },
+    {
+      "codigoRrhh": 15630,
+      "nombre": "Dirección Auditoría Interna"
+    },
+    {
+      "codigoRrhh": 15843,
+      "nombre": "Dirección de Arquitectura Ingeniería y Mantenimiento"
+    },
+    {
+      "codigoRrhh": 15633,
+      "nombre": "Dirección de Asesoría Legal Interna"
+    },
+    {
+      "codigoRrhh": 15632,
+      "nombre": "Dirección de Comunicaciones y Relaciones Públicas"
+    },
+    {
+      "codigoRrhh": 15838,
+      "nombre": "Dirección de Contrataciones Descentralizadas"
+    },
+    {
+      "codigoRrhh": 15840,
+      "nombre": "Dirección de Cultura y Turismo"
+    },
+    {
+      "codigoRrhh": 15649,
+      "nombre": "Dirección de Gestión Ambiental"
+    },
+    {
+      "codigoRrhh": 15662,
+      "nombre": "Dirección de Gestión Social"
+    },
+    {
+      "codigoRrhh": 15773,
+      "nombre": "Dirección de las Etnias"
+    },
+    {
+      "codigoRrhh": 15653,
+      "nombre": "Dirección de Legal y Justicia"
+    },
+    {
+      "codigoRrhh": 15671,
+      "nombre": "Dirección de Mercados"
+    },
+    {
+      "codigoRrhh": 15644,
+      "nombre": "Dirección de Obras y Construcciones Municipales"
+    },
+    {
+      "codigoRrhh": 15673,
+      "nombre": "Dirección de Participación Ciudadana y Transparencia"
+    },
+    {
+      "codigoRrhh": 15847,
+      "nombre": "Dirección de Permisos y Cumplimiento"
+    },
+    {
+      "codigoRrhh": 15635,
+      "nombre": "Dirección de Planificación Estratégica y Presupuesto"
+    },
+    {
+      "codigoRrhh": 15645,
+      "nombre": "Dirección de Planificación Urbana"
+    },
+    {
+      "codigoRrhh": 15771,
+      "nombre": "Dirección de Proyectos Especiales"
+    },
+    {
+      "codigoRrhh": 15629,
+      "nombre": "Dirección de Recursos Humanos"
+    },
+    {
+      "codigoRrhh": 15774,
+      "nombre": "Dirección de Resiliencia"
+    },
+    {
+      "codigoRrhh": 15658,
+      "nombre": "Dirección de Seguridad Municipal"
+    },
+    {
+      "codigoRrhh": 15667,
+      "nombre": "Dirección de Servicios a la Comunidad"
+    },
+    {
+      "codigoRrhh": 15636,
+      "nombre": "Dirección de Servicios Administrativos"
+    },
+    {
+      "codigoRrhh": 15638,
+      "nombre": "Dirección de Tecnología e Innovación"
+    },
+    {
+      "codigoRrhh": 15797,
+      "nombre": "Dirección de Turismo"
+    },
+    {
+      "codigoRrhh": 15624,
+      "nombre": "Junta Comunal 24 de Diciembre"
+    },
+    {
+      "codigoRrhh": 15604,
+      "nombre": "Junta Comunal de Alcalde Díaz"
+    },
+    {
+      "codigoRrhh": 15605,
+      "nombre": "Junta Comunal de Ancón"
+    },
+    {
+      "codigoRrhh": 15606,
+      "nombre": "Junta Comunal de Bella Vista"
+    },
+    {
+      "codigoRrhh": 15607,
+      "nombre": "Junta Comunal de Bethania"
+    },
+    {
+      "codigoRrhh": 15769,
+      "nombre": "Junta Comunal de Caimitillo"
+    },
+    {
+      "codigoRrhh": 15608,
+      "nombre": "Junta Comunal de Calidonia"
+    },
+    {
+      "codigoRrhh": 15611,
+      "nombre": "Junta Comunal de Chilibre"
+    },
+    {
+      "codigoRrhh": 15610,
+      "nombre": "Junta Comunal de Chorrillo"
+    },
+    {
+      "codigoRrhh": 15609,
+      "nombre": "Junta Comunal de Curundú"
+    },
+    {
+      "codigoRrhh": 15768,
+      "nombre": "Junta Comunal de Don Bosco"
+    },
+    {
+      "codigoRrhh": 15625,
+      "nombre": "Junta Comunal de Ernesto Córdoba"
+    },
+    {
+      "codigoRrhh": 15612,
+      "nombre": "Junta Comunal de Juan Díaz"
+    },
+    {
+      "codigoRrhh": 15626,
+      "nombre": "Junta Comunal de Las Cumbres"
+    },
+    {
+      "codigoRrhh": 15770,
+      "nombre": "Junta Comunal de Las Garzas"
+    },
+    {
+      "codigoRrhh": 15623,
+      "nombre": "Junta Comunal de Mañanitas"
+    },
+    {
+      "codigoRrhh": 15613,
+      "nombre": "Junta Comunal de Pacora"
+    },
+    {
+      "codigoRrhh": 15614,
+      "nombre": "Junta Comunal de Parque Lefevre"
+    },
+    {
+      "codigoRrhh": 15615,
+      "nombre": "Junta Comunal de Pedregal"
+    },
+    {
+      "codigoRrhh": 15616,
+      "nombre": "Junta Comunal de Pueblo Nuevo"
+    },
+    {
+      "codigoRrhh": 15617,
+      "nombre": "Junta Comunal de Río Abajo"
+    },
+    {
+      "codigoRrhh": 15618,
+      "nombre": "Junta Comunal de San Felipe"
+    },
+    {
+      "codigoRrhh": 15619,
+      "nombre": "Junta Comunal de San Francisco"
+    },
+    {
+      "codigoRrhh": 15620,
+      "nombre": "Junta Comunal de San Martín"
+    },
+    {
+      "codigoRrhh": 15621,
+      "nombre": "Junta Comunal de Santa Ana"
+    },
+    {
+      "codigoRrhh": 15622,
+      "nombre": "Junta Comunal de Tocumen"
+    },
+    {
+      "codigoRrhh": 15631,
+      "nombre": "Oficina de Auditoría de la Contraloría"
+    },
+    {
+      "codigoRrhh": 15634,
+      "nombre": "Oficina de Cooperación Internacional"
+    },
+    {
+      "codigoRrhh": 15628,
+      "nombre": "Secretaría General"
+    },
+    {
+      "codigoRrhh": 15660,
+      "nombre": "Sub-Dirección de Seguridad Electrónica"
+    },
+    {
+      "codigoRrhh": 15641,
+      "nombre": "Tesorería Municipal"
+    }
+  ]
+}

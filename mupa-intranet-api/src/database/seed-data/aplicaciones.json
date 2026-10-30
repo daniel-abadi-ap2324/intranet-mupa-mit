@@ -1,0 +1,1336 @@
+{
+  "_comentario": "Catálogo maestro de aplicaciones de la Intranet MUPA. Fuentes: docs/sitio-actual.md (las 15 del sitio actual) e inventario de aplicaciones de DITI (23-sep-2026). Solo nombres públicos (https://*.mupa.gob.pa): nunca IPs internas ni datos de personas. confirmado=false: la descripción se dedujo del nombre y falta que DITI la confirme. estado Oculto = infraestructura, se importa como borrador y no se muestra. Tras editarlo: python scripts/generar-catalogo.py",
+  "version": "2026-09-23",
+  "audiencias": [
+    "Uso interno",
+    "Ciudadanía",
+    "Administración"
+  ],
+  "aplicaciones": [
+    {
+      "id": "ari",
+      "nombre": "ARI",
+      "descripcion": "Sistema tributario municipal: contribuyentes, recaudación, juzgados ejecutores.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Uso interno",
+        "Tributos"
+      ],
+      "url": "https://panama.tustributos.com/logon.aspx?ReturnUrl=%2f",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◔",
+      "palabras": "tributos impuestos contribuyente recaudacion",
+      "imagen": "assets/sitio/2024/07/ARI.jpg",
+      "favorito": true
+    },
+    {
+      "id": "transdoc",
+      "nombre": "TRANSDOC",
+      "descripcion": "Correspondencia y trámite documental (SIGOB).",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Uso interno",
+        "Documentos"
+      ],
+      "url": "https://sigob.mupa.gob.pa/Correspondencia/vdirCOMUN/frmLogin.aspx?ReturnUrl=%2fCorrespondencia%2f",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "▤",
+      "palabras": "sigob correspondencia documentos",
+      "imagen": "assets/sitio/2024/07/TRANSDOC.jpg",
+      "favorito": true
+    },
+    {
+      "id": "istmo",
+      "nombre": "Soporte ISTMO (MEF)",
+      "descripcion": "Soporte del sistema ISTMO · DNC–MEF.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Soporte TI"
+      ],
+      "url": "/sap-istmo",
+      "externo": false,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◈",
+      "palabras": "sap mef dnc contabilidad",
+      "nota": "Enlace corregido: en el sitio actual apunta por error a Vigilancia Fiscal.",
+      "imagen": "assets/sitio/ISTMOmesaAyuda.jpg",
+      "favorito": true
+    },
+    {
+      "id": "sigex",
+      "nombre": "SIGEX · Vigilancia Fiscal",
+      "descripcion": "Sistema de gestión de expedientes. Solo accesible desde la red interna.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Uso interno",
+        "Fiscalización"
+      ],
+      "url": "http://192.0.2.5/vigilanciaFiscal/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Solo red interna",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "▥",
+      "palabras": "expedientes vigilancia fiscal",
+      "imagen": "assets/sitio/2024/07/sigex1.jpg"
+    },
+    {
+      "id": "legal",
+      "nombre": "Trámites · Legal y Justicia",
+      "descripcion": "Trámites de la Dirección de Legal y Justicia. Solo accesible desde la red interna.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Uso interno",
+        "Legal"
+      ],
+      "url": "http://192.0.2.14/tramites/index.php?signIn=1",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Solo red interna",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "⚖",
+      "palabras": "permisos legal justicia",
+      "imagen": "assets/sitio/2024/07/legalJusticia_logo1.jpg"
+    },
+    {
+      "id": "correo",
+      "nombre": "Correo institucional",
+      "descripcion": "Microsoft 365: Outlook, Teams y OneDrive.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Correo"
+      ],
+      "url": "https://www.office.com",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "✉",
+      "palabras": "email office 365 outlook teams onedrive buzon",
+      "imagen": "assets/sitio/2024/07/correoMupa.jpg"
+    },
+    {
+      "id": "compras",
+      "nombre": "Portal de Compras Menores",
+      "descripcion": "Requisiciones y cotizaciones menores del Municipio.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Compras"
+      ],
+      "url": "https://compras-menores.mupa.gob.pa/login",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "▧",
+      "palabras": "compras cotizaciones requisiciones compras-menores",
+      "nota": "Enlace corregido: en el sitio actual la URL está malformada. También figura en el inventario de DITI.",
+      "imagen": "assets/sitio/2024/07/comprasMenores.jpg",
+      "favorito": true
+    },
+    {
+      "id": "mesa",
+      "nombre": "Mesa de Servicios",
+      "descripcion": "Tickets de soporte técnico interno · ext. 1400.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Soporte TI",
+        "Solicitudes"
+      ],
+      "url": "/formularios/",
+      "urlPrototipo": "mesa-servicios.html",
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "☏",
+      "palabras": "soporte tecnico diti ayuda 1400 tickets",
+      "imagen": "assets/sitio/2024/07/mesaServTec.jpg",
+      "favorito": true
+    },
+    {
+      "id": "citamedica",
+      "nombre": "Agendar cita médica",
+      "descripcion": "Clínica Municipal para colaboradores · edificio Hatillo.",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Uso interno",
+        "Salud",
+        "Citas",
+        "Recursos Humanos"
+      ],
+      "url": "https://clinica.mupa.gob.pa/formulario",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "✚",
+      "palabras": "clinica salud doctor medico",
+      "imagen": "assets/sitio/2024/07/agendarCita_logo.jpg",
+      "favorito": true
+    },
+    {
+      "id": "directorio",
+      "nombre": "Directorio telefónico",
+      "descripcion": "Extensiones por dirección y unidad.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Uso interno",
+        "Directorio",
+        "Telefonía"
+      ],
+      "url": "/directorio-telefonico-mupa/",
+      "urlPrototipo": "directorio.html",
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◉",
+      "palabras": "extensiones telefonos personas",
+      "imagen": "assets/sitio/2024/07/directorio.jpg",
+      "favorito": true
+    },
+    {
+      "id": "ach",
+      "nombre": "Formulario de pago por ACH",
+      "descripcion": "Registro de cuenta para acreditación (PDF).",
+      "categoria": "Finanzas",
+      "etiquetas": [
+        "Uso interno",
+        "Pagos",
+        "Recursos Humanos"
+      ],
+      "url": "/sitio/2023/01/Afiliacion_a_Pagos_por_ACH_Funcionarios.pdf",
+      "externo": false,
+      "pdf": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◧",
+      "palabras": "banco planilla acreditacion salario",
+      "imagen": "assets/sitio/2024/07/solicitudACH1.jpg",
+      "favorito": false
+    },
+    {
+      "id": "requis",
+      "nombre": "Control de Requisiciones",
+      "descripcion": "Existe como tarjeta en la biblioteca de medios; no está publicada ni enlazada.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Compras"
+      ],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "▦",
+      "palabras": "requisiciones",
+      "imagen": "assets/sitio/2023/01/controlRequisiciones.jpg"
+    },
+    {
+      "id": "conoc",
+      "nombre": "Bases de Conocimiento",
+      "descripcion": "Existe como tarjeta en la biblioteca de medios; no está publicada ni enlazada.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Soporte TI"
+      ],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◫",
+      "palabras": "conocimiento ayuda manuales",
+      "imagen": "assets/sitio/2021/03/basesDeConoc.jpg"
+    },
+    {
+      "id": "cdr",
+      "nombre": "Códigos de llamadas",
+      "descripcion": "Solicitud del código (PIN) para hacer llamadas externas desde la extensión.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Telefonía",
+        "Solicitudes"
+      ],
+      "url": "https://cdr.mupa.gob.pa/pinrequests/create",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "☏",
+      "palabras": "cdr pin codigo llamadas telefono extension solicitar solicitud",
+      "nota": "Es el enlace del sitio actual (por https).",
+      "favorito": true
+    },
+    {
+      "id": "wifi",
+      "nombre": "Acceso a la red WIFI",
+      "descripcion": "Solicitud de acceso a internet por la red WIFI institucional para el equipo asignado.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Solicitudes"
+      ],
+      "url": "http://wifi.mupa.gob.pa:9001/solicitud",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "sitio-actual",
+      "icono": "◈",
+      "palabras": "wifi internet red inalambrica acceso solicitar solicitud conexion",
+      "nota": "Es el enlace del sitio actual; funciona sin cifrado (http) y en el puerto 9001.",
+      "favorito": true
+    },
+    {
+      "id": "accesointerno",
+      "nombre": "Acceso interno",
+      "descripcion": "Acceso único del personal a los sistemas internos de la Alcaldía.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno",
+        "Inicio de sesión"
+      ],
+      "url": "https://accesointerno.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "palabras": "login cedula contraseña acceso"
+    },
+    {
+      "id": "asistencia",
+      "nombre": "Asistencia",
+      "descripcion": "Registro y control de asistencia del personal.",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Uso interno",
+        "Recursos Humanos",
+        "Asistencia"
+      ],
+      "url": "https://asistencia.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "✚",
+      "palabras": "marcacion entrada salida horario"
+    },
+    {
+      "id": "rhexpress",
+      "nombre": "RRHH Express",
+      "descripcion": "Trámites rápidos de Recursos Humanos (RH Express).",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Uso interno",
+        "Recursos Humanos"
+      ],
+      "url": "https://rhexpress.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "✚",
+      "palabras": "rrhh recursos humanos autoservicio"
+    },
+    {
+      "id": "rhlink",
+      "nombre": "RH Link",
+      "descripcion": "Sistema de Recursos Humanos (RHLink).",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Uso interno",
+        "Recursos Humanos"
+      ],
+      "url": "https://rhlink.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "✚",
+      "palabras": "rrhh recursos humanos"
+    },
+    {
+      "id": "clinica-sistema",
+      "nombre": "Clínica Municipal (sistema)",
+      "descripcion": "Sistema interno de la Clínica Municipal: recepción, consultas y recetas.",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Uso interno",
+        "Salud",
+        "Citas"
+      ],
+      "url": "https://clinica.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "✚",
+      "palabras": "clinica salud medico"
+    },
+    {
+      "id": "cita",
+      "nombre": "Citas",
+      "descripcion": "Agenda de citas.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Citas"
+      ],
+      "url": "https://cita.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "cita agenda turno"
+    },
+    {
+      "id": "gdocs",
+      "nombre": "Gestión documental",
+      "descripcion": "Gestor documental del Municipio.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Uso interno",
+        "Documentos"
+      ],
+      "url": "https://gdocs.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "gdocs documentos archivos expedientes"
+    },
+    {
+      "id": "flota",
+      "nombre": "Flota vehicular",
+      "descripcion": "Control de la flota de vehículos municipales.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Vehículos"
+      ],
+      "url": "https://flota.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "vehiculos autos flota combustible"
+    },
+    {
+      "id": "transporte",
+      "nombre": "Transporte",
+      "descripcion": "Sistema de Transporte del Municipio de Panamá.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Vehículos"
+      ],
+      "url": "https://transporte.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "transporte vehiculos"
+    },
+    {
+      "id": "lpr",
+      "nombre": "LPR",
+      "descripcion": "Portal de telefonía del Municipio.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Vehículos"
+      ],
+      "url": "https://lpr.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "placas camaras"
+    },
+    {
+      "id": "visitas",
+      "nombre": "Visitas",
+      "descripcion": "Registro de visitantes de las sedes municipales (VISIPASS).",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Visitas"
+      ],
+      "url": "https://visitas.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "visitantes recepcion"
+    },
+    {
+      "id": "visipass",
+      "nombre": "VisiPass",
+      "descripcion": "Pases de acceso para visitantes.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Visitas",
+        "Seguridad"
+      ],
+      "url": "https://visipass.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "visitantes pase acceso"
+    },
+    {
+      "id": "visidash",
+      "nombre": "VisiDash",
+      "descripcion": "Tablero del registro de visitas.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Visitas",
+        "Tableros"
+      ],
+      "url": "https://visidash.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "visitantes tablero estadisticas"
+    },
+    {
+      "id": "seguridad",
+      "nombre": "Seguridad",
+      "descripcion": "Sistema de seguridad institucional.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Seguridad"
+      ],
+      "url": "https://seguridad.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "seguridad"
+    },
+    {
+      "id": "armeria",
+      "nombre": "Armería",
+      "descripcion": "Control de la Armería Municipal.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Seguridad"
+      ],
+      "url": "https://armeria.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "armas policia municipal"
+    },
+    {
+      "id": "fotos",
+      "nombre": "Fotos",
+      "descripcion": "Archivo de fotografías.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno"
+      ],
+      "url": "https://fotos.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "fotografias imagenes"
+    },
+    {
+      "id": "carga",
+      "nombre": "Carga",
+      "descripcion": "Sistema de gestión de empleados.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno"
+      ],
+      "url": "https://carga.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "carga"
+    },
+    {
+      "id": "torredecontrol",
+      "nombre": "Torre de Control",
+      "descripcion": "",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Tableros"
+      ],
+      "url": "https://torredecontrol.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "tablero monitoreo indicadores"
+    },
+    {
+      "id": "aplicaciones",
+      "nombre": "Portal de aplicaciones",
+      "descripcion": "Portal de aplicaciones municipales.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno"
+      ],
+      "url": "https://aplicaciones.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "palabras": "apps portal"
+    },
+    {
+      "id": "compras-sistema",
+      "nombre": "Compras",
+      "descripcion": "",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Uso interno",
+        "Compras"
+      ],
+      "url": "https://compras.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "compras adquisiciones"
+    },
+    {
+      "id": "proveedores",
+      "nombre": "Proveedores",
+      "descripcion": "Portal de proveedores del Municipio.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Compras"
+      ],
+      "url": "https://proveedores.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "proveedores licitaciones"
+    },
+    {
+      "id": "gestionsocial",
+      "nombre": "Gestión Social",
+      "descripcion": "Sistema de la Dirección de Gestión Social.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Gestión Social"
+      ],
+      "url": "https://gestionsocial.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "social ayudas beneficiarios"
+    },
+    {
+      "id": "oficinacomercial",
+      "nombre": "Oficina comercial",
+      "descripcion": "Trámites de la Dirección Comercial.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Comercio"
+      ],
+      "url": "https://oficinacomercial.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "comercio negocios"
+    },
+    {
+      "id": "ayudacomercial",
+      "nombre": "Ayuda comercial",
+      "descripcion": "Panel de administración de piscinas (Admin Piscinas).",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Comercio"
+      ],
+      "url": "https://ayudacomercial.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "comercio negocios apoyo"
+    },
+    {
+      "id": "microempresarios",
+      "nombre": "Microempresarios",
+      "descripcion": "Registro de microempresarios del Municipio.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Ciudadanía",
+        "Comercio",
+        "Registro"
+      ],
+      "url": "https://microempresarios.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "emprendimiento negocios pymes"
+    },
+    {
+      "id": "registromunicipalidad",
+      "nombre": "Registro de la Municipalidad",
+      "descripcion": "Registros en línea de la Casa de la Municipalidad.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Ciudadanía",
+        "Registro",
+        "Trámites en línea"
+      ],
+      "url": "https://registromunicipalidad.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "registro inscripcion"
+    },
+    {
+      "id": "consultatramite",
+      "nombre": "Consulta de trámites",
+      "descripcion": "Consulta pública del estado de un trámite.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Ciudadanía",
+        "Trámites en línea"
+      ],
+      "url": "https://consultatramite.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "estado tramite seguimiento"
+    },
+    {
+      "id": "micuenta",
+      "nombre": "Mi Cuenta",
+      "descripcion": "Administración de cuentas: participación ciudadana, parquímetro y traspasos.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Ciudadanía",
+        "Trámites en línea"
+      ],
+      "url": "https://micuenta.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "cuenta estado de cuenta contribuyente"
+    },
+    {
+      "id": "verificar",
+      "nombre": "Verificar",
+      "descripcion": "Verificación y certificación de funcionarios, permisos y certificados.",
+      "categoria": "Trámites",
+      "etiquetas": [
+        "Ciudadanía",
+        "Verificación"
+      ],
+      "url": "https://verificar.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▤",
+      "palabras": "verificacion validar documento"
+    },
+    {
+      "id": "qr",
+      "nombre": "Códigos QR",
+      "descripcion": "Panel de administración de los códigos QR dinámicos del Municipio.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Verificación"
+      ],
+      "url": "https://qr.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "qr codigo"
+    },
+    {
+      "id": "denuncia",
+      "nombre": "Denuncias",
+      "descripcion": "Recepción de denuncias ciudadanas (SIVIMUPA).",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Denuncias"
+      ],
+      "url": "https://denuncia.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "denuncia queja reclamo"
+    },
+    {
+      "id": "encuesta",
+      "nombre": "Encuestas",
+      "descripcion": "Encuesta de satisfacción de los mercados municipales.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Encuestas"
+      ],
+      "url": "https://encuesta.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "encuesta opinion"
+    },
+    {
+      "id": "resultadoencuesta",
+      "nombre": "Resultados de encuestas",
+      "descripcion": "Resultados de las encuestas de satisfacción de los mercados (Mercado San Felipe Neri).",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Uso interno",
+        "Encuestas",
+        "Tableros"
+      ],
+      "url": "https://resultadoencuesta.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "encuesta resultados estadisticas"
+    },
+    {
+      "id": "vacantes",
+      "nombre": "Vacantes",
+      "descripcion": "Feria de empleo y vacantes del Municipio (Empleo 2.0).",
+      "categoria": "Personal",
+      "etiquetas": [
+        "Ciudadanía",
+        "Empleo"
+      ],
+      "url": "https://vacantes.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "✚",
+      "palabras": "empleo trabajo vacante concurso"
+    },
+    {
+      "id": "parking",
+      "nombre": "Estacionamientos",
+      "descripcion": "Servicio de estacionamientos.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Estacionamientos",
+        "Vehículos"
+      ],
+      "url": "https://parking.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "parking estacionamiento parquimetro"
+    },
+    {
+      "id": "reciclaje",
+      "nombre": "Reciclaje",
+      "descripcion": "Sistema del programa de reciclaje.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Ambiente"
+      ],
+      "url": "https://reciclaje.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "reciclaje ambiente basura"
+    },
+    {
+      "id": "navidad",
+      "nombre": "Navidad",
+      "descripcion": "City of Stars: votación de la luz navideña favorita.",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Eventos"
+      ],
+      "url": "https://navidad.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "navidad eventos"
+    },
+    {
+      "id": "tiquetes",
+      "nombre": "Tiquetes",
+      "descripcion": "",
+      "categoria": "Atención",
+      "etiquetas": [],
+      "url": "https://tiquetes.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "tiquete boleto ticket"
+    },
+    {
+      "id": "mantenimiento",
+      "nombre": "Mantenimiento",
+      "descripcion": "",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Mantenimiento"
+      ],
+      "url": "https://mantenimiento.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "palabras": "mantenimiento reparacion"
+    },
+    {
+      "id": "openpty",
+      "nombre": "OpenPTY",
+      "descripcion": "Portal de transparencia del Municipio (OpenPTY).",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Ciudadanía",
+        "Transparencia"
+      ],
+      "url": "https://openpty.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "datos abiertos transparencia"
+    },
+    {
+      "id": "sof-ia",
+      "nombre": "SOF-IA",
+      "descripcion": "Asistente virtual para analizar y revisar los acuerdos municipales (Sof-IA).",
+      "categoria": "Atención",
+      "etiquetas": [
+        "Inteligencia artificial"
+      ],
+      "url": "https://sof-ia.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "sofia asistente chatbot ia"
+    },
+    {
+      "id": "rimmu",
+      "nombre": "RIMMU",
+      "descripcion": "Sistema Integral de Mercados (SIMA).",
+      "categoria": "Atención",
+      "etiquetas": [],
+      "url": "https://rimmu.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◉",
+      "palabras": "rimmu feria"
+    },
+    {
+      "id": "faro",
+      "nombre": "Faro Interno",
+      "descripcion": "Solo accesible desde la red interna.",
+      "categoria": "Soporte",
+      "etiquetas": [
+        "Uso interno"
+      ],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "palabras": "faro"
+    },
+    {
+      "id": "adminapp",
+      "nombre": "Administración · App",
+      "descripcion": "Panel de administración de las reservaciones públicas.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración"
+      ],
+      "url": "https://adminapp.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin panel app"
+    },
+    {
+      "id": "admindeporte",
+      "nombre": "Administración · Deportes",
+      "descripcion": "Panel de administración de Deportes (reservaciones públicas).",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración",
+        "Deportes"
+      ],
+      "url": "https://admindeporte.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin deportes"
+    },
+    {
+      "id": "adminparking",
+      "nombre": "Administración · Estacionamientos",
+      "descripcion": "Panel de administración de estacionamientos (reservaciones públicas).",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración",
+        "Estacionamientos"
+      ],
+      "url": "https://adminparking.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin parking"
+    },
+    {
+      "id": "adminvacantes",
+      "nombre": "Administración · Vacantes",
+      "descripcion": "Panel para publicar y gestionar las vacantes.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración",
+        "Empleo"
+      ],
+      "url": "https://adminvacantes.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin vacantes empleo"
+    },
+    {
+      "id": "adminverano",
+      "nombre": "Administración · Verano",
+      "descripcion": "Panel de los programas de verano (Verano PTY).",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración",
+        "Eventos"
+      ],
+      "url": "https://adminverano.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Publicado",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin verano"
+    },
+    {
+      "id": "adminverificar",
+      "nombre": "Administración · Verificar",
+      "descripcion": "Panel de administración del servicio Verificar.",
+      "categoria": "Operaciones",
+      "etiquetas": [
+        "Administración",
+        "Verificación"
+      ],
+      "url": "https://adminverificar.mupa.gob.pa/",
+      "externo": true,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "⚙",
+      "palabras": "admin verificar"
+    },
+    {
+      "id": "compras-menores",
+      "nombre": "Compras Menores (inventario)",
+      "descripcion": "Es el Portal de Compras Menores que ya está en el catálogo.",
+      "categoria": "Operaciones",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "▧",
+      "nota": "Duplicado: se muestra una sola vez, como «Portal de Compras Menores»."
+    },
+    {
+      "id": "apps",
+      "nombre": "apps (plataforma)",
+      "descripcion": "Plataforma que aloja otras aplicaciones.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "No es una aplicación de uso directo."
+    },
+    {
+      "id": "apps2",
+      "nombre": "apps2 (plataforma)",
+      "descripcion": "Plataforma que redirige a Compras Menores.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": true,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "No es una aplicación de uso directo."
+    },
+    {
+      "id": "pasarela",
+      "nombre": "Pasarela de pagos",
+      "descripcion": "Componente de pagos que usan otros sistemas.",
+      "categoria": "Finanzas",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◧",
+      "nota": "Infraestructura: no se abre directamente."
+    },
+    {
+      "id": "pasarela-uat",
+      "nombre": "Pasarela de pagos (pruebas)",
+      "descripcion": "Ambiente de pruebas de la pasarela de pagos.",
+      "categoria": "Finanzas",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◧",
+      "nota": "Ambiente de pruebas (UAT)."
+    },
+    {
+      "id": "yappy",
+      "nombre": "Yappy",
+      "descripcion": "Integración de pagos con Yappy.",
+      "categoria": "Finanzas",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◧",
+      "nota": "Infraestructura de pagos."
+    },
+    {
+      "id": "gateway",
+      "nombre": "Gateway",
+      "descripcion": "Puerta de enlace de servicios (API).",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "Infraestructura: API."
+    },
+    {
+      "id": "backend",
+      "nombre": "Backend",
+      "descripcion": "Servicios internos de otras aplicaciones.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "Infraestructura."
+    },
+    {
+      "id": "apitaxi",
+      "nombre": "API Taxi",
+      "descripcion": "Servicio de datos (API) de taxis.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "Infraestructura: API."
+    },
+    {
+      "id": "s3",
+      "nombre": "Almacenamiento (S3)",
+      "descripcion": "Almacenamiento de archivos de otras aplicaciones.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "Infraestructura."
+    },
+    {
+      "id": "datarimmu",
+      "nombre": "Datos de RIMMU",
+      "descripcion": "Datos del sistema RIMMU.",
+      "categoria": "Soporte",
+      "etiquetas": [],
+      "url": null,
+      "acceso": "todos",
+      "estado": "Oculto",
+      "confirmado": false,
+      "origen": "inventario-diti",
+      "icono": "◈",
+      "nota": "Infraestructura de datos."
+    }
+  ]
+}

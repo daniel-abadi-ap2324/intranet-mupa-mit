@@ -1,0 +1,33 @@
+{
+  "_nota": "Videos de la intranet. Los instructivos están copiados en public/sitio/. Se quitaron los del canal sin título y los del sitio viejo que ya no existen.",
+  "videos": [
+    {
+      "title": "Restablecer usuario de máquina — Parte 1",
+      "url": "/sitio/2024/08/parte1.mp4",
+      "category": "instructivo",
+      "description": "Mesa de Servicios · MP4",
+      "date": null
+    },
+    {
+      "title": "Restablecer usuario de máquina — Parte 2",
+      "url": "/sitio/2024/08/parte2.mp4",
+      "category": "instructivo",
+      "description": "Mesa de Servicios · MP4",
+      "date": null
+    },
+    {
+      "title": "Restablecer usuario de máquina — Parte 3",
+      "url": "/sitio/2024/08/parte3.mp4",
+      "category": "instructivo",
+      "description": "Mesa de Servicios · MP4",
+      "date": null
+    },
+    {
+      "title": "RRHH en Concejo Municipal",
+      "url": "https://mupa.gob.pa/wp-content/uploads/RRHH-en-Consejo-Municipal-1.mp4",
+      "category": "otro",
+      "description": "Recursos Humanos · alojado en mupa.gob.pa",
+      "date": null
+    }
+  ]
+}

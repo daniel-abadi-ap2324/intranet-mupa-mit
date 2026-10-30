@@ -1,0 +1,130 @@
+{
+  "intro": "Portal interno de la Alcaldía de Panamá: sistemas, directorio telefónico, documentos y Clínica Municipal.",
+  "directorio": {
+    "personas": [
+      {
+        "ini": "☏",
+        "t": "Telefonía",
+        "meta": "Dirección de Tecnología e Innovación",
+        "ext": "1614"
+      },
+      {
+        "ini": "☏",
+        "t": "Recepción · Tecnología",
+        "meta": "Dirección de Tecnología e Innovación",
+        "ext": "1600"
+      },
+      {
+        "ini": "☏",
+        "t": "Recepción · Participación Ciudadana",
+        "meta": "Torre A · Nivel F",
+        "ext": "1200"
+      }
+    ]
+  },
+  "frecuentes": {
+    "items": [
+      {
+        "t": "Solicitar código de llamadas",
+        "meta": "Habilita marcación externa en tu extensión",
+        "g": "☏",
+        "color": "azul",
+        "h": "https://cdr.mupa.gob.pa/pinrequests/create"
+      },
+      {
+        "t": "Solicitar acceso a WIFI",
+        "meta": "Red institucional para equipo asignado",
+        "g": "◈",
+        "color": "cian",
+        "h": "http://wifi.mupa.gob.pa:9001/solicitud"
+      },
+      {
+        "t": "Restablecer usuario de máquina",
+        "meta": "Tres videos paso a paso",
+        "g": "▶",
+        "color": "morado",
+        "h": "/mesa-servicios#videos"
+      },
+      {
+        "t": "Formulario de pago por ACH",
+        "meta": "Actualiza tu cuenta de acreditación (PDF)",
+        "g": "◧",
+        "color": "lima",
+        "h": "/sitio/2023/01/Afiliacion_a_Pagos_por_ACH_Funcionarios.pdf"
+      }
+    ]
+  },
+  "campanas": {
+    "items": []
+  },
+  "clinica": {
+    "intro": "Consulta sin costo para servidores municipales · Torre C, edificio Hatillo.",
+    "items": [
+      {
+        "t": "Agendar cita médica",
+        "meta": "Sistema de citas de la clínica",
+        "g": "✚",
+        "h": "https://clinica.mupa.gob.pa/formulario"
+      },
+      {
+        "t": "Solicitar recetas",
+        "meta": "Pacientes crónicos",
+        "g": "▤",
+        "h": "/clinica-recetas"
+      },
+      {
+        "t": "Medicamentos disponibles",
+        "meta": "Listado de la farmacia",
+        "g": "◧",
+        "h": "/clinica-medicamentos"
+      }
+    ]
+  },
+  "mesa": {
+    "ext": "1400",
+    "correo": "mesadeayuda@pty.gob.pa",
+    "intro": "Para solicitar ayuda con cualquier contratiempo tecnológico, contáctenos en la mesa de ayuda."
+  },
+  "enlaces": [
+    {
+      "t": "Gaceta Oficial",
+      "g": "▤",
+      "h": "https://www.gacetaoficial.gob.pa"
+    },
+    {
+      "t": "Portal de Transparencia",
+      "g": "◉",
+      "h": "https://mupa.gob.pa/transparencia/"
+    },
+    {
+      "t": "Contraloría General",
+      "g": "◔",
+      "h": "https://www.contraloria.gob.pa/"
+    },
+    {
+      "t": "PanamaCompra",
+      "g": "▧",
+      "h": "https://www.panamacompra.gob.pa/Inicio/"
+    },
+    {
+      "t": "CSS en línea",
+      "g": "✚",
+      "h": "https://www.css.gob.pa/sipe/"
+    },
+    {
+      "t": "DGI · e-Tax",
+      "g": "◧",
+      "h": "https://etax2.mef.gob.pa/etax2web/"
+    },
+    {
+      "t": "Tribunal Electoral",
+      "g": "◫",
+      "h": "https://www.tribunal-electoral.gob.pa/"
+    },
+    {
+      "t": "MUPA público",
+      "g": "▦",
+      "h": "https://mupa.gob.pa/"
+    }
+  ]
+}

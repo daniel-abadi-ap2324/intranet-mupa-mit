@@ -1,0 +1,23 @@
+# Lo que entra al contexto de `docker build -f mupa-intranet-api/Dockerfile .` (desde la raíz del repositorio).
+# Docker usa este archivo en lugar del .dockerignore de la raíz y de cada proyecto. Se deja pasar solo
+# mupa-intranet-app y mupa-intranet-api, sin dependencias, compilados, pruebas ni secretos.
+*
+!mupa-intranet-app
+!mupa-intranet-api
+
+**/node_modules
+**/dist
+**/.data
+**/coverage
+**/*.log
+**/.env
+**/.env.*
+!mupa-intranet-app/.env.example
+**/.vscode
+
+# Pruebas y sus resultados (no van en la imagen)
+mupa-intranet-app/tests
+mupa-intranet-app/test-results
+mupa-intranet-app/playwright-report*
+mupa-intranet-app/blob-report
+mupa-intranet-api/tests

@@ -1,0 +1,934 @@
+[
+  {
+    "slug": "nuevo-funcionario",
+    "id": 9,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud de Ingreso de Nuevos Funcionarios",
+    "path": "/formulario-ingreso-nuevo-funcionario/",
+    "intro": "Alta completa de un funcionario nuevo: cuenta de correo, Office, códigos y accesos en una sola solicitud.",
+    "notes": [
+      "Para solicitar su código de llamadas y accesos a páginas web debe tener la aprobación de su Director."
+    ],
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "Tus datos. Los completamos con tu perfil; revísalos.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true,
+            "auto": "cargo"
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "auto": "direccion",
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "auto": "extension",
+            "hint": "Solo números"
+          }
+        ]
+      },
+      {
+        "title": "Nuevo funcionario",
+        "desc": "Datos de la persona que recibirá el servicio.",
+        "fields": [
+          {
+            "k": "nombres",
+            "l": "Nombres",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "apellidos",
+            "l": "Apellidos",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "cedula",
+            "l": "Cédula",
+            "t": "cedula",
+            "r": true,
+            "hint": "Con guiones, p. ej. 8-123-4567"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "departamento",
+            "l": "Departamento",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "ubicacion",
+            "l": "Ubicación física",
+            "t": "text",
+            "r": true,
+            "hint": "Donde trabajará de forma fija: torre y nivel"
+          },
+          {
+            "k": "posicion",
+            "l": "N.º de posición",
+            "t": "text",
+            "r": true,
+            "hint": "Número de posición en planilla"
+          }
+        ]
+      },
+      {
+        "title": "Servicios que necesita",
+        "desc": "Marca todos los que correspondan. Algunos piden más datos.",
+        "fields": [
+          {
+            "k": "servicios",
+            "t": "checks",
+            "l": "Servicios",
+            "r": true,
+            "items": [
+              {
+                "l": "Correo electrónico"
+              },
+              {
+                "l": "Office (Word, Excel, PowerPoint…)"
+              },
+              {
+                "l": "Código de impresión"
+              },
+              {
+                "l": "Código de llamadas",
+                "sub": [
+                  {
+                    "k": "llamadas",
+                    "t": "checks",
+                    "l": "Tipo de llamadas",
+                    "r": true,
+                    "items": [
+                      {
+                        "l": "Llamadas locales"
+                      },
+                      {
+                        "l": "Llamadas a celular"
+                      },
+                      {
+                        "l": "Larga distancia nacional"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "l": "Carpeta compartida",
+                "sub": [
+                  {
+                    "l": "Nombre de la carpeta",
+                    "t": "text",
+                    "r": true
+                  },
+                  {
+                    "l": "Ubicación de la carpeta",
+                    "t": "text",
+                    "r": true,
+                    "hint": "Ruta o unidad de red donde está"
+                  },
+                  {
+                    "l": "Permiso",
+                    "t": "radio",
+                    "r": true,
+                    "opts": [
+                      "Lectura",
+                      "Modificar (crear, modificar, eliminar)",
+                      "Control total"
+                    ]
+                  },
+                  {
+                    "l": "¿Necesita acceso directo en el escritorio?",
+                    "t": "radio",
+                    "r": true,
+                    "opts": [
+                      "Sí",
+                      "No"
+                    ]
+                  }
+                ]
+              },
+              {
+                "l": "Acceso a páginas web",
+                "sub": [
+                  {
+                    "k": "paginas",
+                    "l": "Páginas web",
+                    "t": "repeat",
+                    "min": 1,
+                    "max": 5,
+                    "item": "Página",
+                    "add": "Agregar otra página",
+                    "fields": [
+                      {
+                        "k": "url",
+                        "l": "Dirección de la página",
+                        "t": "text",
+                        "r": true,
+                        "hint": "p. ej. www.ejemplo.com"
+                      }
+                    ]
+                  },
+                  {
+                    "l": "Justificación de los accesos",
+                    "t": "textarea",
+                    "r": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Comentarios",
+        "fields": [
+          {
+            "k": "comentarios",
+            "l": "Comentarios",
+            "t": "textarea",
+            "hint": "Opcional"
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "\"Primer y Segundo Nombre\" y \"Primer y Segundo Apellido\" pasan a \"Nombres\" y \"Apellidos\", como en los demás formularios.",
+      "Tipo de llamadas: de opción única a casillas (se puede pedir más de un tipo), igual que en el formulario de Código de Llamadas.",
+      "Páginas web 1 a 5: una lista que crece de a una, hasta 5.",
+      "Hay que marcar al menos un servicio; los datos de carpeta y páginas web solo se piden si se marca ese servicio."
+    ]
+  },
+  {
+    "slug": "carpetas-compartidas",
+    "id": 10,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud de Carpetas Compartidas",
+    "path": "/formulario-de-carpetas-compartidas/",
+    "intro": "Creación de una carpeta compartida en la red y asignación de permisos.",
+    "sections": [
+      {
+        "title": "Para quién es",
+        "desc": "Datos de la persona que recibirá el servicio.",
+        "fields": [
+          {
+            "k": "nombres",
+            "l": "Nombres",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "apellidos",
+            "l": "Apellidos",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "cedula",
+            "l": "Cédula",
+            "t": "cedula",
+            "r": true,
+            "hint": "Con guiones, p. ej. 8-123-4567"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": false
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "departamento",
+            "l": "Departamento",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "ubicacion",
+            "l": "Ubicación física",
+            "t": "text",
+            "r": false,
+            "hint": "Torre y nivel, p. ej. Torre B · Nivel F"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true
+          }
+        ]
+      },
+      {
+        "title": "Carpeta compartida",
+        "fields": [
+          {
+            "l": "Nombre de la carpeta",
+            "t": "text",
+            "r": true
+          },
+          {
+            "l": "Ubicación de la carpeta",
+            "t": "text",
+            "r": true,
+            "hint": "Ruta o unidad de red donde está"
+          },
+          {
+            "l": "Permiso",
+            "t": "radio",
+            "r": true,
+            "opts": [
+              "Lectura",
+              "Modificar (crear, modificar, eliminar)",
+              "Control total"
+            ]
+          },
+          {
+            "l": "¿Necesita acceso directo en el escritorio?",
+            "t": "radio",
+            "r": true,
+            "opts": [
+              "Sí",
+              "No"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Comentarios",
+        "fields": [
+          {
+            "k": "comentarios",
+            "l": "Comentarios",
+            "t": "textarea",
+            "hint": "Opcional"
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "Mismos nombres de campo que el resto (\"Nombres\", \"Apellidos\", \"Correo institucional\").",
+      "Las opciones de permiso usan el mismo texto que en Ingreso de Nuevos Funcionarios."
+    ]
+  },
+  {
+    "slug": "acceso-paginas-web",
+    "id": 12,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud para Accesos a Páginas Web",
+    "path": "/formulario-de-acceso-a-pagina-web/",
+    "intro": "Habilitación de sitios web bloqueados por la red institucional.",
+    "notes": [
+      "Requiere aprobación del Director."
+    ],
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "Tus datos. Los completamos con tu perfil; revísalos.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true,
+            "auto": "cargo"
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "auto": "direccion",
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "auto": "extension",
+            "hint": "Solo números"
+          }
+        ]
+      },
+      {
+        "title": "Para quién es",
+        "desc": "Datos de la persona que recibirá el servicio.",
+        "fields": [
+          {
+            "k": "nombres",
+            "l": "Nombres",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "apellidos",
+            "l": "Apellidos",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "cedula",
+            "l": "Cédula",
+            "t": "cedula",
+            "r": true,
+            "hint": "Con guiones, p. ej. 8-123-4567"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "departamento",
+            "l": "Departamento",
+            "t": "text",
+            "r": false
+          },
+          {
+            "k": "ubicacion",
+            "l": "Ubicación física",
+            "t": "text",
+            "r": false,
+            "hint": "Torre y nivel, p. ej. Torre B · Nivel F"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión o teléfono",
+            "t": "tel",
+            "r": true,
+            "hint": ""
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true
+          }
+        ]
+      },
+      {
+        "title": "Páginas que necesita",
+        "fields": [
+          {
+            "k": "paginas",
+            "l": "Páginas web",
+            "t": "repeat",
+            "min": 1,
+            "max": 5,
+            "item": "Página",
+            "add": "Agregar otra página",
+            "fields": [
+              {
+                "k": "url",
+                "l": "Dirección de la página",
+                "t": "text",
+                "r": true,
+                "hint": "p. ej. www.ejemplo.com"
+              }
+            ]
+          },
+          {
+            "l": "Justificación de los accesos",
+            "t": "textarea",
+            "r": true
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "El correo y la extensión de quien solicita pasan a ser obligatorios.",
+      "La justificación pasa a ser obligatoria, como en Ingreso de Nuevos Funcionarios.",
+      "Páginas web 1 a 5: una lista que crece de a una, hasta 5."
+    ]
+  },
+  {
+    "slug": "acceso-ari",
+    "id": 13,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud Acceso a ARI",
+    "path": "/acceso-al-sistema-ari/",
+    "intro": "Cuenta y permisos en el sistema tributario ARI para un departamento específico.",
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "El encargado que autoriza el acceso.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo del encargado",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true,
+            "auto": "cargo"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "auto": "extension",
+            "hint": "Solo números"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          }
+        ]
+      },
+      {
+        "title": "Para quién es",
+        "desc": "Datos de la persona que recibirá el servicio.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "cedula",
+            "l": "Cédula",
+            "t": "cedula",
+            "r": true,
+            "hint": "Con guiones, p. ej. 8-123-4567"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "posicion",
+            "l": "N.º de posición",
+            "t": "text",
+            "r": true,
+            "hint": "Número de posición en planilla"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "hint": "Solo números"
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "departamento",
+            "l": "Departamento",
+            "t": "text",
+            "r": true
+          },
+          {
+            "k": "ubicacion",
+            "l": "Ubicación física",
+            "t": "text",
+            "r": true,
+            "hint": "Torre y nivel, p. ej. Torre B · Nivel F"
+          }
+        ]
+      },
+      {
+        "title": "Acceso en ARI",
+        "fields": [
+          {
+            "l": "Departamento de ARI al que necesita acceso",
+            "t": "select",
+            "r": true,
+            "opts": [
+              "Vigilancia Fiscal",
+              "Servicio al Contribuyente",
+              "Auditoría Fiscal",
+              "Archivo Tributario",
+              "Estacionómetros",
+              "Vehículos",
+              "Recaudación",
+              "Juzgado Ejecutor 1",
+              "Juzgado Ejecutor 2",
+              "Servicios Funerarios",
+              "Obras y Construcciones",
+              "Legal y Justicia",
+              "Participación Ciudadana"
+            ]
+          },
+          {
+            "l": "Trámite que hará en ARI",
+            "t": "textarea",
+            "r": true
+          },
+          {
+            "l": "¿Otra función que hará en ARI?",
+            "t": "textarea",
+            "hint": "Opcional"
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "El departamento de ARI pasa del inicio al final, junto al trámite: primero quién pide y para quién, luego qué acceso."
+    ]
+  },
+  {
+    "slug": "lista-de-difusion",
+    "id": 18,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud de Lista de Difusión de emails",
+    "path": "/solicitud-para-lista-de-difusion/",
+    "intro": "Crear o actualizar una lista de distribución de correo.",
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "Tus datos. Los completamos con tu perfil; revísalos.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          }
+        ]
+      },
+      {
+        "title": "Qué necesitas",
+        "fields": [
+          {
+            "k": "accion",
+            "l": "¿Qué necesitas?",
+            "t": "radio",
+            "r": true,
+            "opts": [
+              "Crear una lista nueva",
+              "Actualizar una lista existente"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Lista nueva",
+        "show": {
+          "k": "accion",
+          "v": "Crear una lista nueva"
+        },
+        "fields": [
+          {
+            "l": "Nombre de la lista",
+            "t": "text",
+            "r": true
+          },
+          {
+            "l": "Objetivo de la lista",
+            "t": "textarea",
+            "r": true
+          },
+          {
+            "l": "Correos que pertenecerán a la lista",
+            "t": "textarea",
+            "r": true,
+            "hint": "Uno por línea"
+          },
+          {
+            "l": "Tipo de uso",
+            "t": "radio",
+            "r": true,
+            "opts": [
+              "Interno",
+              "Externo"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Actualizar lista",
+        "show": {
+          "k": "accion",
+          "v": "Actualizar una lista existente"
+        },
+        "fields": [
+          {
+            "l": "Nombre de la lista a modificar",
+            "t": "text",
+            "r": true
+          },
+          {
+            "l": "Correos que se deben agregar",
+            "t": "textarea",
+            "hint": "Uno por línea"
+          },
+          {
+            "l": "Correos que se deben eliminar",
+            "t": "textarea",
+            "hint": "Uno por línea"
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "Error del sitio actual: para ACTUALIZAR una lista había que llenar igual los campos obligatorios de una lista NUEVA. Ahora se elige primero qué se necesita y solo se muestran esos campos.",
+      "Al actualizar, el nombre de la lista pasa a ser obligatorio."
+    ]
+  },
+  {
+    "slug": "codigo-de-impresion",
+    "id": 19,
+    "area": "ti",
+    "plazo": null,
+    "title": "Solicitud para Código de Impresión",
+    "path": "/solicitud-de-codigo-de-impresora/",
+    "intro": "Código personal para imprimir en las impresoras de red.",
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "Tus datos. Los completamos con tu perfil; revísalos.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "auto": "extension",
+            "hint": "Solo números"
+          }
+        ]
+      },
+      {
+        "title": "Comentarios",
+        "fields": [
+          {
+            "k": "comentarios",
+            "l": "Comentarios",
+            "t": "textarea",
+            "hint": "Opcional"
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "Sin cambios de fondo: los tres datos se completan con el perfil."
+    ]
+  },
+  {
+    "slug": "internet-proveedores",
+    "id": 21,
+    "area": "ti",
+    "plazo": null,
+    "title": "Acceso de Internet para Proveedores y Licitaciones",
+    "path": "/solicitud-acceso-de-internet-para-proveedores-y-licitaciones/",
+    "intro": "Acceso temporal a internet para visitantes externos en un salón de reuniones.",
+    "sections": [
+      {
+        "title": "Quién solicita",
+        "desc": "Tus datos. Los completamos con tu perfil; revísalos.",
+        "fields": [
+          {
+            "k": "nombre",
+            "l": "Nombre completo",
+            "t": "text",
+            "r": true,
+            "auto": "nombreCompleto"
+          },
+          {
+            "k": "correo",
+            "l": "Correo institucional",
+            "t": "email",
+            "r": true,
+            "auto": "correo"
+          },
+          {
+            "k": "cargo",
+            "l": "Cargo",
+            "t": "text",
+            "r": true,
+            "auto": "cargo"
+          },
+          {
+            "k": "direccion",
+            "l": "Dirección",
+            "t": "text",
+            "r": true,
+            "auto": "direccion",
+            "hint": "Dirección municipal a la que pertenece"
+          },
+          {
+            "k": "extension",
+            "l": "Extensión",
+            "t": "tel",
+            "r": true,
+            "auto": "extension",
+            "hint": "Solo números"
+          }
+        ]
+      },
+      {
+        "title": "Reunión",
+        "fields": [
+          {
+            "l": "Salón de reuniones",
+            "t": "select",
+            "r": true,
+            "opts": [
+              "Tesorería (Torre A, piso 1)",
+              "Secretaría General (Torre B, piso F)",
+              "Contrataciones (Torre C, piso 1)",
+              "Presupuesto (Torre C, piso 1)",
+              "Salón Cheyene (Torre B, piso 7)"
+            ]
+          },
+          {
+            "l": "Duración (horas)",
+            "t": "number",
+            "r": true,
+            "min": 1,
+            "max": 24
+          }
+        ]
+      },
+      {
+        "title": "Participantes",
+        "desc": "Visitantes que necesitan internet. Hasta 5.",
+        "fields": [
+          {
+            "k": "participantes",
+            "l": "Participantes",
+            "t": "repeat",
+            "min": 1,
+            "max": 5,
+            "item": "Participante",
+            "add": "Agregar participante",
+            "fields": [
+              {
+                "l": "Nombre completo",
+                "t": "text",
+                "r": true
+              },
+              {
+                "l": "Correo",
+                "t": "email",
+                "r": true
+              },
+              {
+                "l": "Compañía",
+                "t": "text"
+              },
+              {
+                "l": "Teléfono",
+                "t": "tel"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cambios": [
+      "Participantes 1 a 5: una lista que crece de a uno. Cada participante agregado pide nombre y correo (antes, del 2 al 5 se podían dejar a medias)."
+    ]
+  }
+]
